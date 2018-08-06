@@ -14,3 +14,13 @@ Suppose x1 and x2 are variables that have been given values. Discuss the differe
 
 **The reason for this is that strings are stored in the the Java 'String pool'**
 
+## Problems (See GitHub)
+
+
+
+## Programming Revision
+
+1. Boolean expressions:
+   * Short circuit evaluations refers to operators that only executes the second argument if the first argument does not suffice. Examples of this are the `||` , `&&` and `??`  operators.
+   * 
+
