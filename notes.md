@@ -1,0 +1,473 @@
+# L01 - Introduction
+
+Yeah
+
+# L02 - Strings
+
+*[Java Documentation]( https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)*
+
+Strings store sequences of characters
+
+## Some Examples
+
+```java
+String s1 = "This is a String";
+String s2 = "This is " + "also a String";
+```
+
+Unlike Python, you can't use single quotes
+
+## Reserved Characters
+
+Characters like `"` are reserved (because you start and end a string with it)
+
+You need to escape them if you want to use them in a string
+
+```java
+"Hit that, she a "FEFE"" /* error, compiler thinks string ends at the second " */
+"Hit that, she a \"FEFE\"" /* good */
+```
+
+Other common reserved characters: `\n`, `\t`
+
+## Operations
+
+The addition operator `+` can concatenate the string representation of two *objects* (using the `toString()` method inherited by every class)
+
+```java
+int a = 1;
+String s = "a = " + a; /* good */
+```
+
+Keep in mind:
+
+```java
+"1 + 1 = " + 1 + 1 /* equates to 1 + 1 = 11 */
+"1 + 1 = " + (1 + 1) /* equates to 1 + 1 = 2 */
+```
+
+Operator precedence still holds
+
+## Immutable!
+
+Strings are immutable; once created, they can’t be modified, only replaced. An important point to note here is that, while the `String` object is immutable, **its reference variable is not.** So that's why, in the above example, the reference was made to refer to a newly formed `String` object.
+
+```java
+String str = "knowledge";
+String s = str; // assigns a new reference to the same string "knowledge"
+str = str.concat(" base"); /* NEW string, prev one is lost cause no other references*/
+```
+
+As applications grow, *it's very common for String literals to occupy large area of memory, which can even cause redundancy.* So, in order to make Java more efficient, **the JVM sets aside a special area of memory called the "String constant pool".**
+
+When the compiler sees a `String` literal, it looks for the `String` in the pool. If a match is found, the reference to the new literal is directed to the existing `String` and no new `String` object is created. The existing `String` simply has one more reference. Here comes the point of making `String`objects immutable:
+
+In the `String` constant pool, a `String` object is likely to have one or many references. *If several references point to same String without even knowing it, it would be bad if one of the references modified that String value. That's why String objects are immutable.*
+
+*[Source and further reading](https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning)*
+
+The String class is marked **final** so that nobody can override the behaviour of its methods.
+
+## Equality
+
+All classes in Java are actually pointers, or references. To check equality between two objects we use the `equals` method inherited from the god of classes, `Object`.
+
+```java
+String s = "Hello";
+String s2 = new String("Hello");
+System.out.println(s.equals(s2));
+```
+
+## Wrappers and Primitives 
+
+Java provides “wrapper” classes for primitives. Primitives are things you're familiar with such as:
+
+`int`, `double`, `char`
+
+To conform with the "Object Oriented Model" these procedural conventions are **wrapped up** in a class representing the primitive type. **Provides extra functionality for primitives**, at the expense of very very very slight computational efficiency.
+
+![](images\primitive-wrappers.png)
+
+Has some nice stuff, but parsing is the most used one by far:
+```java
+Integer.parseInt("10");
+Double.parseDouble("3.141592");
+Boolean.parseDouble("TruE");
+```
+
+## Boxing/Unboxing
+
+### Boxing
+
+The process of converting a primitive to its equivalent wrapper class
+
+### Unboxing
+
+The process of converting a primitive to its equivalent wrapper class
+
+Just remember that primitives types are the OG and you're effectively '**boxing**' it up with OOP classes.
+
+## Formatting
+
+```java
+System.out.format("%2$d %<05d %1$d %3$10s", 10, 22, "Hello");
+/*"22 0002210 Hello"
+```
+
+![](images\formatting.png)
+
+# L03 - Input and Output (I/O)
+
+## Command Line Arguments
+
+Just like in C:
+
+```java 
+public static void main(String[] args)
+```
+
+args is a variable that stores command line arguments
+
+```java
+java MyProg Hello World 10
+
+This fills the args variable with three elements, "Hello", "World" and "10"
+For multiword Strings, remember to use quotes
+Also note that "10" is a String, not an int
+```
+
+## Scanner
+
+*[Documentation](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)*
+
+`Scanner` is a class that allows for powerful input parsing.
+
+```java
+import java.util.Scanner;
+Scanner scanner = new Scanner(System.in);
+String s = scanner.nextLine();
+boolean b = scanner.nextBoolean();
+int i = scanner.nextInt();
+double d = scanner.nextDouble();
+```
+
+# L04 - Arrays
+
+*[Documentation](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)*
+
+As simple as can be
+
+```java
+int[] ints1 = {10, 20, 30, 40};
+int[] ints = new int[100];
+String[] strings = new String[100];
+
+int x = ints[0];
+int x = ints[-1]; // Gives out of bounds error
+
+import java.util.Arrays;
+
+int[] n1 = {1, 2, 3};
+int[] n2 = {1, 2, 3};
+Arrays.equals(n1, n2);
+Arrays.sort(n1);
+System.out.println(Arrays.toString(n1));
+
+```
+
+Arrays are references! Manipulating one reference affects all references
+
+# L05 - Files
+
+```java
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+try (PrintWriter pw = new PrintWriter(new FileWriter("test.txt"))) {
+	pw.println("Hello World");
+	pw.format("My least favourite device is %s and its price is $%d",
+	"iPhone", 100000);
+} catch (IOException e) {
+	e.printStackTrace();
+}
+
+```
+
+Not expected to remember exact code for exam, scaffolding provided.
+
+# L06 - Methods
+
+## Signature
+
+*The name of a method, and the number and type of its parameters*
+
+```java
+<privacy?> <static?> <return type> <method name>(<arguments>)
+```
+
+- public and static are default
+- Every method needs a return type (`int`, `double[]`, `void`...)
+- Methods can have zero or more arguments
+- You must include the return statement if it is not `void`
+- Must be defined in a class
+- Represents the class performing an action
+
+## Why tho?
+
+- Prevents code **duplication**
+
+- Improves **readability**
+- Makes code **reusable** and **portable**
+- Easier to **debug**
+- Gives “important code” a useful **name**
+
+## `static` keyword
+
+- Indicates a **constant**, **variable**, or **method** exists without an object.
+- In other words, you do not need to create a variable to use something
+  defined as `static`
+
+For example, the Math library has various **static** functions, take this for example:
+
+```java
+double x = Math.sqrt(10);
+```
+
+We didn't declare some "`math`" object, we used the method directly without creating an instance of the class.
+
+Here is a **non-static** example:
+
+```java
+Scanner scanner = new Scanner(System.in);
+String text = scanner.nextLine();
+```
+
+## Scope
+
+- Defines when a constant, variable or method can be “seen”
+
+## Mutation
+
+- Remember that objects are pointers in Java
+- When we pass objects to methods, we pass references
+- References allow us to “mutate” objects, despite being in a different scope
+
+## Overloading
+
+- When methods share the same name, but differ in the number, or type of arguments in the method signature
+
+#### Base Method
+
+```java
+void magicalComputation(int n)
+```
+
+#### Overloading
+
+```java
+void magicalComputation(double n)
+
+void magicalComputation(int n1, int n2)
+
+void magicalComputation(int n1, int n2, int n3)
+```
+
+# L07 - Classes and Objects
+
+- A “generalization” of a real world (or “problem world”) entity
+  - A physical real world thing, like a student or book
+  - A physical real world thing, like a student or book
+  -  An even more abstract thing like a list or a string (data)
+- Represents a template for things that have common properties
+- Contains **attributes** and **methods**
+- Defines a new **data type**
+
+## Objects
+
+- Refers to both an instance of a class and all classes in Java, because all classes inherit the *Object* class. Confusing? Yeah, but it's pretty simple
+- **Object**: A specific, concrete example of a class
+
+- **Instance**: An object that exists in your code
+
+```java
+<privacy> class <ClassName> {
+	<variable declarations>
+	<method declarations>
+}
+```
+
+### Static vs Instance
+
+#### Static Variable
+
+A property or attribute that is **shared by all instances** of a class
+
+```java
+public class Movie {
+	public static final int MAX_RATING = 5;
+}
+```
+
+- One copy per class
+
+#### Instance Variable
+
+A property or attribute that is unique to each instance (object) of a class
+
+```java
+public class <ClassName> {
+	public <type> varName = <value>;
+}
+```
+
+- One copy per object
+
+#### Static Method
+
+An action that can be performed by a class, or a message that can be sent to it
+
+```java
+public class Movie {
+	public static String getDefaultBlurb() {
+		return "Better than Batman vs. Superman but that's not hard.";
+    }
+}
+```
+
+#### Instance Method
+
+An action that can be performed by an object, or a message that can be sent to it
+
+- Defines an action that can be performed by an object, or a message that can be sent to it
+
+```java
+public class Actor {
+	public String firstName, lastName;
+    
+    public String getFullName() {
+		return String.format("%s, %s", lastName, firstName);
+	}
+}
+```
+
+If a method doesn’t use any instance variables, it should be static.
+
+## Null
+
+- The Java keyword for **“no object here”**. Null objects **can’t be “accessed”** to get variables or methods, or used in any way.
+- Objects are null until they are ***instantiated***.
+
+- To instantiate an object we do:
+
+  ```java
+  Actor robertDowneyJr = new Actor();
+  ```
+
+## Instantiation and Member Access
+
+- The `new` keyword tells the JVM to allocate memory for the object.
+
+- The `.` operator 
+
+```java
+Actor robertDowneyJr = new Actor();
+robertDowneyJr.firstName = "Robert";
+robertDowneyJr.lastName = "Downey";
+robertDowneyJr.rating = 5;
+```
+
+## Constructors
+
+Constructors are methods used to initialize objects. They  have the same name of the class and cannot return any values. Classes can have more than one constructor (**overloading**).
+
+*Constructor*: A method used to create and initialise an object.
+
+```java
+public Actor(String firstName, String lastName, int rating) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.rating = rating;
+}
+
+```
+
+*Note:* The `this` keyword returns the current class that uses it
+
+# Standard Methods
+
+The god of all classes, **Object** contains these two methods:
+
+```java
+public String toString() {
+	return <String>;
+}
+
+public boolean equals(<type> var) {
+	return <boolean expression>;
+}
+
+```
+
+That means that all classes (which inherit the *Object* class by default) have these methods and can ***override them*** to change their functionality.
+
+## Finalize
+
+```java
+public void finalize() {
+	<block of code to execute>
+}
+```
+
+# L08 - Privacy
+
+## Mutability
+
+- An object is mutable if any of its instance variables can be changed after being initialised.
+- An object is immutable if none of its instance variables can be changed after being initialised.
+
+**Information Hiding**: Using privacy to “hide” the details of a class from the
+outside world.
+
+## Modifiers
+
+### Private
+
+Only available to methods defined in the same class; should be applied to all (mutable) instance variables, and some methods.
+
+### Protected
+
+Available to all classes in the same package and also to any subclasses that inherit from the class.
+
+### Public
+
+Available at all times, everywhere.
+
+
+
+![1535885278018](images\privacymodifiers.png)
+
+## Getters and Setters
+
+```java
+public <type> get<VarName>() {
+	return var;
+}
+
+public void set<VarName>(<type> var) {
+	this.var = var;
+}
+```
+
+**A class is immutable if all of its attributes are private, and it contains no setters.**
+
+## Privacy Leaks
+
+- When a reference to a private instance variable is made available to an external object, and unintended/unknown changes can be made.
+
+## Immutability
+
+- A class is immutable if all of its attributes are private, it contains no setters, and only returns copies of its (mutable) instance variables.
+
+# L09 - Inheritance
+
