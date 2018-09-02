@@ -1,55 +1,8 @@
-# Table of Contents
-* [L01 - Introduction](#l01---introduction)
-* [L02 - Strings](#l02---strings)
-	* [Some Examples](#some-examples)
-	* [Reserved Characters](#reserved-characters)
-	* [Operations](#operations)
-	* [Immutable!](#immutable!)
-	* [Equality](#equality)
-	* [Wrappers and Primitives](#wrappers-and-primitives)
-	* [Boxing/Unboxing](#boxing/unboxing)
-		* [Boxing](#boxing)
-		* [Unboxing](#unboxing)
-	* [Formatting](#formatting)
-* [L03 - Input and Output (I/O)](#l03---input-and-output-i/o)
-	* [Command Line Arguments](#command-line-arguments)
-	* [Scanner](#scanner)
-* [L04 - Arrays](#l04---arrays)
-* [L05 - Files](#l05---files)
-* [L06 - Methods](#l06---methods)
-	* [Signature](#signature)
-	* [Why tho?](#why-tho?)
-	* [`static` keyword](#`static`-keyword)
-	* [Scope](#scope)
-	* [Mutation](#mutation)
-	* [Overloading](#overloading)
-* [L07 - Classes and Objects](#l07---classes-and-objects)
-	* [Objects](#objects)
-		* [Static vs Instance](#static-vs-instance)
-	* [Null](#null)
-	* [Instantiation and Member Access](#instantiation-and-member-access)
-	* [Constructors](#constructors)
-	* [Standard Methods](#standard-methods)
-	* [Finalize](#finalize)
-* [L08 - Privacy](#l08---privacy)
-	* [Mutability](#mutability)
-	* [Modifiers](#modifiers)
-		* [Private](#private)
-		* [Protected](#protected)
-		* [Public](#public)
-	* [Getters and Setters](#getters-and-setters)
-	* [Privacy Leaks](#privacy-leaks)
-	* [Immutability](#immutability)
-* [L09 - Inheritance](#l09---inheritance)
 # L01 - Introduction
-[← Return to Index](#table-of-contents)
-
 
 Yeah
 
 # L02 - Strings
-[← Return to Index](#table-of-contents)
-
 
 *[Java Documentation]( https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)*
 
@@ -164,8 +117,6 @@ System.out.format("%2$d %<05d %1$d %3$10s", 10, 22, "Hello");
 ![](images\formatting.png)
 
 # L03 - Input and Output (I/O)
-[← Return to Index](#table-of-contents)
-
 
 ## Command Line Arguments
 
@@ -201,8 +152,6 @@ double d = scanner.nextDouble();
 ```
 
 # L04 - Arrays
-[← Return to Index](#table-of-contents)
-
 
 *[Documentation](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)*
 
@@ -229,8 +178,6 @@ System.out.println(Arrays.toString(n1));
 Arrays are references! Manipulating one reference affects all references
 
 # L05 - Files
-[← Return to Index](#table-of-contents)
-
 
 ```java
 import java.io.FileWriter;
@@ -250,8 +197,6 @@ try (PrintWriter pw = new PrintWriter(new FileWriter("test.txt"))) {
 Not expected to remember exact code for exam, scaffolding provided.
 
 # L06 - Methods
-[← Return to Index](#table-of-contents)
-
 
 ## Signature
 
@@ -329,8 +274,6 @@ void magicalComputation(int n1, int n2, int n3)
 ```
 
 # L07 - Classes and Objects
-[← Return to Index](#table-of-contents)
-
 
 - A “generalization” of a real world (or “problem world”) entity
   - A physical real world thing, like a student or book
@@ -477,8 +420,6 @@ public void finalize() {
 ```
 
 # L08 - Privacy
-[← Return to Index](#table-of-contents)
-
 
 ## Mutability
 
@@ -529,6 +470,4 @@ public void set<VarName>(<type> var) {
 - A class is immutable if all of its attributes are private, it contains no setters, and only returns copies of its (mutable) instance variables.
 
 # L09 - Inheritance
-[← Return to Index](#table-of-contents)
-
 
