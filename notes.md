@@ -711,7 +711,7 @@ WingedRobot plane = (WingedRobot) robot;
 
 The ability to use objects or methods in many different ways; roughly means “multiple forms”.
 
-![](C:\Users\rohyl\Documents\GitHub\OOSD\images\polymorphism.png)
+![](images\polymorphism.png)
 
 ## Abstract Methods
 
@@ -733,8 +733,146 @@ Defines a class that is incomplete. Classes with abstract methods must be abstra
 
 # L11 - Interfaces
 
-Interfaces are **abstract classes** by default. They cannot contain instance ***variables***. They can contain only **constants** and **abstract methods**. The
+Interfaces are **abstract classes** by default. They cannot contain instance ***variables***. They can contain only **constants** and **abstract methods**. The abstract methods **do not contain implementations**.
+
+In an interface:
+
+- All **methods** are implied to be **abstract**
+- All **attributes** are implied to be **static** **final**
+- All **methods** and **attributes** are implied to be **public**
+
+## How to Use Interfaces
+
+`interface` and `implements`
+
+```java
+public class Image implements Printable {
+    public void print() {
+    <block of code to execute>
+    }
+}
+```
+
+## Default Methods
+
+Classes can be “**forced**” to have an **implementation** of a method, that can be overridden.
+
+## Extending Interfaces
+
+Interfaces can extend other classes, even interfaces - to specify additional behaviour!
+
+```java
+public interface Digitisable extends Printable {
+	public void digitise();
+	}
+}
+
+```
+
+## A Common Use - Sorting - `Comparable<T>` 
+
+A class that that implements `Comparable<ClassName>` can allow system libraries such as `Array.Sort` to sort data how you specify, regardless of the class.
+
+In specific, the class must implement:
+
+```java
+public int compareTo(<ClassName> object)
+```
 
 
 
-# L12 - UML Handout
+# L12 - Unified Modelling Language (UML)
+
+## What is it?
+
+**Unified Modelling Language** (UML) is a graphical modelling language that can be used to represent
+artefacts of object oriented analysis, design and implementation.
+
+## Class Representation
+
+![UML Class Representation](images\uml1.png)
+
+### Class Attributes
+
+Components of an attribute:
+
+- Name (e.g. xPos)
+- Data Type (e.g. : **int**)
+- Initial Value (e.g. = 0)
+- Privacy (e.g. **+**)
+- Multiplicity
+
+![UML Attribute Representation](images\uml2.png)
+
+### Class Methods
+
+![UML Methods](images\uml3.png)
+
+## Class Relationships
+
+Classes may relate to other classes through different types of relationships.
+
+- Association
+- Generalization (Inheritance)
+- Realization (Interfaces)
+- Dependency
+
+### Association
+
+Represents a **has-a** (containment) relationship between objects.
+
+When classes are contained by another, we always use an **association**
+
+![UML Associations](images\uml4.png)
+
+A link indicating **one class contains an attribute that is itself a class**. Does not mean one class
+“uses” another (in a method, or otherwise).
+
+### Multiplicity
+
+Multiplicity on an association specifies the **number of links** that can exist between **instances (objects)** of the associated classes.
+
+### Example
+
+Let's create an example for the following scenario:
+
+- A `Student` can take up to five Courses
+- A `Student` has to be enrolled in at least one Course
+- A `Course` can contain up to 400 Students
+- A `Course` should have at least 10 Students
+
+Create a UML representation for the following scenario:
+
+![UML Example](images\uml5.png)
+
+- Self association example:
+  - Each Student also has a student representative they can contact, who is also a student
+  - ![UML Example](images\uml6.png)
+
+- Different form of association, where one class “has” another class, but both exist independently
+
+### Aggregation
+
+ - Different form of association, where one class “has” another class, but both exist independently
+- If a `GameObject` is destroyed, the Position object dies; dependence
+- ![UML Example](images\uml7.png)
+- If the `Pond` object is destroyed, the `Duck` lives on; independence
+- This makes sense, a `Duck` can find another `Pond`!
+
+### Composition
+
+- One class cannot exist without the other; in other words, existing on its own doesn’t make sense
+
+ ![UML Example](images\uml8.png)
+
+- A **Department** is **entirely** **dependent** on a **University** to exist
+
+- If the **University** disappears, it makes no sense for a **Department** to exist
+- But a **Professor** is **just a person**; they can **find another** **University**!
+
+## Generalization - Inheritance 
+
+ ![UML Example](images\uml9.png)
+
+- **Italicised methods or classes** are **abstract**.
+
