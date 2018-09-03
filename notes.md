@@ -95,7 +95,7 @@ Keep in mind:
 
 Operator precedence still holds
 
-## Immutable!
+## Immutability
 
 Strings are immutable; once created, they can’t be modified, only replaced. An important point to note here is that, while the `String` object is immutable, **its reference variable is not.** So that's why, in the above example, the reference was made to refer to a newly formed `String` object.
 
@@ -531,4 +531,210 @@ public void set<VarName>(<type> var) {
 # L09 - Inheritance
 [← Return to Index](#table-of-contents)
 
+## Quick Reference
 
+- Inheritance defines an “Is A” relationship
+  - Rook is a piece
+  - Dog is an animal 
+  - Husky is a Dog
+- Only use inheritance when this relationship makes sense
+
+## Definition
+
+A form of abstraction that permits “generalisation” of similar attributes/methods of classes; analogous to passing genetics on to your children.
+
+## Superclasses
+
+The “parent” or “base” class in the inheritance relationship; provides general information to its “child” classes.
+
+## Subclass
+
+The “child” or “derived” class in the inheritance relationship; inherits common attributes and methods from the “parent” class.
+
+## Gist
+
+**Ultimately allows code to be re-used**. Subclasses should be “more specific” versions of a superclass
+
+## Example: Chess
+
+This is **bad**:
+
+```java
+public class Board {
+	private Pawn[] pawns;
+	private Rook[] rooks;
+	...
+	private ???[][] board;
+}
+
+```
+
+Instead, we create superclass called ***Piece***:
+
+```java
+public class Piece {
+	public int row;
+	public int col;
+    public Piece(int row, int col) {
+		this.row = row;
+		this.col = col;
+	}
+	public boolean isValidMove(int toRow, int toCol) {
+		return true; // Dummy method, the piece type isn't known
+	}
+}
+```
+
+Each piece then can ***inherit*** this superclass, for example a chess piece known as the **Rook** can move in straight lines. This can be implemented by ***overriding*** the its parent `isValidMove` method:
+
+```java
+public class Rook extends Piece {
+	public boolean isValidMove(int toRow, int toCol) {
+		return (this.row == toRow) || (this.col == toCol);
+	}
+}
+```
+
+## Super Keyword
+
+The `super` keyword invokes the constructor of the parent class.
+
+```java
+public class Rook extends Piece {
+	public Rook(int row, int col) {
+		super(row, col);
+		<block of code to execute>
+	}
+}
+```
+
+`super` can also be used to reference an object's parent class; just like the `this` keyword.
+
+## Shadowing
+
+When two or more variables are declared with the same name in overlapping scopes; for example, in both a subclass and superclass.
+
+**Don't do this**
+
+## Overloading
+
+Declaring multiple methods with the same name, but differing method signatures. Superclass methods can be overloaded in subclasses.
+
+## Overriding
+
+Declaring a method that exists in a superclass again in a subclass, with the same signature. Methods can only be overridden by subclasses.
+
+### Why?
+
+- Subclasses can extend functionality from a parent
+- Subclasses can override/change functionality from a parent
+
+Back to the chess example, we can use **overriding** to make a better implementation:
+
+```java
+public class Piece {
+	public boolean isValidMove(int row, int col) {
+		return row >= 0 && row < BOARD_SIZE &&
+		col >= 0 && col < BOARD_SIZE;
+	}
+}
+```
+
+```java
+public class Rook extends Piece {
+	public boolean isValidMove(int row, int col) {
+        return super.isValidMove(row, col) && ((this.row == row) || (this.col == col));
+    }
+}
+```
+
+If you don't want methods to be overridden use the `final` variable
+
+# L10 - Polymorphism and Abstract Classes
+
+## The Object Class
+
+All classic inherit the object class. Two useful methods are exposed by the `Object` class:
+
+- `toString`
+- `equals`
+
+That's great. We can override them to give them meaning.
+
+```java
+public static void main(String[] args) {
+	Robot robot = new Robot();
+    System.out.println(robot);
+}
+public String toString() {
+	return String.format("Robot located at {%f, %f, %f}",
+	this.x, this.y, this.z);
+}
+public boolean equals(Object other) {
+    // check if references are the same
+    if (this == other)
+    	return true;
+    // check if the object exists
+    if (other == null)
+    	return false;
+    // type check before casting
+    if (this.getClass() != other.getClass())
+    	return false;
+    Robot robot = (Robot) other;
+    // field comparison
+    return Math.abs(this.x - robot.x) < EPS && ...;
+}
+```
+
+`"Robot located at {0, 0, 0}"` 	 
+
+## `instanceof` Keyword
+
+- Results in true if an object A is an instance of the same class as object B, or a class that inherits from B.
+
+## Upcasting
+
+When an object of a child class is assigned to a variable of an ancestor class.
+
+` Robot robot = new AerialRobot();`
+
+## Downcasting
+
+When an object of an ancestor class is assigned to a variable of a child class. Only makes sense if the underlying object is actually of that class. Why?
+
+```java
+Robot robot = new WingedRobot();
+WingedRobot plane = (WingedRobot) robot;
+```
+
+## Polymorphism
+
+The ability to use objects or methods in many different ways; roughly means “multiple forms”.
+
+![](C:\Users\rohyl\Documents\GitHub\OOSD\images\polymorphism.png)
+
+## Abstract Methods
+
+Some classes aren’t meant to be instantiated because they aren’t well defined. We use **abstract** classes to deal with this.
+
+### Definition
+
+Defines a method that is common to all subclasses, but has no implementation. Each subclass then provides it’s own implementation through overriding.
+
+## Abstract Classes
+
+Defines a class that is incomplete. Classes with abstract methods must be abstract, but abstract classes can have no abstract methods. Cannot be instantiated.
+
+## Concrete Classes
+
+- Classes that are not well defined
+
+
+
+# L11 - Interfaces
+
+Interfaces are **abstract classes** by default. They cannot contain instance ***variables***. They can contain only **constants** and **abstract methods**. The
+
+
+
+# L12 - UML Handout
