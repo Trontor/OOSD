@@ -4,7 +4,7 @@
 	* [Some Examples](#some-examples)
 	* [Reserved Characters](#reserved-characters)
 	* [Operations](#operations)
-	* [Immutable!](#immutable!)
+	* [Immutability](#immutability)
 	* [Equality](#equality)
 	* [Wrappers and Primitives](#wrappers-and-primitives)
 	* [Boxing/Unboxing](#boxing/unboxing)
@@ -39,8 +39,44 @@
 		* [Public](#public)
 	* [Getters and Setters](#getters-and-setters)
 	* [Privacy Leaks](#privacy-leaks)
-	* [Immutability](#immutability)
 * [L09 - Inheritance](#l09---inheritance)
+	* [Quick Reference](#quick-reference)
+	* [Definition](#definition)
+	* [Superclasses](#superclasses)
+	* [Subclass](#subclass)
+	* [Gist](#gist)
+	* [Example: Chess](#example-chess)
+	* [Super Keyword](#super-keyword)
+	* [Shadowing](#shadowing)
+	* [Overriding](#overriding)
+		* [Why?](#why?)
+* [L10 - Polymorphism and Abstract Classes](#l10---polymorphism-and-abstract-classes)
+	* [The Object Class](#the-object-class)
+	* [`instanceof` Keyword](#`instanceof`-keyword)
+	* [Upcasting](#upcasting)
+	* [Downcasting](#downcasting)
+	* [Polymorphism](#polymorphism)
+	* [Abstract Methods](#abstract-methods)
+		* [Definition](#definition)
+	* [Abstract Classes](#abstract-classes)
+	* [Concrete Classes](#concrete-classes)
+* [L11 - Interfaces](#l11---interfaces)
+	* [How to Use Interfaces](#how-to-use-interfaces)
+	* [Default Methods](#default-methods)
+	* [Extending Interfaces](#extending-interfaces)
+	* [A Common Use - Sorting - `Comparable<T>`](#a-common-use---sorting---`comparable<t>`)
+* [L12 - Unified Modelling Language (UML)](#l12---unified-modelling-language-uml)
+	* [What is it?](#what-is-it?)
+	* [Class Representation](#class-representation)
+		* [Class Attributes](#class-attributes)
+		* [Class Methods](#class-methods)
+	* [Class Relationships](#class-relationships)
+		* [Association](#association)
+		* [Multiplicity](#multiplicity)
+		* [Example](#example)
+		* [Aggregation](#aggregation)
+		* [Composition](#composition)
+	* [Generalization - Inheritance](#generalization---inheritance)
 # L01 - Introduction
 [← Return to Index](#table-of-contents)
 
@@ -533,7 +569,7 @@ public void set<VarName>(<type> var) {
 
 ## Quick Reference
 
-- Inheritance defines an “Is A” relationship
+- Inheritance defines an “**Is A**” relationship
   - Rook is a piece
   - Dog is an animal 
   - Husky is a Dog
@@ -651,6 +687,8 @@ public class Rook extends Piece {
 If you don't want methods to be overridden use the `final` variable
 
 # L10 - Polymorphism and Abstract Classes
+[← Return to Index](#table-of-contents)
+
 
 ## The Object Class
 
@@ -719,7 +757,7 @@ Some classes aren’t meant to be instantiated because they aren’t well define
 
 ### Definition
 
-Defines a method that is common to all subclasses, but has no implementation. Each subclass then provides it’s own implementation through overriding.
+The `abstract` keyword defines a method that is common to all subclasses, but has no implementation. Each subclass then provides it’s own implementation through overriding.
 
 ## Abstract Classes
 
@@ -732,6 +770,8 @@ Defines a class that is incomplete. Classes with abstract methods must be abstra
 
 
 # L11 - Interfaces
+[← Return to Index](#table-of-contents)
+
 
 Interfaces are **abstract classes** by default. They cannot contain instance ***variables***. They can contain only **constants** and **abstract methods**. The abstract methods **do not contain implementations**.
 
@@ -740,6 +780,10 @@ In an interface:
 - All **methods** are implied to be **abstract**
 - All **attributes** are implied to be **static** **final**
 - All **methods** and **attributes** are implied to be **public**
+
+> Implementing an interface allows a class to become more formal about the behaviour it promises to provide. Interfaces **form a contract between the class and the outside world**, and this contract is **enforced at build time by the compiler**. If your class claims to implement an interface, **all methods defined by that interface must appear in its source code** before the class will successfully compile.
+
+[Credit](https://docs.oracle.com/javase/tutorial/java/concepts/interface.html) 
 
 ## How to Use Interfaces
 
@@ -782,6 +826,8 @@ public int compareTo(<ClassName> object)
 
 
 # L12 - Unified Modelling Language (UML)
+[← Return to Index](#table-of-contents)
+
 
 ## What is it?
 
@@ -819,7 +865,7 @@ Classes may relate to other classes through different types of relationships.
 
 ### Association
 
-Represents a **has-a** (containment) relationship between objects.
+Represents a **has a** (containment) relationship between objects.
 
 When classes are contained by another, we always use an **association**
 

@@ -1,8 +1,55 @@
+# Table of Contents
+* [L01 - Introduction](#l01---introduction)
+* [L02 - Strings](#l02---strings)
+	* [Some Examples](#some-examples)
+	* [Reserved Characters](#reserved-characters)
+	* [Operations](#operations)
+	* [Immutable!](#immutable!)
+	* [Equality](#equality)
+	* [Wrappers and Primitives](#wrappers-and-primitives)
+	* [Boxing/Unboxing](#boxing/unboxing)
+		* [Boxing](#boxing)
+		* [Unboxing](#unboxing)
+	* [Formatting](#formatting)
+* [L03 - Input and Output (I/O)](#l03---input-and-output-i/o)
+	* [Command Line Arguments](#command-line-arguments)
+	* [Scanner](#scanner)
+* [L04 - Arrays](#l04---arrays)
+* [L05 - Files](#l05---files)
+* [L06 - Methods](#l06---methods)
+	* [Signature](#signature)
+	* [Why tho?](#why-tho?)
+	* [`static` keyword](#`static`-keyword)
+	* [Scope](#scope)
+	* [Mutation](#mutation)
+	* [Overloading](#overloading)
+* [L07 - Classes and Objects](#l07---classes-and-objects)
+	* [Objects](#objects)
+		* [Static vs Instance](#static-vs-instance)
+	* [Null](#null)
+	* [Instantiation and Member Access](#instantiation-and-member-access)
+	* [Constructors](#constructors)
+	* [Standard Methods](#standard-methods)
+	* [Finalize](#finalize)
+* [L08 - Privacy](#l08---privacy)
+	* [Mutability](#mutability)
+	* [Modifiers](#modifiers)
+		* [Private](#private)
+		* [Protected](#protected)
+		* [Public](#public)
+	* [Getters and Setters](#getters-and-setters)
+	* [Privacy Leaks](#privacy-leaks)
+	* [Immutability](#immutability)
+* [L09 - Inheritance](#l09---inheritance)
 # L01 - Introduction
+[← Return to Index](#table-of-contents)
+
 
 Yeah
 
 # L02 - Strings
+[← Return to Index](#table-of-contents)
+
 
 *[Java Documentation]( https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)*
 
@@ -48,7 +95,7 @@ Keep in mind:
 
 Operator precedence still holds
 
-## Immutable!
+## Immutability
 
 Strings are immutable; once created, they can’t be modified, only replaced. An important point to note here is that, while the `String` object is immutable, **its reference variable is not.** So that's why, in the above example, the reference was made to refer to a newly formed `String` object.
 
@@ -117,6 +164,8 @@ System.out.format("%2$d %<05d %1$d %3$10s", 10, 22, "Hello");
 ![](images\formatting.png)
 
 # L03 - Input and Output (I/O)
+[← Return to Index](#table-of-contents)
+
 
 ## Command Line Arguments
 
@@ -152,6 +201,8 @@ double d = scanner.nextDouble();
 ```
 
 # L04 - Arrays
+[← Return to Index](#table-of-contents)
+
 
 *[Documentation](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)*
 
@@ -178,6 +229,8 @@ System.out.println(Arrays.toString(n1));
 Arrays are references! Manipulating one reference affects all references
 
 # L05 - Files
+[← Return to Index](#table-of-contents)
+
 
 ```java
 import java.io.FileWriter;
@@ -197,6 +250,8 @@ try (PrintWriter pw = new PrintWriter(new FileWriter("test.txt"))) {
 Not expected to remember exact code for exam, scaffolding provided.
 
 # L06 - Methods
+[← Return to Index](#table-of-contents)
+
 
 ## Signature
 
@@ -274,6 +329,8 @@ void magicalComputation(int n1, int n2, int n3)
 ```
 
 # L07 - Classes and Objects
+[← Return to Index](#table-of-contents)
+
 
 - A “generalization” of a real world (or “problem world”) entity
   - A physical real world thing, like a student or book
@@ -420,6 +477,8 @@ public void finalize() {
 ```
 
 # L08 - Privacy
+[← Return to Index](#table-of-contents)
+
 
 ## Mutability
 
@@ -470,4 +529,354 @@ public void set<VarName>(<type> var) {
 - A class is immutable if all of its attributes are private, it contains no setters, and only returns copies of its (mutable) instance variables.
 
 # L09 - Inheritance
+[← Return to Index](#table-of-contents)
+
+## Quick Reference
+
+- Inheritance defines an “**Is A**” relationship
+  - Rook is a piece
+  - Dog is an animal 
+  - Husky is a Dog
+- Only use inheritance when this relationship makes sense
+
+## Definition
+
+A form of abstraction that permits “generalisation” of similar attributes/methods of classes; analogous to passing genetics on to your children.
+
+## Superclasses
+
+The “parent” or “base” class in the inheritance relationship; provides general information to its “child” classes.
+
+## Subclass
+
+The “child” or “derived” class in the inheritance relationship; inherits common attributes and methods from the “parent” class.
+
+## Gist
+
+**Ultimately allows code to be re-used**. Subclasses should be “more specific” versions of a superclass
+
+## Example: Chess
+
+This is **bad**:
+
+```java
+public class Board {
+	private Pawn[] pawns;
+	private Rook[] rooks;
+	...
+	private ???[][] board;
+}
+
+```
+
+Instead, we create superclass called ***Piece***:
+
+```java
+public class Piece {
+	public int row;
+	public int col;
+    public Piece(int row, int col) {
+		this.row = row;
+		this.col = col;
+	}
+	public boolean isValidMove(int toRow, int toCol) {
+		return true; // Dummy method, the piece type isn't known
+	}
+}
+```
+
+Each piece then can ***inherit*** this superclass, for example a chess piece known as the **Rook** can move in straight lines. This can be implemented by ***overriding*** the its parent `isValidMove` method:
+
+```java
+public class Rook extends Piece {
+	public boolean isValidMove(int toRow, int toCol) {
+		return (this.row == toRow) || (this.col == toCol);
+	}
+}
+```
+
+## Super Keyword
+
+The `super` keyword invokes the constructor of the parent class.
+
+```java
+public class Rook extends Piece {
+	public Rook(int row, int col) {
+		super(row, col);
+		<block of code to execute>
+	}
+}
+```
+
+`super` can also be used to reference an object's parent class; just like the `this` keyword.
+
+## Shadowing
+
+When two or more variables are declared with the same name in overlapping scopes; for example, in both a subclass and superclass.
+
+**Don't do this**
+
+## Overloading
+
+Declaring multiple methods with the same name, but differing method signatures. Superclass methods can be overloaded in subclasses.
+
+## Overriding
+
+Declaring a method that exists in a superclass again in a subclass, with the same signature. Methods can only be overridden by subclasses.
+
+### Why?
+
+- Subclasses can extend functionality from a parent
+- Subclasses can override/change functionality from a parent
+
+Back to the chess example, we can use **overriding** to make a better implementation:
+
+```java
+public class Piece {
+	public boolean isValidMove(int row, int col) {
+		return row >= 0 && row < BOARD_SIZE &&
+		col >= 0 && col < BOARD_SIZE;
+	}
+}
+```
+
+```java
+public class Rook extends Piece {
+	public boolean isValidMove(int row, int col) {
+        return super.isValidMove(row, col) && ((this.row == row) || (this.col == col));
+    }
+}
+```
+
+If you don't want methods to be overridden use the `final` variable
+
+# L10 - Polymorphism and Abstract Classes
+
+## The Object Class
+
+All classic inherit the object class. Two useful methods are exposed by the `Object` class:
+
+- `toString`
+- `equals`
+
+That's great. We can override them to give them meaning.
+
+```java
+public static void main(String[] args) {
+	Robot robot = new Robot();
+    System.out.println(robot);
+}
+public String toString() {
+	return String.format("Robot located at {%f, %f, %f}",
+	this.x, this.y, this.z);
+}
+public boolean equals(Object other) {
+    // check if references are the same
+    if (this == other)
+    	return true;
+    // check if the object exists
+    if (other == null)
+    	return false;
+    // type check before casting
+    if (this.getClass() != other.getClass())
+    	return false;
+    Robot robot = (Robot) other;
+    // field comparison
+    return Math.abs(this.x - robot.x) < EPS && ...;
+}
+```
+
+`"Robot located at {0, 0, 0}"` 	 
+
+## `instanceof` Keyword
+
+- Results in true if an object A is an instance of the same class as object B, or a class that inherits from B.
+
+## Upcasting
+
+When an object of a child class is assigned to a variable of an ancestor class.
+
+` Robot robot = new AerialRobot();`
+
+## Downcasting
+
+When an object of an ancestor class is assigned to a variable of a child class. Only makes sense if the underlying object is actually of that class. Why?
+
+```java
+Robot robot = new WingedRobot();
+WingedRobot plane = (WingedRobot) robot;
+```
+
+## Polymorphism
+
+The ability to use objects or methods in many different ways; roughly means “multiple forms”.
+
+![](images\polymorphism.png)
+
+## Abstract Methods
+
+Some classes aren’t meant to be instantiated because they aren’t well defined. We use **abstract** classes to deal with this.
+
+### Definition
+
+Defines a method that is common to all subclasses, but has no implementation. Each subclass then provides it’s own implementation through overriding.
+
+## Abstract Classes
+
+Defines a class that is incomplete. Classes with abstract methods must be abstract, but abstract classes can have no abstract methods. Cannot be instantiated.
+
+## Concrete Classes
+
+- Classes that are not well defined
+
+
+
+# L11 - Interfaces
+
+Interfaces are **abstract classes** by default. They cannot contain instance ***variables***. They can contain only **constants** and **abstract methods**. The abstract methods **do not contain implementations**.
+
+In an interface:
+
+- All **methods** are implied to be **abstract**
+- All **attributes** are implied to be **static** **final**
+- All **methods** and **attributes** are implied to be **public**
+
+> Implementing an interface allows a class to become more formal about the behaviour it promises to provide. Interfaces **form a contract between the class and the outside world**, and this contract is **enforced at build time by the compiler**. If your class claims to implement an interface, **all methods defined by that interface must appear in its source code** before the class will successfully compile.
+
+[Credit](https://docs.oracle.com/javase/tutorial/java/concepts/interface.html) 
+
+## How to Use Interfaces
+
+`interface` and `implements`
+
+```java
+public class Image implements Printable {
+    public void print() {
+    <block of code to execute>
+    }
+}
+```
+
+## Default Methods
+
+Classes can be “**forced**” to have an **implementation** of a method, that can be overridden.
+
+## Extending Interfaces
+
+Interfaces can extend other classes, even interfaces - to specify additional behaviour!
+
+```java
+public interface Digitisable extends Printable {
+	public void digitise();
+	}
+}
+
+```
+
+## A Common Use - Sorting - `Comparable<T>` 
+
+A class that that implements `Comparable<ClassName>` can allow system libraries such as `Array.Sort` to sort data how you specify, regardless of the class.
+
+In specific, the class must implement:
+
+```java
+public int compareTo(<ClassName> object)
+```
+
+
+
+# L12 - Unified Modelling Language (UML)
+
+## What is it?
+
+**Unified Modelling Language** (UML) is a graphical modelling language that can be used to represent
+artefacts of object oriented analysis, design and implementation.
+
+## Class Representation
+
+![UML Class Representation](images\uml1.png)
+
+### Class Attributes
+
+Components of an attribute:
+
+- Name (e.g. xPos)
+- Data Type (e.g. : **int**)
+- Initial Value (e.g. = 0)
+- Privacy (e.g. **+**)
+- Multiplicity
+
+![UML Attribute Representation](images\uml2.png)
+
+### Class Methods
+
+![UML Methods](images\uml3.png)
+
+## Class Relationships
+
+Classes may relate to other classes through different types of relationships.
+
+- Association
+- Generalization (Inheritance)
+- Realization (Interfaces)
+- Dependency
+
+### Association
+
+Represents a **has a** (containment) relationship between objects.
+
+When classes are contained by another, we always use an **association**
+
+![UML Associations](images\uml4.png)
+
+A link indicating **one class contains an attribute that is itself a class**. Does not mean one class
+“uses” another (in a method, or otherwise).
+
+### Multiplicity
+
+Multiplicity on an association specifies the **number of links** that can exist between **instances (objects)** of the associated classes.
+
+### Example
+
+Let's create an example for the following scenario:
+
+- A `Student` can take up to five Courses
+- A `Student` has to be enrolled in at least one Course
+- A `Course` can contain up to 400 Students
+- A `Course` should have at least 10 Students
+
+Create a UML representation for the following scenario:
+
+![UML Example](images\uml5.png)
+
+- Self association example:
+  - Each Student also has a student representative they can contact, who is also a student
+  - ![UML Example](images\uml6.png)
+
+- Different form of association, where one class “has” another class, but both exist independently
+
+### Aggregation
+
+ - Different form of association, where one class “has” another class, but both exist independently
+- If a `GameObject` is destroyed, the Position object dies; dependence
+- ![UML Example](images\uml7.png)
+- If the `Pond` object is destroyed, the `Duck` lives on; independence
+- This makes sense, a `Duck` can find another `Pond`!
+
+### Composition
+
+- One class cannot exist without the other; in other words, existing on its own doesn’t make sense
+
+ ![UML Example](images\uml8.png)
+
+- A **Department** is **entirely** **dependent** on a **University** to exist
+
+- If the **University** disappears, it makes no sense for a **Department** to exist
+- But a **Professor** is **just a person**; they can **find another** **University**!
+
+## Generalization - Inheritance 
+
+ ![UML Example](images\uml9.png)
+
+- **Italicised methods or classes** are **abstract**.
 
