@@ -169,7 +169,7 @@ Java provides “wrapper” classes for primitives. Primitives are things you're
 
 To conform with the "Object Oriented Model" these procedural conventions are **wrapped up** in a class representing the primitive type. **Provides extra functionality for primitives**, at the expense of very very very slight computational efficiency.
 
-![](images\primitive-wrappers.png)
+![](images/primitive-wrappers.png)
 
 Has some nice stuff, but parsing is the most used one by far:
 ```java
@@ -197,7 +197,7 @@ System.out.format("%2$d %<05d %1$d %3$10s", 10, 22, "Hello");
 /*"22 0002210 Hello"
 ```
 
-![](images\formatting.png)
+![](images/formatting.png)
 
 # L03 - Input and Output (I/O)
 [← Return to Index](#table-of-contents)
@@ -540,7 +540,7 @@ Available at all times, everywhere.
 
 
 
-![1535885278018](images\privacymodifiers.png)
+![1535885278018](images/privacymodifiers.png)
 
 ## Getters and Setters
 
@@ -749,7 +749,7 @@ WingedRobot plane = (WingedRobot) robot;
 
 The ability to use objects or methods in many different ways; roughly means “multiple forms”.
 
-![](images\polymorphism.png)
+![](images/polymorphism.png)
 
 ## Abstract Methods
 
@@ -836,7 +836,7 @@ artefacts of object oriented analysis, design and implementation.
 
 ## Class Representation
 
-![UML Class Representation](images\uml1.png)
+![UML Class Representation](images/uml1.png)
 
 ### Class Attributes
 
@@ -848,11 +848,11 @@ Components of an attribute:
 - Privacy (e.g. **+**)
 - Multiplicity
 
-![UML Attribute Representation](images\uml2.png)
+![UML Attribute Representation](images/uml2.png)
 
 ### Class Methods
 
-![UML Methods](images\uml3.png)
+![UML Methods](images/uml3.png)
 
 ## Class Relationships
 
@@ -869,7 +869,7 @@ Represents a **has a** (containment) relationship between objects.
 
 When classes are contained by another, we always use an **association**
 
-![UML Associations](images\uml4.png)
+![UML Associations](images/uml4.png)
 
 A link indicating **one class contains an attribute that is itself a class**. Does not mean one class
 “uses” another (in a method, or otherwise).
@@ -889,11 +889,11 @@ Let's create an example for the following scenario:
 
 Create a UML representation for the following scenario:
 
-![UML Example](images\uml5.png)
+![UML Example](images/uml5.png)
 
 - Self association example:
   - Each Student also has a student representative they can contact, who is also a student
-  - ![UML Example](images\uml6.png)
+  - ![UML Example](images/uml6.png)
 
 - Different form of association, where one class “has” another class, but both exist independently
 
