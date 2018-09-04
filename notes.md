@@ -901,7 +901,7 @@ Create a UML representation for the following scenario:
 
  - Different form of association, where one class “has” another class, but both exist independently
 - If a `GameObject` is destroyed, the Position object dies; dependence
-- ![UML Example](images\uml7.png)
+- ![UML Example](images/uml7.png)
 - If the `Pond` object is destroyed, the `Duck` lives on; independence
 - This makes sense, a `Duck` can find another `Pond`!
 
@@ -909,7 +909,7 @@ Create a UML representation for the following scenario:
 
 - One class cannot exist without the other; in other words, existing on its own doesn’t make sense
 
- ![UML Example](images\uml8.png)
+ ![UML Example](images/uml8.png)
 
 - A **Department** is **entirely** **dependent** on a **University** to exist
 
@@ -918,7 +918,7 @@ Create a UML representation for the following scenario:
 
 ## Generalization - Inheritance 
 
- ![UML Example](images\uml9.png)
+ ![UML Example](images/uml9.png)
 
 - **Italicised methods or classes** are **abstract**.
 
