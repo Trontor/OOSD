@@ -4,7 +4,7 @@
 	* [Some Examples](#some-examples)
 	* [Reserved Characters](#reserved-characters)
 	* [Operations](#operations)
-	* [Immutable!](#immutable!)
+	* [Immutability](#immutability)
 	* [Equality](#equality)
 	* [Wrappers and Primitives](#wrappers-and-primitives)
 	* [Boxing/Unboxing](#boxing/unboxing)
@@ -39,8 +39,87 @@
 		* [Public](#public)
 	* [Getters and Setters](#getters-and-setters)
 	* [Privacy Leaks](#privacy-leaks)
-	* [Immutability](#immutability)
 * [L09 - Inheritance](#l09---inheritance)
+	* [Quick Reference](#quick-reference)
+	* [Definition](#definition)
+	* [Superclasses](#superclasses)
+	* [Subclass](#subclass)
+	* [Gist](#gist)
+	* [Example: Chess](#example-chess)
+	* [Super Keyword](#super-keyword)
+	* [Shadowing](#shadowing)
+	* [Overriding](#overriding)
+		* [Why?](#why?)
+* [L10 - Polymorphism and Abstract Classes](#l10---polymorphism-and-abstract-classes)
+	* [The Object Class](#the-object-class)
+	* [`instanceof` Keyword](#`instanceof`-keyword)
+	* [Upcasting](#upcasting)
+	* [Downcasting](#downcasting)
+	* [Polymorphism](#polymorphism)
+	* [Abstract Methods](#abstract-methods)
+		* [Definition](#definition)
+	* [Abstract Classes](#abstract-classes)
+	* [Concrete Classes](#concrete-classes)
+* [L11 - Interfaces](#l11---interfaces)
+	* [How to Use Interfaces](#how-to-use-interfaces)
+	* [Default Methods](#default-methods)
+	* [Extending Interfaces](#extending-interfaces)
+	* [A Common Use - Sorting - `Comparable<T>`](#a-common-use---sorting---`comparable<t>`)
+* [L12 - Unified Modelling Language (UML)](#l12---unified-modelling-language-uml)
+	* [What is it?](#what-is-it?)
+	* [Class Representation](#class-representation)
+		* [Class Attributes](#class-attributes)
+		* [Class Methods](#class-methods)
+	* [Class Relationships](#class-relationships)
+		* [Association](#association)
+		* [Multiplicity](#multiplicity)
+		* [Example](#example)
+		* [Aggregation](#aggregation)
+		* [Composition](#composition)
+	* [Generalization - Inheritance](#generalization---inheritance)
+* [L13 - Generics](#l13---generics)
+	* [Introduction](#introduction)
+	* [The Comparable Interface](#the-comparable-interface)
+	* [What does T mean?](#what-does-t-mean?)
+	* [ArrayList](#arraylist)
+	* [Using the ArrayList Class](#using-the-arraylist-class)
+* [L14 - Exceptions](#l14---exceptions)
+	* [Types of Errors](#types-of-errors)
+	* [Runtime Errors](#runtime-errors)
+		* [Best Solution](#best-solution)
+	* [Exceptions](#exceptions)
+		* [Exception Handling](#exception-handling)
+		* [Generating Exceptions](#generating-exceptions)
+		* [Defining Exceptions](#defining-exceptions)
+		* [Chaining Exceptions](#chaining-exceptions)
+		* [Types of Exceptions](#types-of-exceptions)
+* [L17 - Software Testing and Design](#l17---software-testing-and-design)
+	* [Unit Testing](#unit-testing)
+		* [Why unit testing?](#why-unit-testing?)
+* [L18/L19 - Design Patterns](#l18/l19---design-patterns)
+	* [Analysing and Publishing a Pattern](#analysing-and-publishing-a-pattern)
+	* [Common Design Patterns](#common-design-patterns)
+		* [Strategy Pattern](#strategy-pattern)
+		* [Factory Method Pattern](#factory-method-pattern)
+		* [Observer Pattern](#observer-pattern)
+* [L20 - Advanced Java and OOP Concepts](#l20---advanced-java-and-oop-concepts)
+	* [Enums (enumerated types)](#enums-enumerated-types)
+		* [Usage](#usage)
+		* [Accessing](#accessing)
+		* [Tying other Information](#tying-other-information)
+	* [Variadic Parameters](#variadic-parameters)
+	* [Functional Interfaces](#functional-interfaces)
+	* [Lambda Expressions](#lambda-expressions)
+	* [Method Reference](#method-reference)
+	* [Streams](#streams)
+		* [Operations](#operations)
+	* [You will not be expected to write code on anything from these notes on this lecture.](#you-will-not-be-expected-to-write-code-on-anything-from-these-notes-on-this-lecture.)
+* [L21 - Games](#l21---games)
+	* [Sequential Programming](#sequential-programming)
+	* [Event Driven Programming](#event-driven-programming)
+		* [Examples of event-driven systems](#examples-of-event-driven-systems)
+	* [Asynchronous Programming](#asynchronous-programming)
+	* [Entity Component Approach](#entity-component-approach)
 # L01 - Introduction
 [← Return to Index](#table-of-contents)
 
@@ -133,7 +212,7 @@ Java provides “wrapper” classes for primitives. Primitives are things you're
 
 To conform with the "Object Oriented Model" these procedural conventions are **wrapped up** in a class representing the primitive type. **Provides extra functionality for primitives**, at the expense of very very very slight computational efficiency.
 
-![](images\primitive-wrappers.png)
+![](images/primitive-wrappers.png)
 
 Has some nice stuff, but parsing is the most used one by far:
 ```java
@@ -161,7 +240,7 @@ System.out.format("%2$d %<05d %1$d %3$10s", 10, 22, "Hello");
 /*"22 0002210 Hello"
 ```
 
-![](images\formatting.png)
+![](images/formatting.png)
 
 # L03 - Input and Output (I/O)
 [← Return to Index](#table-of-contents)
@@ -504,7 +583,7 @@ Available at all times, everywhere.
 
 
 
-![1535885278018](images\privacymodifiers.png)
+![1535885278018](images/privacymodifiers.png)
 
 ## Getters and Setters
 
@@ -651,6 +730,8 @@ public class Rook extends Piece {
 If you don't want methods to be overridden use the `final` variable
 
 # L10 - Polymorphism and Abstract Classes
+[← Return to Index](#table-of-contents)
+
 
 ## The Object Class
 
@@ -711,7 +792,7 @@ WingedRobot plane = (WingedRobot) robot;
 
 The ability to use objects or methods in many different ways; roughly means “multiple forms”.
 
-![](images\polymorphism.png)
+![](images/polymorphism.png)
 
 ## Abstract Methods
 
@@ -719,7 +800,7 @@ Some classes aren’t meant to be instantiated because they aren’t well define
 
 ### Definition
 
-Defines a method that is common to all subclasses, but has no implementation. Each subclass then provides it’s own implementation through overriding.
+The `abstract` keyword defines a method that is common to all subclasses, but has no implementation. Each subclass then provides it’s own implementation through overriding.
 
 ## Abstract Classes
 
@@ -732,6 +813,8 @@ Defines a class that is incomplete. Classes with abstract methods must be abstra
 
 
 # L11 - Interfaces
+[← Return to Index](#table-of-contents)
+
 
 Interfaces are **abstract classes** by default. They cannot contain instance ***variables***. They can contain only **constants** and **abstract methods**. The abstract methods **do not contain implementations**.
 
@@ -786,6 +869,8 @@ public int compareTo(<ClassName> object)
 
 
 # L12 - Unified Modelling Language (UML)
+[← Return to Index](#table-of-contents)
+
 
 ## What is it?
 
@@ -794,7 +879,7 @@ artefacts of object oriented analysis, design and implementation.
 
 ## Class Representation
 
-![UML Class Representation](images\uml1.png)
+![UML Class Representation](images/uml1.png)
 
 ### Class Attributes
 
@@ -806,11 +891,11 @@ Components of an attribute:
 - Privacy (e.g. **+**)
 - Multiplicity
 
-![UML Attribute Representation](images\uml2.png)
+![UML Attribute Representation](images/uml2.png)
 
 ### Class Methods
 
-![UML Methods](images\uml3.png)
+![UML Methods](images/uml3.png)
 
 ## Class Relationships
 
@@ -827,7 +912,7 @@ Represents a **has a** (containment) relationship between objects.
 
 When classes are contained by another, we always use an **association**
 
-![UML Associations](images\uml4.png)
+![UML Associations](images/uml4.png)
 
 A link indicating **one class contains an attribute that is itself a class**. Does not mean one class
 “uses” another (in a method, or otherwise).
@@ -847,11 +932,11 @@ Let's create an example for the following scenario:
 
 Create a UML representation for the following scenario:
 
-![UML Example](images\uml5.png)
+![UML Example](images/uml5.png)
 
 - Self association example:
   - Each Student also has a student representative they can contact, who is also a student
-  - ![UML Example](images\uml6.png)
+  - ![UML Example](images/uml6.png)
 
 - Different form of association, where one class “has” another class, but both exist independently
 
@@ -859,7 +944,7 @@ Create a UML representation for the following scenario:
 
  - Different form of association, where one class “has” another class, but both exist independently
 - If a `GameObject` is destroyed, the Position object dies; dependence
-- ![UML Example](images\uml7.png)
+- ![UML Example](images/uml7.png)
 - If the `Pond` object is destroyed, the `Duck` lives on; independence
 - This makes sense, a `Duck` can find another `Pond`!
 
@@ -867,7 +952,7 @@ Create a UML representation for the following scenario:
 
 - One class cannot exist without the other; in other words, existing on its own doesn’t make sense
 
- ![UML Example](images\uml8.png)
+ ![UML Example](images/uml8.png)
 
 - A **Department** is **entirely** **dependent** on a **University** to exist
 
@@ -876,7 +961,826 @@ Create a UML representation for the following scenario:
 
 ## Generalization - Inheritance 
 
- ![UML Example](images\uml9.png)
+ ![UML Example](images/uml9.png)
 
 - **Italicised methods or classes** are **abstract**.
 
+# L13 - Generics
+[← Return to Index](#table-of-contents)
+
+
+## Introduction
+
+- Allows class, interface or method definitions to include **parameter types**
+- Enables generic logic to be written that applies to any class type
+- Allows you to reuse code
+
+## The Comparable Interface
+
+We have already seen the Comparable interface:
+
+```java
+public interface Comparable<T> {
+	public int compareTo(T other);
+}
+```
+
+## What does T mean?
+
+- T is a ***type parameter***
+
+- The value of T is literally a type (class/interface); Integer, String, Robot, Book, Driveable
+- When T is given a value (type), every instance of the placeholder variable is replaced
+
+```java
+public class Robot implements Comparable<Robot> {...}
+public class Book implements Comparable<Book> {...}
+public class Dog implements Comparable<Dog> {...}
+```
+
+## ArrayList
+
+- There are limitations to an array
+  - Finite size
+  - Resizing is manual
+  - Requires effort to add/remove elements
+- An alternative:` ArrayList `
+
+```java
+ArrayList<Type> circles = new ArrayList<Type>();	
+```
+
+#### Advantages
+
+- Can be iterated like arrays (foreach)
+
+```java
+for (Type t : myArrayList){
+    ...
+}
+```
+
+- Automatically handles resizing
+- Can insert, remove, and modify elements at any index 
+- Inherently able to `toString()`
+- **Can’t be indexed([ ])**
+
+#### Disadvantages
+
+- Grows automatically, but **does not** shrink automatically - can use more memory than required.
+- `trimToSize()` method must be invoked to release the excess memory
+- Cannot store primitive data types (int, float, etc.).
+- But you can used boxed types (Integer, Float)
+
+## Using the ArrayList Class
+
+Elements of an ArrayList can be easily sorted if the stored element class implements the `Comparable ` interface!
+
+# L14 - Exceptions
+[← Return to Index](#table-of-contents)
+
+
+## Types of Errors
+
+- ***Syntax:*** where what you write isn’t legal code; identified by the editor/compiler*.*
+
+- ***Semantic:*** runs to completion, but results in incorrect output/operation; identified through software testing (coming soon).
+- ***Runtime:*** An error that causes your program to end prematurely (crash and burn); identified through execution.
+
+## Runtime Errors
+
+Consider this snippet:
+
+```java
+public double divide(double a, double b) {
+	return a/b;
+}
+```
+
+What happens if b == 0?
+
+```java
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+```
+
+### Best Solution
+
+There are many ways to handle errors like this, the best way is arguably ***catching*** exceptions.
+
+Use exceptions to catch error states, then recover from them, or gracefully end the program.
+
+```java
+public double divide(double a, double b) {
+    try {
+    	return a/b;
+    } catch (ArithmeticException e) {
+        System.out.println("Shields failing, abandon ship.");
+        System.exit(0);
+    }
+}
+```
+
+## Exceptions
+
+The English syntaxial meaning: An error state created by a runtime error in your code; an exception.
+
+The Java meaning:  An object created by Java to represent the error that was encountered.
+
+**Exception Handling**: Code that actively protects your program in the case of exceptions.
+
+### Exception Handling
+
+General:
+
+```java
+public void method(...) {
+    try {
+        <block of code to execute, which may cause an exception>
+    } catch (<ExceptionClass> varName) {
+        <block of code to execute to recover from exception, or end the program>
+    } finally {
+        <block of code that executes whether an exception happened or not>
+    }
+}
+```
+
+### Generating Exceptions
+
+```java
+public double divide(double a, double b) throws ArithmeticException {
+    if (b == 0) {
+    	throw new ArithmeticException();
+    }
+    return a/b;
+}
+```
+
+### Defining Exceptions
+
+- Exceptions are classes!
+  - All exceptions inherit from an Exception class
+  - We can define our own exceptions!
+
+```java
+public class JokeIsBadException extends Exception {
+    public JokeIsBadException(String message) {
+    	super(message);
+    }
+    public JokeIsBadException() {
+    	super("Your joke was bad, Google has failed you.");
+    }
+}
+
+```
+
+### Chaining Exceptions
+
+```java
+public double averageDifference(int a[], int b[]) {
+    try {
+        int sumDifference = 0;
+        for (int i = 0; i < a.length; i++) {
+            sumDifference += a[i] - b[i];
+        }
+        return 1.0 * sumDifference/a.length;
+    } catch (ArithmeticException e) {
+    	...
+    } catch (ArrayIndexOutOfBoundsException e) {
+    	...
+    } catch (Exception e) {
+    	...
+    }
+}
+```
+
+### Types of Exceptions
+
+- Unchecked
+  - Can be safely ignored by the programmer; most (inbuilt) Java exceptions are unchecked, because you aren’t forced to protect against them.
+- Checked
+  - Must be handled by the programmer explicitly by the in some way; the compiler gives an error if a checked is ignored.
+
+# L17 - Software Testing and Design
+[← Return to Index](#table-of-contents)
+
+
+*A lot of the notes for this lecture are supplemented by information from [this source](softwaretestingfundamentals.com/unit-testing/)*
+
+## Unit Testing
+
+***Unit Testing*** is a level of software testing where individual units/ components of a software are tested. 
+
+In object-oriented programming, the smallest unit is a method, which may belong to a base/ super class, abstract class or derived/ child class.
+
+### Why unit testing?
+
+- Unit testing increases confidence in changing/ maintaining code. If good unit tests are written and if they are run every time any code is changed, we will be able to promptly catch any defects introduced due to the change. Also, if codes are already made less interdependent to make unit testing possible, the unintended impact of changes to any code is less.
+- Codes are more reusable. In order to make unit testing possible, codes need to be modular. This means that codes are easier to reuse.
+- *many more reasons... see article liked above*
+
+# L18/L19 - Design Patterns
+[← Return to Index](#table-of-contents)
+
+
+A Software Design Pattern is a description of a solution to a recurring problem in software design. The recurring nature of the problems makes the solution useful to software developers.
+
+## Analysing and Publishing a Pattern
+
+**Intent**: The goal of the pattern, why it exists
+
+**Motivation**: A scenario that highlights a need for the pattern
+
+**Applicability**: General situations where you can use the pattern
+
+**Structure**: Graphical representations of the pattern, likely a UML class diagram
+
+**Participants**: List of classes/objects and their roles in the pattern
+
+**Collaboration**: How the objects in the pattern interact
+
+**Consequences**: A description of the results, side effects, and tradeoffs when using the pattern
+
+**Implementation**: Example of “solving a problem” with the pattern
+
+**Known Uses**: Specific, real-world examples of using the pattern
+
+## Common Design Patterns
+
+#### Singleton Pattern
+
+Ensure that a class has only one instance and provide a global point of access to it.
+
+![UML Representation for a Singleton](images/singleton.png)
+
+```java
+class Singleton {
+    private static Singleton _instance = null;
+    private Singleton() {
+    	//fill in the blank
+    }
+    public static Singleton getInstance() {
+        if ( _instance == null )
+            _instance = new Singleton();
+            return _instance;
+        }
+    public void otherOperations() { }
+}
+```
+
+#### Collaboration
+
+```java
+class TestSingleton {
+    public void method1(){
+    	X = Singleton.getInstance();
+    }
+    public void method2(){
+    	Y = Singleton.getInstance();
+    }
+}
+
+```
+
+#### Singleton Pattern Analysis
+
+**Intent**: Ensure that a class has only one instance and provide a global point of access to it.
+
+**Motivation**: There are cases where only one instance of a class must be enforced with easy access to the object
+
+**Applicability**: Use when a single instance of a class is required.
+
+**Structure**: See previous notes
+
+**Participants**: Singleton class
+
+**Collaboration**: See previous notes
+
+**Consequences**: Use it with caution because inappropriate use could result in a bad design.
+
+**Implementation**: See previous notes
+
+**Known Uses**: e.g. `CacheManager` class, `PrinterSpooler` class.
+
+#### Template Method
+
+#### Motivation
+
+Take for example, a class that implements bubble sort:
+
+```java
+public class BubbleSorter {
+    
+    static int operations = 0;
+    
+    public static int sort(int[] array){
+        operations = 0;
+        if (array.length <= 1)
+            return operations;
+        for (int i = array.length - 2; i >=0; i --){
+            for (int j = 0; j <= i; j++){
+                compareAndSwap(array, j);
+            }
+        }
+    	return operations;
+	}
+    
+    public static void compareAndSwap(int[] array, int index){
+        if (array[index] > array[index+1])
+            swap(array,index);
+        operations++;
+    }
+    
+    public static void swap(int[] array, int index){
+        int temp = array[index];
+        array[index] = array[index+1];
+        array[index+1] = temp;
+    }
+}
+```
+
+This can be further abstracted, to allow bubble sorting with different implementations of `swap` and `outOfOrder` 
+
+![UML Representation of the Template Method Pattern](images/templatebubble.png) 
+
+Here is the template for the abstract bubble sorting class:
+
+```java
+public abstract class AbstractBubbleSorter {
+    private static int operations = 0;
+    protected int length = 0;
+    protected int doSort(){
+        operations = 0;
+        if (length <= 1)
+        	return operations;
+        for (int i = length - 2; i >=0; i--){
+            for (int j = 0; j <= i; j++){
+                if (outOfOrder(j))
+                	swap(j);
+                operations++;
+            }
+        }
+        return operations;
+    }
+    protected abstract void swap(int index);
+    protected abstract boolean outOfOrder(int index);
+}
+```
+
+Here is how the `IntBubbleSorter` would work:
+
+```java
+public class IntBubbleSorter extends AbstractBubbleSorter {
+    private int[] array = null;
+    public int sort(int[] a){
+        array = a;
+        length = array.length;
+        return doSort();
+    }
+    @Override
+    protected boolean outOfOrder(int index) {
+    	return (array[index] > array[index+1]);
+    }
+    @Override
+    protected void swap(int index) {
+        int temp = array[index];
+        array[index] = array[index+1];
+        array[index+1] = temp;
+    }
+}
+
+```
+
+Template method generic UML structure:
+
+![UML Design for the Template Method](images/templateuml.png)
+
+#### Template Pattern Analysis
+
+**Intent**: Define a family of algorithms, encapsulate each one, and make them interchangeable.
+
+**Motivation**: Build generic components that are easy to extend and reuse.
+
+**Applicability**: Allows the implementation of invariant parts of an algorithm once and leave it to the subclass to implement the behavior that can vary.
+
+**Structure**: See previous notes.
+
+**Participants**:  See previous notes.
+
+**Collaboration**:  See previous notes.
+
+**Consequences**:  All algorithms must use the same interface
+
+**Implementation**:  See previous notes.
+
+**Known Uses**:  See previous notes.
+
+#### Template Pattern Conclusion
+
+The template method is an example of using inheritance as a mechanism for
+re-use. We see in the template method:
+
+- Generic algorithm is placed in the base class
+- Specific implementation is deferred to the sub class
+
+The design tradeoff of using inheritance is the strong dependency to the base class. Although the methods `outOfOrder` and `swap` are generic methods they
+cannot be re-used because they inherit the `AbstractBubbleSorter` class.
+
+The Strategy pattern in an alternative.
+
+### Strategy Pattern
+
+Take for example, the bubble sorting situation described previously:
+
+```java
+public class BubbleSorterS {
+    static int operations = 0;
+    private int length = 0;
+    private SortHandle itsSortHandle = null;
+    public BubbleSorterS(SortHandle handle){
+    	itsSortHandle = handle;
+    }
+    public int sort(Object array){
+        itsSortHandle.setArray(array);
+        length = itsSortHandle.length();
+        operations = 0;
+        if (length <= 1)
+        	return operations;
+        for(int nextToLast = length - 2; nextToLast >=0;nextToLast--){
+            for (int index=0; index <= nextToLast; index++){
+            	if (itsSortHandle.outOfOrder(index))
+            		itsSortHandle.swap(index);
+            	operations++;
+            }
+    	}
+    	return operations;
+    }
+}
+```
+
+We can see the addition of the `SortHandle` class, here is its implementation:
+
+```java
+public interface SortHandle {
+    public void swap(int index);
+    public boolean outOfOrder(int index);
+    public int length();
+    public void setArray(Object array);
+}
+```
+
+![Strategy UML Pattern](images/strategyuml.png)
+
+Here is an implementation of an `IntSortHandle` 
+
+```java
+public class IntSortHandle implements SortHandle {
+    private int[] array = null;
+    public int length() {
+    	return array.length;
+    }
+    public boolean outOfOrder(int index) {
+    	return (array[index] > array[index+1]);
+    }
+    public void setArray(Object array) {
+    	this.array = (int [])array;
+    }
+    public void swap(int index) {
+        int temp = array[index];
+        array[index] = array[index + 1];
+        array[index + 1] = temp;
+    }
+}
+```
+
+### Factory Method Pattern
+
+- Creating objects in the class that requires (uses) the objects is inflexible
+  - It commits the class to a particular object
+  - Makes it impossible to change the instantiation without having to change the class
+- Factory Method pattern solves this problem by:
+  - Defining a separate operation for creating an object
+  - Creating an object by calling a factory method
+
+#### Keywords
+
+A few keywords to remember this pattern:
+
+***Factory:*** A general technique for manufacturing (creating) objects.
+
+***Product:*** An abstract class that generalises the objects being created/produced by the factory.
+
+***Creator:*** An abstract class that generalises the objects that will consume/produce products; generally have some operation (e.g. the constructor) that will invoke the factory method.
+
+#### Factory Method UML Template
+
+![Factory Method UML](images/factoryuml.png)
+
+#### Why the Factory Pattern?
+
+- *Delegates* object creation (and the decision process) to subclasses
+- *Abstracts* object creation by using a factory (object production) method
+- *Encapsulates* objects by allowing subclasses to determine what they need
+
+#### Implementation Example (UML and Java)
+
+![UML Implementation](images/gamefactoryuml.png)
+
+```java
+public abstract class Game {
+    private final List<Player> players = new ArrayList<>();
+    public Game(int nPlayers) {
+        for (int i = 0; i < nPlayers; i++) {
+        	players.add(createPlayer());
+        }
+    }
+    public abstract Player createPlayer();
+}
+
+public class RPGGame extends Game {
+    @Override
+    public Player createPlayer() {
+    	return new RPGPlayer();
+    }
+}
+
+public class ShooterGame extends Game {
+    @Override
+    public Player createPlayer() {
+    	return new ShooterPlayer();
+    }
+}
+```
+
+#### Factory Pattern Analysis
+
+**Intent**: To generalise object creation
+
+**Motivation**: Loading player objects when a game loads
+
+**Applicability**: When sister classes depend on (and create) similar objects
+
+**Structure**: See previous notes.
+
+**Participants**:  See previous notes.
+
+**Collaboration**:  Concrete creator objects invoke the factory method in order to produce their desired product
+
+**Consequences**:  Object creation in the superclass is now decoupled from the
+specific object required
+
+**Implementation**:  See previous notes.
+
+**Known Uses**:  See previous notes.
+
+### Observer Pattern
+
+Observers depend on the state of one object. Instead of making the observer dependent upon the object, we can use a publish-subscribe style communication pattern.
+
+***Subject:*** An “important” object, whose state (or change in state) determines the actions of other classes.
+
+***Observer:*** An object that monitors the subject in order to respond to its state, and any changes made to it.
+
+![Observer UML Template](images/observeruml.png)
+
+# L20 - Advanced Java and OOP Concepts
+[← Return to Index](#table-of-contents)
+
+
+## Enums (enumerated types)
+
+### Definition
+
+***enum:***  A class that consists of a finite list of constants.
+
+### Usage
+
+Used any time we need to represent a fixed set of values
+
+Must list all values
+
+Otherwise, like any other class; can have methods and attributes!
+
+An example: ***days of the week***
+
+```java
+public enum Days {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
+
+```
+
+### Accessing
+
+The values of an enum are accessed statically, because they are constants.
+
+```java
+Day someDay = Days.MONDAY;
+```
+
+### Tying other Information
+
+```java
+public enum Suit {
+    SPADES(Colour.BLACK),
+    CLUBS(Colour.BLACK),
+    DIAMONDS(Colour.RED),
+    HEARTS(Colour.RED);
+    private Colour colour;
+    private Suit(Colour colour) {
+    	this.colour = colour;
+    }
+}
+```
+
+*Where` Colour` is likely an enum or a class with the appropriate constant values*
+
+## Variadic Parameters
+
+Some methods can take an unknown number of parameters. An example of this is the `Arrays.asList` method, that can take an arbitrary number of integer parameters.
+
+```java
+List<Integer> list = Arrays.asList(12, 5);
+List<Integer> list = Arrays.asList(12, 5, 45, 18);
+List<Integer> list = Arrays.asList(12, 5, 45, 18, 33);
+```
+
+These parameters aren't overloads, they're defined in one method as a variadic parameter. An implementation example is as follows:
+
+```java
+public String concatenate(String... strings) {
+    String string = "";
+    for (String s : strings) {
+    	string += s;
+    }
+    return string;
+}
+```
+
+As you can see, `strings` can be used like an array.
+
+## Functional Interfaces
+
+An interface that contains only a single abstract method; also called a Single Abstract Method interface. I have no clue why it has such a fancy and separate definition even though it's just an interface. You can even tag it!
+
+```java
+@FunctionalInterface
+public interface Attackable {
+	public void attack();
+}
+```
+
+There is a very popular type of functional interface, the Predicate functional interface.
+
+```java
+public interface Predicate<T>
+```
+
+- The predicate 'functional' interface takes one input argument and outputs `true` or `false`
+- It executes a method `boolean test(T t)` on a single object
+- The `Predicate` interface can be combined with predicates using methods that represent logic operators `and` `or` `negate`.
+
+There is also another functional interface in the Java language called the `UnaryOperator` functional interface.
+
+```java
+public interface UnaryOperator<T>
+```
+
+- Represents a unary (single argument) function that accepts one argument, and returns an object of the
+  same type.
+- Executes the `T apply(T t)` method on a single object
+
+We’ve seen two functional interfaces: `Predicate` and `UnaryOperator`.
+
+## Lambda Expressions
+
+A technique that treats code as that can be used as an “object”; for example, allows to instantiate an interface without implementing it.
+
+This is commonly used to represent predicates, like so:
+
+```java
+Predicate<Integer> p = i -> i > 0;
+```
+
+The integer object `i` is created on the fly and the predicate's `test` function will return true if `i > 0`.
+
+## Method Reference
+
+Can be stored like lambda expressions. They are simply used to quickly refer to methods within functions, like so:
+
+```java
+names.replaceAll(String::toUpperCase);
+```
+
+That snippet will go through the list of names, and apply the `toUpperCase` function on each `String` element, replacing the entry with its upper case counterpart as it traverses the array.
+
+## Streams
+
+Streams allow you too apply multiple functions to the same data.
+
+### Definition
+
+A series of elements given in *sequence*, that are *automatically* put through a *pipeline* of operations.
+
+### Example
+
+```java
+list = list.stream()
+           .filter(s -> s.length() > 5)
+           .filter(s -> s.startsWith("C"))
+           .map(String::toUpperCase)
+           .collect(Collectors.toList());
+
+```
+
+### Operations
+
+**map** (convert input to output)
+**filter** (select elements with a condition)
+**limit** (perform a maximum number of iterations)
+**collect** (gather all elements and output in a list, array, String...)
+**reduce** (aggregate a stream into a single value)
+
+## You will not be expected to write code on anything from these notes on this lecture.
+
+
+But you might still need to interpret code ;-)
+
+
+
+# L21 - Games
+[← Return to Index](#table-of-contents)
+
+
+## Sequential Programming
+
+A program that is run (more or less) top to bottom, starting at the beginning of the main method, and concluding at its end.
+
+- Useful for “static” programs
+- Constant, unchangeable logic
+- Execution is the same (or very similar) each time
+
+## Event Driven Programming
+
+Using events and call-backs to control the of a program’s execution.
+
+#### State
+
+The properties that define an object or device; for example, whether it is “active”.
+
+#### Event
+
+Created when the state of an object/device/etc. is altered.
+
+#### Call-back
+
+A method triggered by an event.
+
+### Examples of event-driven systems
+
+## Asynchronous Programming
+
+We introduce the concept of an interrupt.
+
+#### Interrupts
+
+A signal generated by hardware or software indicating an event that needs immediate CPU attention.
+
+#### Interrupt Service Routine
+
+Event-handling code to respond to interrupt signals.
+
+## Entity Component Approach
+
+Instead of hard coding traits to a character in a game, we can use an entity-component approach:
+
+```java
+Entity monster = new Entity();
+monster.addComponent(new Position());
+monster.addComponent(new Image());
+monster.addComponent(new Aggressor());
+```
+
+Where these classes inherit from 
+
+```java
+abstract class Component {
+    private boolean enabled = true;
+    public boolean getEnabled() {
+    	return enabled;
+    }
+    public void setEnabled(boolean enabled) {
+    	this.enabled = enabled;
+    }
+    // by default, do nothing
+    public void update() { }
+    public void render() { }
+}
+```
+
+This is used in Unity too.

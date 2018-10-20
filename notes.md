@@ -77,6 +77,49 @@
 		* [Aggregation](#aggregation)
 		* [Composition](#composition)
 	* [Generalization - Inheritance](#generalization---inheritance)
+* [L13 - Generics](#l13---generics)
+	* [Introduction](#introduction)
+	* [The Comparable Interface](#the-comparable-interface)
+	* [What does T mean?](#what-does-t-mean?)
+	* [ArrayList](#arraylist)
+	* [Using the ArrayList Class](#using-the-arraylist-class)
+* [L14 - Exceptions](#l14---exceptions)
+	* [Types of Errors](#types-of-errors)
+	* [Runtime Errors](#runtime-errors)
+		* [Best Solution](#best-solution)
+	* [Exceptions](#exceptions)
+		* [Exception Handling](#exception-handling)
+		* [Generating Exceptions](#generating-exceptions)
+		* [Defining Exceptions](#defining-exceptions)
+		* [Chaining Exceptions](#chaining-exceptions)
+		* [Types of Exceptions](#types-of-exceptions)
+* [L17 - Software Testing and Design](#l17---software-testing-and-design)
+	* [Unit Testing](#unit-testing)
+		* [Why unit testing?](#why-unit-testing?)
+* [L18/L19 - Design Patterns](#l18/l19---design-patterns)
+	* [Analysing and Publishing a Pattern](#analysing-and-publishing-a-pattern)
+	* [Common Design Patterns](#common-design-patterns)
+		* [Strategy Pattern](#strategy-pattern)
+		* [Factory Method Pattern](#factory-method-pattern)
+		* [Observer Pattern](#observer-pattern)
+* [L20 - Advanced Java and OOP Concepts](#l20---advanced-java-and-oop-concepts)
+	* [Enums (enumerated types)](#enums-enumerated-types)
+		* [Usage](#usage)
+		* [Accessing](#accessing)
+		* [Tying other Information](#tying-other-information)
+	* [Variadic Parameters](#variadic-parameters)
+	* [Functional Interfaces](#functional-interfaces)
+	* [Lambda Expressions](#lambda-expressions)
+	* [Method Reference](#method-reference)
+	* [Streams](#streams)
+		* [Operations](#operations)
+	* [You will not be expected to write code on anything from these notes on this lecture.](#you-will-not-be-expected-to-write-code-on-anything-from-these-notes-on-this-lecture.)
+* [L21 - Games](#l21---games)
+	* [Sequential Programming](#sequential-programming)
+	* [Event Driven Programming](#event-driven-programming)
+		* [Examples of event-driven systems](#examples-of-event-driven-systems)
+	* [Asynchronous Programming](#asynchronous-programming)
+	* [Entity Component Approach](#entity-component-approach)
 # L01 - Introduction
 [← Return to Index](#table-of-contents)
 
@@ -923,6 +966,8 @@ Create a UML representation for the following scenario:
 - **Italicised methods or classes** are **abstract**.
 
 # L13 - Generics
+[← Return to Index](#table-of-contents)
+
 
 ## Introduction
 
@@ -992,6 +1037,8 @@ for (Type t : myArrayList){
 Elements of an ArrayList can be easily sorted if the stored element class implements the `Comparable ` interface!
 
 # L14 - Exceptions
+[← Return to Index](#table-of-contents)
+
 
 ## Types of Errors
 
@@ -1114,6 +1161,8 @@ public double averageDifference(int a[], int b[]) {
   - Must be handled by the programmer explicitly by the in some way; the compiler gives an error if a checked is ignored.
 
 # L17 - Software Testing and Design
+[← Return to Index](#table-of-contents)
+
 
 *A lot of the notes for this lecture are supplemented by information from [this source](softwaretestingfundamentals.com/unit-testing/)*
 
@@ -1130,6 +1179,8 @@ In object-oriented programming, the smallest unit is a method, which may belong 
 - *many more reasons... see article liked above*
 
 # L18/L19 - Design Patterns
+[← Return to Index](#table-of-contents)
+
 
 A Software Design Pattern is a description of a solution to a recurring problem in software design. The recurring nature of the problems makes the solution useful to software developers.
 
@@ -1492,6 +1543,8 @@ Observers depend on the state of one object. Instead of making the observer depe
 ![Observer UML Template](images/observeruml.png)
 
 # L20 - Advanced Java and OOP Concepts
+[← Return to Index](#table-of-contents)
+
 
 ## Enums (enumerated types)
 
@@ -1506,3 +1559,228 @@ Used any time we need to represent a fixed set of values
 Must list all values
 
 Otherwise, like any other class; can have methods and attributes!
+
+An example: ***days of the week***
+
+```java
+public enum Days {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
+
+```
+
+### Accessing
+
+The values of an enum are accessed statically, because they are constants.
+
+```java
+Day someDay = Days.MONDAY;
+```
+
+### Tying other Information
+
+```java
+public enum Suit {
+    SPADES(Colour.BLACK),
+    CLUBS(Colour.BLACK),
+    DIAMONDS(Colour.RED),
+    HEARTS(Colour.RED);
+    private Colour colour;
+    private Suit(Colour colour) {
+    	this.colour = colour;
+    }
+}
+```
+
+*Where` Colour` is likely an enum or a class with the appropriate constant values*
+
+## Variadic Parameters
+
+Some methods can take an unknown number of parameters. An example of this is the `Arrays.asList` method, that can take an arbitrary number of integer parameters.
+
+```java
+List<Integer> list = Arrays.asList(12, 5);
+List<Integer> list = Arrays.asList(12, 5, 45, 18);
+List<Integer> list = Arrays.asList(12, 5, 45, 18, 33);
+```
+
+These parameters aren't overloads, they're defined in one method as a variadic parameter. An implementation example is as follows:
+
+```java
+public String concatenate(String... strings) {
+    String string = "";
+    for (String s : strings) {
+    	string += s;
+    }
+    return string;
+}
+```
+
+As you can see, `strings` can be used like an array.
+
+## Functional Interfaces
+
+An interface that contains only a single abstract method; also called a Single Abstract Method interface. I have no clue why it has such a fancy and separate definition even though it's just an interface. You can even tag it!
+
+```java
+@FunctionalInterface
+public interface Attackable {
+	public void attack();
+}
+```
+
+There is a very popular type of functional interface, the Predicate functional interface.
+
+```java
+public interface Predicate<T>
+```
+
+- The predicate 'functional' interface takes one input argument and outputs `true` or `false`
+- It executes a method `boolean test(T t)` on a single object
+- The `Predicate` interface can be combined with predicates using methods that represent logic operators `and` `or` `negate`.
+
+There is also another functional interface in the Java language called the `UnaryOperator` functional interface.
+
+```java
+public interface UnaryOperator<T>
+```
+
+- Represents a unary (single argument) function that accepts one argument, and returns an object of the
+  same type.
+- Executes the `T apply(T t)` method on a single object
+
+We’ve seen two functional interfaces: `Predicate` and `UnaryOperator`.
+
+## Lambda Expressions
+
+A technique that treats code as that can be used as an “object”; for example, allows to instantiate an interface without implementing it.
+
+This is commonly used to represent predicates, like so:
+
+```java
+Predicate<Integer> p = i -> i > 0;
+```
+
+The integer object `i` is created on the fly and the predicate's `test` function will return true if `i > 0`.
+
+## Method Reference
+
+Can be stored like lambda expressions. They are simply used to quickly refer to methods within functions, like so:
+
+```java
+names.replaceAll(String::toUpperCase);
+```
+
+That snippet will go through the list of names, and apply the `toUpperCase` function on each `String` element, replacing the entry with its upper case counterpart as it traverses the array.
+
+## Streams
+
+Streams allow you too apply multiple functions to the same data.
+
+### Definition
+
+A series of elements given in *sequence*, that are *automatically* put through a *pipeline* of operations.
+
+### Example
+
+```java
+list = list.stream()
+           .filter(s -> s.length() > 5)
+           .filter(s -> s.startsWith("C"))
+           .map(String::toUpperCase)
+           .collect(Collectors.toList());
+
+```
+
+### Operations
+
+**map** (convert input to output)
+**filter** (select elements with a condition)
+**limit** (perform a maximum number of iterations)
+**collect** (gather all elements and output in a list, array, String...)
+**reduce** (aggregate a stream into a single value)
+
+## You will not be expected to write code on anything from these notes on this lecture.
+
+
+But you might still need to interpret code ;-)
+
+
+
+# L21 - Games
+[← Return to Index](#table-of-contents)
+
+
+## Sequential Programming
+
+A program that is run (more or less) top to bottom, starting at the beginning of the main method, and concluding at its end.
+
+- Useful for “static” programs
+- Constant, unchangeable logic
+- Execution is the same (or very similar) each time
+
+## Event Driven Programming
+
+Using events and call-backs to control the of a program’s execution.
+
+#### State
+
+The properties that define an object or device; for example, whether it is “active”.
+
+#### Event
+
+Created when the state of an object/device/etc. is altered.
+
+#### Call-back
+
+A method triggered by an event.
+
+### Examples of event-driven systems
+
+## Asynchronous Programming
+
+We introduce the concept of an interrupt.
+
+#### Interrupts
+
+A signal generated by hardware or software indicating an event that needs immediate CPU attention.
+
+#### Interrupt Service Routine
+
+Event-handling code to respond to interrupt signals.
+
+## Entity Component Approach
+
+Instead of hard coding traits to a character in a game, we can use an entity-component approach:
+
+```java
+Entity monster = new Entity();
+monster.addComponent(new Position());
+monster.addComponent(new Image());
+monster.addComponent(new Aggressor());
+```
+
+Where these classes inherit from 
+
+```java
+abstract class Component {
+    private boolean enabled = true;
+    public boolean getEnabled() {
+    	return enabled;
+    }
+    public void setEnabled(boolean enabled) {
+    	this.enabled = enabled;
+    }
+    // by default, do nothing
+    public void update() { }
+    public void render() { }
+}
+```
+
+This is used in Unity too.
