@@ -922,7 +922,7 @@ Create a UML representation for the following scenario:
 
 - **Italicised methods or classes** are **abstract**.
 
-# L13 - Generics 1
+# L13 - Generics
 
 ## Introduction
 
@@ -1108,8 +1108,6 @@ public double averageDifference(int a[], int b[]) {
 
 ### Types of Exceptions
 
-
-
 - Unchecked
   - Can be safely ignored by the programmer; most (inbuilt) Java exceptions are unchecked, because you aren’t forced to protect against them.
 - Checked
@@ -1117,3 +1115,394 @@ public double averageDifference(int a[], int b[]) {
 
 # L17 - Software Testing and Design
 
+*A lot of the notes for this lecture are supplemented by information from [this source](softwaretestingfundamentals.com/unit-testing/)*
+
+## Unit Testing
+
+***Unit Testing*** is a level of software testing where individual units/ components of a software are tested. 
+
+In object-oriented programming, the smallest unit is a method, which may belong to a base/ super class, abstract class or derived/ child class.
+
+### Why unit testing?
+
+- Unit testing increases confidence in changing/ maintaining code. If good unit tests are written and if they are run every time any code is changed, we will be able to promptly catch any defects introduced due to the change. Also, if codes are already made less interdependent to make unit testing possible, the unintended impact of changes to any code is less.
+- Codes are more reusable. In order to make unit testing possible, codes need to be modular. This means that codes are easier to reuse.
+- *many more reasons... see article liked above*
+
+# L18/L19 - Design Patterns
+
+A Software Design Pattern is a description of a solution to a recurring problem in software design. The recurring nature of the problems makes the solution useful to software developers.
+
+## Analysing and Publishing a Pattern
+
+**Intent**: The goal of the pattern, why it exists
+
+**Motivation**: A scenario that highlights a need for the pattern
+
+**Applicability**: General situations where you can use the pattern
+
+**Structure**: Graphical representations of the pattern, likely a UML class diagram
+
+**Participants**: List of classes/objects and their roles in the pattern
+
+**Collaboration**: How the objects in the pattern interact
+
+**Consequences**: A description of the results, side effects, and tradeoffs when using the pattern
+
+**Implementation**: Example of “solving a problem” with the pattern
+
+**Known Uses**: Specific, real-world examples of using the pattern
+
+## Common Design Patterns
+
+#### Singleton Pattern
+
+Ensure that a class has only one instance and provide a global point of access to it.
+
+![UML Representation for a Singleton](images/singleton.png)
+
+```java
+class Singleton {
+    private static Singleton _instance = null;
+    private Singleton() {
+    	//fill in the blank
+    }
+    public static Singleton getInstance() {
+        if ( _instance == null )
+            _instance = new Singleton();
+            return _instance;
+        }
+    public void otherOperations() { }
+}
+```
+
+#### Collaboration
+
+```java
+class TestSingleton {
+    public void method1(){
+    	X = Singleton.getInstance();
+    }
+    public void method2(){
+    	Y = Singleton.getInstance();
+    }
+}
+
+```
+
+#### Singleton Pattern Analysis
+
+**Intent**: Ensure that a class has only one instance and provide a global point of access to it.
+
+**Motivation**: There are cases where only one instance of a class must be enforced with easy access to the object
+
+**Applicability**: Use when a single instance of a class is required.
+
+**Structure**: See previous notes
+
+**Participants**: Singleton class
+
+**Collaboration**: See previous notes
+
+**Consequences**: Use it with caution because inappropriate use could result in a bad design.
+
+**Implementation**: See previous notes
+
+**Known Uses**: e.g. `CacheManager` class, `PrinterSpooler` class.
+
+#### Template Method
+
+#### Motivation
+
+Take for example, a class that implements bubble sort:
+
+```java
+public class BubbleSorter {
+    
+    static int operations = 0;
+    
+    public static int sort(int[] array){
+        operations = 0;
+        if (array.length <= 1)
+            return operations;
+        for (int i = array.length - 2; i >=0; i --){
+            for (int j = 0; j <= i; j++){
+                compareAndSwap(array, j);
+            }
+        }
+    	return operations;
+	}
+    
+    public static void compareAndSwap(int[] array, int index){
+        if (array[index] > array[index+1])
+            swap(array,index);
+        operations++;
+    }
+    
+    public static void swap(int[] array, int index){
+        int temp = array[index];
+        array[index] = array[index+1];
+        array[index+1] = temp;
+    }
+}
+```
+
+This can be further abstracted, to allow bubble sorting with different implementations of `swap` and `outOfOrder` 
+
+![UML Representation of the Template Method Pattern](images/templatebubble.png) 
+
+Here is the template for the abstract bubble sorting class:
+
+```java
+public abstract class AbstractBubbleSorter {
+    private static int operations = 0;
+    protected int length = 0;
+    protected int doSort(){
+        operations = 0;
+        if (length <= 1)
+        	return operations;
+        for (int i = length - 2; i >=0; i--){
+            for (int j = 0; j <= i; j++){
+                if (outOfOrder(j))
+                	swap(j);
+                operations++;
+            }
+        }
+        return operations;
+    }
+    protected abstract void swap(int index);
+    protected abstract boolean outOfOrder(int index);
+}
+```
+
+Here is how the `IntBubbleSorter` would work:
+
+```java
+public class IntBubbleSorter extends AbstractBubbleSorter {
+    private int[] array = null;
+    public int sort(int[] a){
+        array = a;
+        length = array.length;
+        return doSort();
+    }
+    @Override
+    protected boolean outOfOrder(int index) {
+    	return (array[index] > array[index+1]);
+    }
+    @Override
+    protected void swap(int index) {
+        int temp = array[index];
+        array[index] = array[index+1];
+        array[index+1] = temp;
+    }
+}
+
+```
+
+Template method generic UML structure:
+
+![UML Design for the Template Method](images/templateuml.png)
+
+#### Template Pattern Analysis
+
+**Intent**: Define a family of algorithms, encapsulate each one, and make them interchangeable.
+
+**Motivation**: Build generic components that are easy to extend and reuse.
+
+**Applicability**: Allows the implementation of invariant parts of an algorithm once and leave it to the subclass to implement the behavior that can vary.
+
+**Structure**: See previous notes.
+
+**Participants**:  See previous notes.
+
+**Collaboration**:  See previous notes.
+
+**Consequences**:  All algorithms must use the same interface
+
+**Implementation**:  See previous notes.
+
+**Known Uses**:  See previous notes.
+
+#### Template Pattern Conclusion
+
+The template method is an example of using inheritance as a mechanism for
+re-use. We see in the template method:
+
+- Generic algorithm is placed in the base class
+- Specific implementation is deferred to the sub class
+
+The design tradeoff of using inheritance is the strong dependency to the base class. Although the methods `outOfOrder` and `swap` are generic methods they
+cannot be re-used because they inherit the `AbstractBubbleSorter` class.
+
+The Strategy pattern in an alternative.
+
+### Strategy Pattern
+
+Take for example, the bubble sorting situation described previously:
+
+```java
+public class BubbleSorterS {
+    static int operations = 0;
+    private int length = 0;
+    private SortHandle itsSortHandle = null;
+    public BubbleSorterS(SortHandle handle){
+    	itsSortHandle = handle;
+    }
+    public int sort(Object array){
+        itsSortHandle.setArray(array);
+        length = itsSortHandle.length();
+        operations = 0;
+        if (length <= 1)
+        	return operations;
+        for(int nextToLast = length - 2; nextToLast >=0;nextToLast--){
+            for (int index=0; index <= nextToLast; index++){
+            	if (itsSortHandle.outOfOrder(index))
+            		itsSortHandle.swap(index);
+            	operations++;
+            }
+    	}
+    	return operations;
+    }
+}
+```
+
+We can see the addition of the `SortHandle` class, here is its implementation:
+
+```java
+public interface SortHandle {
+    public void swap(int index);
+    public boolean outOfOrder(int index);
+    public int length();
+    public void setArray(Object array);
+}
+```
+
+![Strategy UML Pattern](images/strategyuml.png)
+
+Here is an implementation of an `IntSortHandle` 
+
+```java
+public class IntSortHandle implements SortHandle {
+    private int[] array = null;
+    public int length() {
+    	return array.length;
+    }
+    public boolean outOfOrder(int index) {
+    	return (array[index] > array[index+1]);
+    }
+    public void setArray(Object array) {
+    	this.array = (int [])array;
+    }
+    public void swap(int index) {
+        int temp = array[index];
+        array[index] = array[index + 1];
+        array[index + 1] = temp;
+    }
+}
+```
+
+### Factory Method Pattern
+
+- Creating objects in the class that requires (uses) the objects is inflexible
+  - It commits the class to a particular object
+  - Makes it impossible to change the instantiation without having to change the class
+- Factory Method pattern solves this problem by:
+  - Defining a separate operation for creating an object
+  - Creating an object by calling a factory method
+
+#### Keywords
+
+A few keywords to remember this pattern:
+
+***Factory:*** A general technique for manufacturing (creating) objects.
+
+***Product:*** An abstract class that generalises the objects being created/produced by the factory.
+
+***Creator:*** An abstract class that generalises the objects that will consume/produce products; generally have some operation (e.g. the constructor) that will invoke the factory method.
+
+#### Factory Method UML Template
+
+![Factory Method UML](images/factoryuml.png)
+
+#### Why the Factory Pattern?
+
+- *Delegates* object creation (and the decision process) to subclasses
+- *Abstracts* object creation by using a factory (object production) method
+- *Encapsulates* objects by allowing subclasses to determine what they need
+
+#### Implementation Example (UML and Java)
+
+![UML Implementation](images/gamefactoryuml.png)
+
+```java
+public abstract class Game {
+    private final List<Player> players = new ArrayList<>();
+    public Game(int nPlayers) {
+        for (int i = 0; i < nPlayers; i++) {
+        	players.add(createPlayer());
+        }
+    }
+    public abstract Player createPlayer();
+}
+
+public class RPGGame extends Game {
+    @Override
+    public Player createPlayer() {
+    	return new RPGPlayer();
+    }
+}
+
+public class ShooterGame extends Game {
+    @Override
+    public Player createPlayer() {
+    	return new ShooterPlayer();
+    }
+}
+```
+
+#### Factory Pattern Analysis
+
+**Intent**: To generalise object creation
+
+**Motivation**: Loading player objects when a game loads
+
+**Applicability**: When sister classes depend on (and create) similar objects
+
+**Structure**: See previous notes.
+
+**Participants**:  See previous notes.
+
+**Collaboration**:  Concrete creator objects invoke the factory method in order to produce their desired product
+
+**Consequences**:  Object creation in the superclass is now decoupled from the
+specific object required
+
+**Implementation**:  See previous notes.
+
+**Known Uses**:  See previous notes.
+
+### Observer Pattern
+
+Observers depend on the state of one object. Instead of making the observer dependent upon the object, we can use a publish-subscribe style communication pattern.
+
+***Subject:*** An “important” object, whose state (or change in state) determines the actions of other classes.
+
+***Observer:*** An object that monitors the subject in order to respond to its state, and any changes made to it.
+
+![Observer UML Template](images/observeruml.png)
+
+# L20 - Advanced Java and OOP Concepts
+
+## Enums (enumerated types)
+
+### Definition
+
+***enum:***  A class that consists of a finite list of constants.
+
+### Usage
+
+Used any time we need to represent a fixed set of values
+
+Must list all values
+
+Otherwise, like any other class; can have methods and attributes!
