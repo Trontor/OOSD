@@ -922,3 +922,198 @@ Create a UML representation for the following scenario:
 
 - **Italicised methods or classes** are **abstract**.
 
+# L13 - Generics 1
+
+## Introduction
+
+- Allows class, interface or method definitions to include **parameter types**
+- Enables generic logic to be written that applies to any class type
+- Allows you to reuse code
+
+## The Comparable Interface
+
+We have already seen the Comparable interface:
+
+```java
+public interface Comparable<T> {
+	public int compareTo(T other);
+}
+```
+
+## What does T mean?
+
+- T is a ***type parameter***
+
+- The value of T is literally a type (class/interface); Integer, String, Robot, Book, Driveable
+- When T is given a value (type), every instance of the placeholder variable is replaced
+
+```java
+public class Robot implements Comparable<Robot> {...}
+public class Book implements Comparable<Book> {...}
+public class Dog implements Comparable<Dog> {...}
+```
+
+## ArrayList
+
+- There are limitations to an array
+  - Finite size
+  - Resizing is manual
+  - Requires effort to add/remove elements
+- An alternative:` ArrayList `
+
+```java
+ArrayList<Type> circles = new ArrayList<Type>();	
+```
+
+#### Advantages
+
+- Can be iterated like arrays (foreach)
+
+```java
+for (Type t : myArrayList){
+    ...
+}
+```
+
+- Automatically handles resizing
+- Can insert, remove, and modify elements at any index 
+- Inherently able to `toString()`
+- **Can’t be indexed([ ])**
+
+#### Disadvantages
+
+- Grows automatically, but **does not** shrink automatically - can use more memory than required.
+- `trimToSize()` method must be invoked to release the excess memory
+- Cannot store primitive data types (int, float, etc.).
+- But you can used boxed types (Integer, Float)
+
+## Using the ArrayList Class
+
+Elements of an ArrayList can be easily sorted if the stored element class implements the `Comparable ` interface!
+
+# L14 - Exceptions
+
+## Types of Errors
+
+- ***Syntax:*** where what you write isn’t legal code; identified by the editor/compiler*.*
+
+- ***Semantic:*** runs to completion, but results in incorrect output/operation; identified through software testing (coming soon).
+- ***Runtime:*** An error that causes your program to end prematurely (crash and burn); identified through execution.
+
+## Runtime Errors
+
+Consider this snippet:
+
+```java
+public double divide(double a, double b) {
+	return a/b;
+}
+```
+
+What happens if b == 0?
+
+```java
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+```
+
+### Best Solution
+
+There are many ways to handle errors like this, the best way is arguably ***catching*** exceptions.
+
+Use exceptions to catch error states, then recover from them, or gracefully end the program.
+
+```java
+public double divide(double a, double b) {
+    try {
+    	return a/b;
+    } catch (ArithmeticException e) {
+        System.out.println("Shields failing, abandon ship.");
+        System.exit(0);
+    }
+}
+```
+
+## Exceptions
+
+The English syntaxial meaning: An error state created by a runtime error in your code; an exception.
+
+The Java meaning:  An object created by Java to represent the error that was encountered.
+
+**Exception Handling**: Code that actively protects your program in the case of exceptions.
+
+### Exception Handling
+
+General:
+
+```java
+public void method(...) {
+    try {
+        <block of code to execute, which may cause an exception>
+    } catch (<ExceptionClass> varName) {
+        <block of code to execute to recover from exception, or end the program>
+    } finally {
+        <block of code that executes whether an exception happened or not>
+    }
+}
+```
+
+### Generating Exceptions
+
+```java
+public double divide(double a, double b) throws ArithmeticException {
+    if (b == 0) {
+    	throw new ArithmeticException();
+    }
+    return a/b;
+}
+```
+
+### Defining Exceptions
+
+- Exceptions are classes!
+  - All exceptions inherit from an Exception class
+  - We can define our own exceptions!
+
+```java
+public class JokeIsBadException extends Exception {
+    public JokeIsBadException(String message) {
+    	super(message);
+    }
+    public JokeIsBadException() {
+    	super("Your joke was bad, Google has failed you.");
+    }
+}
+
+```
+
+### Chaining Exceptions
+
+```java
+public double averageDifference(int a[], int b[]) {
+    try {
+        int sumDifference = 0;
+        for (int i = 0; i < a.length; i++) {
+            sumDifference += a[i] - b[i];
+        }
+        return 1.0 * sumDifference/a.length;
+    } catch (ArithmeticException e) {
+    	...
+    } catch (ArrayIndexOutOfBoundsException e) {
+    	...
+    } catch (Exception e) {
+    	...
+    }
+}
+```
+
+### Types of Exceptions
+
+
+
+- Unchecked
+  - Can be safely ignored by the programmer; most (inbuilt) Java exceptions are unchecked, because you aren’t forced to protect against them.
+- Checked
+  - Must be handled by the programmer explicitly by the in some way; the compiler gives an error if a checked is ignored.
+
+# L17 - Software Testing and Design
+
