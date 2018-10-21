@@ -1784,3 +1784,105 @@ abstract class Component {
 ```
 
 This is used in Unity too.
+
+
+
+# Exam Tips
+
+## Week 1
+
+- Variables, data types, branching, iteration
+- Strings and `String` manipulation/formatting
+- Wrapper classes and methods (almost certainly won't appear in this 2018 Sem 2 exam)
+
+## Week 2
+
+- Input and output; you will **not** be asked to use `Scanner` or manipulate files in this 2018 Sem 2exam.
+- Arrays; creating, modifying, accessing and iterating (***from cohort MST performance - needs improvement***)
+
+## Week 3
+
+- Again, **no file manipulation**
+- Methods and method overloading (first layer of abstraction)
+- Writing helper methods in the exam is likely to increase your marks
+
+## Week 4
+
+- Classes; what they represent, getters, setters, constructors, the `this` keyword
+- Privacy concerns, how encapsulation works, why? **At least one question in the exam that asks about privacy**
+
+## Week 5
+
+- Inheritance; why, what relationship does it represent?
+- Overriding and `super`; why?
+- Polymorphism; four different types of polymorphism.
+- Abstract classes; what do they represent?
+
+## Week 6
+
+- Interfaces; what do they represent? When do we use them? **Differentiate between abstract and interface**
+- **Will be asked to implement the Comparable interface**
+
+- UML; **know all the links** - association, inheritance, interfaces, multiplicity, privacy
+  - **Don't need to know about aggregation and composition**
+
+## Week 7
+
+- Generic classes; why do we use them? What do they provide?
+- Generics in Java (Collections, Map)
+- **There will be a question on writing generics.**
+
+## Week 9 
+
+- **Will need to be able to create an exception**
+- Four principles of Object Oriented Design
+- Cohesion and Coupling
+- Should be able to discuss unit testing, not expected to write tests.
+
+## Week 10
+
+- Describe the purposes and uses of design patterns as a general tool
+- Describe the different design patterns we introduced, including relevant UML and description of key components
+
+## Week 11
+
+- Sequential vs Async programming
+- Event-driven programming
+- Basic game design (entity-component scheme)
+- Enums, **one will be given to us and ask us to use the enum in the exam**
+
+## Exam Structure
+
+### Question 1 (24 Marks)
+
+- 6 questions, 4 marks each
+- You must describe or explain a concept or term, for example, the difference between abstract and concrete classes.
+
+### Question 2 (30 Marks)
+
+- Two questions, 24 marks and 6 marks
+
+- Given a description of a design, implement it in UML, **no Java**
+- Given the design, give us two ways to test and validate it
+
+### Question 3 (22 marks)
+
+- 2 questions, 7 and 15 marks
+- You will build a small two class system
+- Stepping through using sub-questions
+- Constructors, getters and setters, comparators. 
+
+### Question 4 (24 marks)
+
+- Write Java, implement the algorithm provided.
+- A lot of moving parts, note exceptions, edge cases
+
+### Question 5 (20 marks)
+
+- 3 questions, 5, 4, and 11 marks.
+- Hard to **comprehend**
+- Easy to **answer**
+- You must know how to use **generics!**
+- It will take time to decode, so read it carefully.
+- This question separates H1's from the rest.
+- You will be provided with a very 
