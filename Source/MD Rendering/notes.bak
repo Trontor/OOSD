@@ -120,6 +120,23 @@
 		* [Examples of event-driven systems](#examples-of-event-driven-systems)
 	* [Asynchronous Programming](#asynchronous-programming)
 	* [Entity Component Approach](#entity-component-approach)
+* [Exam Tips](#exam-tips)
+	* [Week 1](#week-1)
+	* [Week 2](#week-2)
+	* [Week 3](#week-3)
+	* [Week 4](#week-4)
+	* [Week 5](#week-5)
+	* [Week 6](#week-6)
+	* [Week 7](#week-7)
+	* [Week 9](#week-9)
+	* [Week 10](#week-10)
+	* [Week 11](#week-11)
+	* [Exam Structure](#exam-structure)
+		* [Question 1 (24 Marks)](#question-1-24-marks)
+		* [Question 2 (30 Marks)](#question-2-30-marks)
+		* [Question 3 (22 marks)](#question-3-22-marks)
+		* [Question 4 (24 marks)](#question-4-24-marks)
+		* [Question 5 (20 marks)](#question-5-20-marks)
 # L01 - Introduction
 [← Return to Index](#table-of-contents)
 
@@ -229,7 +246,7 @@ The process of converting a primitive to its equivalent wrapper class
 
 ### Unboxing
 
-The process of converting a primitive to its equivalent wrapper class
+The process of converting an instance of a wrapper class to its equivalent primitive type.
 
 Just remember that primitives types are the OG and you're effectively '**boxing**' it up with OOP classes.
 
@@ -515,7 +532,7 @@ robertDowneyJr.rating = 5;
 
 ## Constructors
 
-Constructors are methods used to initialize objects. They  have the same name of the class and cannot return any values. Classes can have more than one constructor (**overloading**).
+Constructors are methods used to initialize objects. They have the same name of the class and cannot return any values. Classes can have more than one constructor (**overloading**).
 
 *Constructor*: A method used to create and initialise an object.
 
@@ -546,14 +563,6 @@ public boolean equals(<type> var) {
 ```
 
 That means that all classes (which inherit the *Object* class by default) have these methods and can ***override them*** to change their functionality.
-
-## Finalize
-
-```java
-public void finalize() {
-	<block of code to execute>
-}
-```
 
 # L08 - Privacy
 [← Return to Index](#table-of-contents)
@@ -808,7 +817,7 @@ Defines a class that is incomplete. Classes with abstract methods must be abstra
 
 ## Concrete Classes
 
-- Classes that are not well defined
+- Classes that are well defined
 
 
 
@@ -1261,7 +1270,7 @@ class TestSingleton {
 
 **Known Uses**: e.g. `CacheManager` class, `PrinterSpooler` class.
 
-#### Template Method
+## Template Method
 
 #### Motivation
 
@@ -1788,6 +1797,8 @@ This is used in Unity too.
 
 
 # Exam Tips
+[← Return to Index](#table-of-contents)
+
 
 ## Week 1
 
@@ -1885,4 +1896,4 @@ This is used in Unity too.
 - You must know how to use **generics!**
 - It will take time to decode, so read it carefully.
 - This question separates H1's from the rest.
-- You will be provided with a very 
+- You will be provided with documentation

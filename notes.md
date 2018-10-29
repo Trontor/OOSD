@@ -30,7 +30,6 @@
 	* [Instantiation and Member Access](#instantiation-and-member-access)
 	* [Constructors](#constructors)
 	* [Standard Methods](#standard-methods)
-	* [Finalize](#finalize)
 * [L08 - Privacy](#l08---privacy)
 	* [Mutability](#mutability)
 	* [Modifiers](#modifiers)
@@ -99,6 +98,7 @@
 * [L18/L19 - Design Patterns](#l18/l19---design-patterns)
 	* [Analysing and Publishing a Pattern](#analysing-and-publishing-a-pattern)
 	* [Common Design Patterns](#common-design-patterns)
+	* [Template Method](#template-method)
 		* [Strategy Pattern](#strategy-pattern)
 		* [Factory Method Pattern](#factory-method-pattern)
 		* [Observer Pattern](#observer-pattern)
@@ -246,7 +246,7 @@ The process of converting a primitive to its equivalent wrapper class
 
 ### Unboxing
 
-The process of converting a primitive to its equivalent wrapper class
+The process of converting an instance of a wrapper class to its equivalent primitive type.
 
 Just remember that primitives types are the OG and you're effectively '**boxing**' it up with OOP classes.
 
@@ -532,7 +532,7 @@ robertDowneyJr.rating = 5;
 
 ## Constructors
 
-Constructors are methods used to initialize objects. They  have the same name of the class and cannot return any values. Classes can have more than one constructor (**overloading**).
+Constructors are methods used to initialize objects. They have the same name of the class and cannot return any values. Classes can have more than one constructor (**overloading**).
 
 *Constructor*: A method used to create and initialise an object.
 
@@ -563,14 +563,6 @@ public boolean equals(<type> var) {
 ```
 
 That means that all classes (which inherit the *Object* class by default) have these methods and can ***override them*** to change their functionality.
-
-## Finalize
-
-```java
-public void finalize() {
-	<block of code to execute>
-}
-```
 
 # L08 - Privacy
 [← Return to Index](#table-of-contents)
@@ -825,7 +817,7 @@ Defines a class that is incomplete. Classes with abstract methods must be abstra
 
 ## Concrete Classes
 
-- Classes that are not well defined
+- Classes that are well defined
 
 
 
@@ -1278,7 +1270,7 @@ class TestSingleton {
 
 **Known Uses**: e.g. `CacheManager` class, `PrinterSpooler` class.
 
-#### Template Method
+## Template Method
 
 #### Motivation
 
@@ -1904,4 +1896,4 @@ This is used in Unity too.
 - You must know how to use **generics!**
 - It will take time to decode, so read it carefully.
 - This question separates H1's from the rest.
-- You will be provided with a very 
+- You will be provided with documentation

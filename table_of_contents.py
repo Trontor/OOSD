@@ -1,4 +1,4 @@
-import re
+﻿import re
 import string
 
 letters = list(string.ascii_uppercase)
@@ -14,7 +14,7 @@ def my_lower(str_to_change):
 
 
 def cleanse(str_to_cleanse):
-    remove_lst = ['#', ':', '*', '(', ')']
+    remove_lst = ['#', ':', '*', '(', ')', '\'']
     for char in remove_lst:
         str_to_cleanse = str_to_cleanse.replace(char, "")
     return my_lower(str_to_cleanse).strip().replace(" ", "-")
