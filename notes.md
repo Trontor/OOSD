@@ -741,6 +741,26 @@ If you don't want methods to be overridden use the `final` variable
 # L10 - Polymorphism and Abstract Classes
 [← Return to Index](#table-of-contents)
 
+## The Four Principles of Object Oriented Programming
+
+Just as a review, let's look at the four major concepts behind OOP.
+
+### Encapsulation
+
+Encapsulation is the hiding of data implementations by restricting access to accessors and mutators (getters and setters). In addition to security benefits, encapsulation helps us to maintain clean and scalable code.
+
+### Data Abstraction
+
+Abstraction is the concept of breaking down a large system into smaller components. By defining smaller components we can focus on the development onto perfecting smaller parts with specific boundaries. Building a system from bottom up. 
+
+### Polymorphism
+
+The ability to represent an object in many forms. This is represented by the basic principles of overriding and overloading.
+
+### Inheritance
+
+Specifies a "is a" relationship between two objects. If an object B inherits from object A, all public and protected attributes and methods are automatically copied to object B without having to specify their implementations again. 
+
 
 ## The Object Class
 
