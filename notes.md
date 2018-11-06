@@ -24,12 +24,13 @@
 	* [Mutation](#mutation)
 	* [Overloading](#overloading)
 * [L07 - Classes and Objects](#l07---classes-and-objects)
-	* [Objects](#objects)
-		* [Static vs Instance](#static-vs-instance)
-	* [Null](#null)
-	* [Instantiation and Member Access](#instantiation-and-member-access)
-	* [Constructors](#constructors)
-	* [Standard Methods](#standard-methods)
+
+  * [Objects](#objects)
+  	* [Static vs Instance](#static-vs-instance)
+  * [Null](#null)
+  * [Instantiation and Member Access](#instantiation-and-member-access)
+  * [Constructors](#constructors)
+  * [Standard Methods](#standard-methods)
 * [L08 - Privacy](#l08---privacy)
 	* [Mutability](#mutability)
 	* [Modifiers](#modifiers)
@@ -100,7 +101,7 @@
 	* [Common Design Patterns](#common-design-patterns)
 	* [Template Method](#template-method)
 		* [Strategy Pattern](#strategy-pattern)
-		* [Factory Method Pattern](#factory-method-pattern)
+		* ## [Factory Method Pattern](#factory-method-pattern)
 		* [Observer Pattern](#observer-pattern)
 * [L20 - Advanced Java and OOP Concepts](#l20---advanced-java-and-oop-concepts)
 	* [Enums (enumerated types)](#enums-enumerated-types)
@@ -1270,7 +1271,7 @@ class TestSingleton {
 
 **Known Uses**: e.g. `CacheManager` class, `PrinterSpooler` class.
 
-## Template Method
+### Template Method
 
 #### Motivation
 
@@ -1690,7 +1691,7 @@ That snippet will go through the list of names, and apply the `toUpperCase` func
 
 ## Streams
 
-Streams allow you too apply multiple functions to the same data.
+Streams allow you to apply multiple functions to the same data.
 
 ### Definition
 
