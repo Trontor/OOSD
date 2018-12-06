@@ -1,0 +1,3301 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\date{}
+
+\begin{document}
+
+\hypertarget{table-of-contents}{%
+\section{Table of Contents}\label{table-of-contents}}
+
+\begin{itemize}
+\item
+  \protect\hyperlink{l01---introduction}{L01 - Introduction}
+\item
+  \protect\hyperlink{l02---strings}{L02 - Strings}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{some-examples}{Some Examples}
+  \item
+    \protect\hyperlink{reserved-characters}{Reserved Characters}
+  \item
+    \protect\hyperlink{operations}{Operations}
+  \item
+    \protect\hyperlink{immutability}{Immutability}
+  \item
+    \protect\hyperlink{equality}{Equality}
+  \item
+    \protect\hyperlink{wrappers-and-primitives}{Wrappers and Primitives}
+  \item
+    \protect\hyperlink{boxingux2funboxing}{Boxing/Unboxing}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{boxing}{Boxing}
+    \item
+      \protect\hyperlink{unboxing}{Unboxing}
+    \end{itemize}
+  \item
+    \protect\hyperlink{formatting}{Formatting}
+  \end{itemize}
+\item
+  \protect\hyperlink{l03---input-and-output-iux2fo}{L03 - Input and
+  Output (I/O)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{command-line-arguments}{Command Line Arguments}
+  \item
+    \protect\hyperlink{scanner}{Scanner}
+  \end{itemize}
+\item
+  \protect\hyperlink{l04---arrays}{L04 - Arrays}
+\item
+  \protect\hyperlink{l05---files}{L05 - Files}
+\item
+  \protect\hyperlink{l06---methods}{L06 - Methods}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{signature}{Signature}
+  \item
+    \protect\hyperlink{why-thoux3f}{Why tho?}
+  \item
+    \protect\hyperlink{ux5cux2560staticux5cux2560-keyword}{\texttt{static}
+    keyword}
+  \item
+    \protect\hyperlink{scope}{Scope}
+  \item
+    \protect\hyperlink{mutation}{Mutation}
+  \item
+    \protect\hyperlink{overloading}{Overloading}
+  \end{itemize}
+\item
+  \protect\hyperlink{l07---classes-and-objects}{L07 - Classes and
+  Objects}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{objects}{Objects}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{static-vs-instance}{Static vs Instance}
+    \end{itemize}
+  \item
+    \protect\hyperlink{null}{Null}
+  \item
+    \protect\hyperlink{instantiation-and-member-access}{Instantiation
+    and Member Access}
+  \item
+    \protect\hyperlink{constructors}{Constructors}
+  \item
+    \protect\hyperlink{standard-methods}{Standard Methods}
+  \end{itemize}
+\item
+  \protect\hyperlink{l08---privacy}{L08 - Privacy}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{mutability}{Mutability}
+  \item
+    \protect\hyperlink{modifiers}{Modifiers}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{private}{Private}
+    \item
+      \protect\hyperlink{protected}{Protected}
+    \item
+      \protect\hyperlink{public}{Public}
+    \end{itemize}
+  \item
+    \protect\hyperlink{getters-and-setters}{Getters and Setters}
+  \item
+    \protect\hyperlink{privacy-leaks}{Privacy Leaks}
+  \end{itemize}
+\item
+  \protect\hyperlink{l09---inheritance}{L09 - Inheritance}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{quick-reference}{Quick Reference}
+  \item
+    \protect\hyperlink{definition}{Definition}
+  \item
+    \protect\hyperlink{superclasses}{Superclasses}
+  \item
+    \protect\hyperlink{subclass}{Subclass}
+  \item
+    \protect\hyperlink{gist}{Gist}
+  \item
+    \protect\hyperlink{example-chess}{Example: Chess}
+  \item
+    \protect\hyperlink{super-keyword}{Super Keyword}
+  \item
+    \protect\hyperlink{shadowing}{Shadowing}
+  \item
+    \protect\hyperlink{overriding}{Overriding}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{whyux3f}{Why?}
+    \end{itemize}
+  \end{itemize}
+\item
+  \protect\hyperlink{l10---polymorphism-and-abstract-classes}{L10 -
+  Polymorphism and Abstract Classes}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{the-object-class}{The Object Class}
+  \item
+    \protect\hyperlink{ux5cux2560instanceofux5cux2560-keyword}{\texttt{instanceof}
+    Keyword}
+  \item
+    \protect\hyperlink{upcasting}{Upcasting}
+  \item
+    \protect\hyperlink{downcasting}{Downcasting}
+  \item
+    \protect\hyperlink{polymorphism}{Polymorphism}
+  \item
+    \protect\hyperlink{abstract-methods}{Abstract Methods}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{definition}{Definition}
+    \end{itemize}
+  \item
+    \protect\hyperlink{abstract-classes}{Abstract Classes}
+  \item
+    \protect\hyperlink{concrete-classes}{Concrete Classes}
+  \end{itemize}
+\item
+  \protect\hyperlink{l11---interfaces}{L11 - Interfaces}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{how-to-use-interfaces}{How to Use Interfaces}
+  \item
+    \protect\hyperlink{default-methods}{Default Methods}
+  \item
+    \protect\hyperlink{extending-interfaces}{Extending Interfaces}
+  \item
+    \protect\hyperlink{a-common-use---sorting---ux5cux2560comparableux5cux253Ctux5cux253Eux5cux2560}{A
+    Common Use - Sorting -
+    \texttt{Comparable\textless{}T\textgreater{}}}
+  \end{itemize}
+\item
+  \protect\hyperlink{l12---unified-modelling-language-uml}{L12 - Unified
+  Modelling Language (UML)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{what-is-itux3f}{What is it?}
+  \item
+    \protect\hyperlink{class-representation}{Class Representation}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{class-attributes}{Class Attributes}
+    \item
+      \protect\hyperlink{class-methods}{Class Methods}
+    \end{itemize}
+  \item
+    \protect\hyperlink{class-relationships}{Class Relationships}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{association}{Association}
+    \item
+      \protect\hyperlink{multiplicity}{Multiplicity}
+    \item
+      \protect\hyperlink{example}{Example}
+    \item
+      \protect\hyperlink{aggregation}{Aggregation}
+    \item
+      \protect\hyperlink{composition}{Composition}
+    \end{itemize}
+  \item
+    \protect\hyperlink{generalization---inheritance}{Generalization -
+    Inheritance}
+  \end{itemize}
+\item
+  \protect\hyperlink{l13---generics}{L13 - Generics}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{introduction}{Introduction}
+  \item
+    \protect\hyperlink{the-comparable-interface}{The Comparable
+    Interface}
+  \item
+    \protect\hyperlink{what-does-t-meanux3f}{What does T mean?}
+  \item
+    \protect\hyperlink{arraylist}{ArrayList}
+  \item
+    \protect\hyperlink{using-the-arraylist-class}{Using the ArrayList
+    Class}
+  \end{itemize}
+\item
+  \protect\hyperlink{l14---exceptions}{L14 - Exceptions}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{types-of-errors}{Types of Errors}
+  \item
+    \protect\hyperlink{runtime-errors}{Runtime Errors}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{best-solution}{Best Solution}
+    \end{itemize}
+  \item
+    \protect\hyperlink{exceptions}{Exceptions}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{exception-handling}{Exception Handling}
+    \item
+      \protect\hyperlink{generating-exceptions}{Generating Exceptions}
+    \item
+      \protect\hyperlink{defining-exceptions}{Defining Exceptions}
+    \item
+      \protect\hyperlink{chaining-exceptions}{Chaining Exceptions}
+    \item
+      \protect\hyperlink{types-of-exceptions}{Types of Exceptions}
+    \end{itemize}
+  \end{itemize}
+\item
+  \protect\hyperlink{l17---software-testing-and-design}{L17 - Software
+  Testing and Design}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{unit-testing}{Unit Testing}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{why-unit-testingux3f}{Why unit testing?}
+    \end{itemize}
+  \end{itemize}
+\item
+  \protect\hyperlink{l18ux2fl19---design-patterns}{L18/L19 - Design
+  Patterns}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{analysing-and-publishing-a-pattern}{Analysing and
+    Publishing a Pattern}
+  \item
+    \protect\hyperlink{common-design-patterns}{Common Design Patterns}
+  \item
+    \protect\hyperlink{template-method}{Template Method}
+
+    \begin{itemize}
+    \item
+      \protect\hyperlink{strategy-pattern}{Strategy Pattern}
+    \item ~
+      \hypertarget{factory-method-pattern}{%
+      \subsection{\texorpdfstring{\protect\hyperlink{factory-method-pattern}{Factory
+      Method
+      Pattern}}{Factory Method Pattern}}\label{factory-method-pattern}}
+    \item
+      \protect\hyperlink{observer-pattern}{Observer Pattern}
+    \end{itemize}
+  \end{itemize}
+\item
+  \protect\hyperlink{l20---advanced-java-and-oop-concepts}{L20 -
+  Advanced Java and OOP Concepts}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{enums-enumerated-types}{Enums (enumerated types)}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{usage}{Usage}
+    \item
+      \protect\hyperlink{accessing}{Accessing}
+    \item
+      \protect\hyperlink{tying-other-information}{Tying other
+      Information}
+    \end{itemize}
+  \item
+    \protect\hyperlink{variadic-parameters}{Variadic Parameters}
+  \item
+    \protect\hyperlink{functional-interfaces}{Functional Interfaces}
+  \item
+    \protect\hyperlink{lambda-expressions}{Lambda Expressions}
+  \item
+    \protect\hyperlink{method-reference}{Method Reference}
+  \item
+    \protect\hyperlink{streams}{Streams}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{operations}{Operations}
+    \end{itemize}
+  \item
+    \protect\hyperlink{you-will-not-be-expected-to-write-code-on-anything-from-these-notes-on-this-lecture.}{You
+    will not be expected to write code on anything from these notes on
+    this lecture.}
+  \end{itemize}
+\item
+  \protect\hyperlink{l21---games}{L21 - Games}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{sequential-programming}{Sequential Programming}
+  \item
+    \protect\hyperlink{event-driven-programming}{Event Driven
+    Programming}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{examples-of-event-driven-systems}{Examples of
+      event-driven systems}
+    \end{itemize}
+  \item
+    \protect\hyperlink{asynchronous-programming}{Asynchronous
+    Programming}
+  \item
+    \protect\hyperlink{entity-component-approach}{Entity Component
+    Approach}
+  \end{itemize}
+\item
+  \protect\hyperlink{exam-tips}{Exam Tips}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{week-1}{Week 1}
+  \item
+    \protect\hyperlink{week-2}{Week 2}
+  \item
+    \protect\hyperlink{week-3}{Week 3}
+  \item
+    \protect\hyperlink{week-4}{Week 4}
+  \item
+    \protect\hyperlink{week-5}{Week 5}
+  \item
+    \protect\hyperlink{week-6}{Week 6}
+  \item
+    \protect\hyperlink{week-7}{Week 7}
+  \item
+    \protect\hyperlink{week-9}{Week 9}
+  \item
+    \protect\hyperlink{week-10}{Week 10}
+  \item
+    \protect\hyperlink{week-11}{Week 11}
+  \item
+    \protect\hyperlink{exam-structure}{Exam Structure}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \protect\hyperlink{question-1-24-marks}{Question 1 (24 Marks)}
+    \item
+      \protect\hyperlink{question-2-30-marks}{Question 2 (30 Marks)}
+    \item
+      \protect\hyperlink{question-3-22-marks}{Question 3 (22 marks)}
+    \item
+      \protect\hyperlink{question-4-24-marks}{Question 4 (24 marks)}
+    \item
+      \protect\hyperlink{question-5-20-marks}{Question 5 (20 marks)} \#
+      L01 - Introduction \protect\hyperlink{table-of-contents}{← Return
+      to Index}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+Yeah
+
+\hypertarget{l02---strings}{%
+\section{L02 - Strings}\label{l02---strings}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\emph{\href{https://docs.oracle.com/javase/8/docs/api/java/lang/String.html}{Java
+Documentation}}
+
+Strings store sequences of characters
+
+\hypertarget{some-examples}{%
+\subsection{Some Examples}\label{some-examples}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{String}\NormalTok{ s1 = }\StringTok{"This is a String"}\NormalTok{;}
+\BuiltInTok{String}\NormalTok{ s2 = }\StringTok{"This is "}\NormalTok{ + }\StringTok{"also a String"}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Unlike Python, you can't use single quotes
+
+\hypertarget{reserved-characters}{%
+\subsection{Reserved Characters}\label{reserved-characters}}
+
+Characters like \texttt{"} are reserved (because you start and end a
+string with it)
+
+You need to escape them if you want to use them in a string
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"Hit that, she a "}\NormalTok{FEFE}\StringTok{""} \CommentTok{/* error, compiler thinks string ends at the second " */}
+\StringTok{"Hit that, she a }\SpecialCharTok{\textbackslash{}"}\StringTok{FEFE}\SpecialCharTok{\textbackslash{}"}\StringTok{"} \CommentTok{/* good */}
+\end{Highlighting}
+\end{Shaded}
+
+Other common reserved characters: \texttt{\textbackslash{}n},
+\texttt{\textbackslash{}t}
+
+\hypertarget{operations}{%
+\subsection{Operations}\label{operations}}
+
+The addition operator \texttt{+} can concatenate the string
+representation of two \emph{objects} (using the \texttt{toString()}
+method inherited by every class)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ a = }\DecValTok{1}\NormalTok{;}
+\BuiltInTok{String}\NormalTok{ s = }\StringTok{"a = "}\NormalTok{ + a; }\CommentTok{/* good */}
+\end{Highlighting}
+\end{Shaded}
+
+Keep in mind:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"1 + 1 = "}\NormalTok{ + }\DecValTok{1}\NormalTok{ + }\DecValTok{1} \CommentTok{/* equates to 1 + 1 = 11 */}
+\StringTok{"1 + 1 = "}\NormalTok{ + (}\DecValTok{1}\NormalTok{ + }\DecValTok{1}\NormalTok{) }\CommentTok{/* equates to 1 + 1 = 2 */}
+\end{Highlighting}
+\end{Shaded}
+
+Operator precedence still holds
+
+\hypertarget{immutability}{%
+\subsection{Immutability}\label{immutability}}
+
+Strings are immutable; once created, they can't be modified, only
+replaced. An important point to note here is that, while the
+\texttt{String} object is immutable, \textbf{its reference variable is
+not.} So that's why, in the above example, the reference was made to
+refer to a newly formed \texttt{String} object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{String}\NormalTok{ str = }\StringTok{"knowledge"}\NormalTok{;}
+\BuiltInTok{String}\NormalTok{ s = str; }\CommentTok{// assigns a new reference to the same string "knowledge"}
+\NormalTok{str = str.}\FunctionTok{concat}\NormalTok{(}\StringTok{" base"}\NormalTok{); }\CommentTok{/* NEW string, prev one is lost cause no other references*/}
+\end{Highlighting}
+\end{Shaded}
+
+As applications grow, \emph{it's very common for String literals to
+occupy large area of memory, which can even cause redundancy.} So, in
+order to make Java more efficient, \textbf{the JVM sets aside a special
+area of memory called the ``String constant pool''.}
+
+When the compiler sees a \texttt{String} literal, it looks for the
+\texttt{String} in the pool. If a match is found, the reference to the
+new literal is directed to the existing \texttt{String} and no new
+\texttt{String} object is created. The existing \texttt{String} simply
+has one more reference. Here comes the point of making
+\texttt{String}objects immutable:
+
+In the \texttt{String} constant pool, a \texttt{String} object is likely
+to have one or many references. \emph{If several references point to
+same String without even knowing it, it would be bad if one of the
+references modified that String value. That's why String objects are
+immutable.}
+
+\emph{\href{https://stackoverflow.com/questions/8798403/string-is-immutable-what-exactly-is-the-meaning}{Source
+and further reading}}
+
+The String class is marked \textbf{final} so that nobody can override
+the behaviour of its methods.
+
+\hypertarget{equality}{%
+\subsection{Equality}\label{equality}}
+
+All classes in Java are actually pointers, or references. To check
+equality between two objects we use the \texttt{equals} method inherited
+from the god of classes, \texttt{Object}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{String}\NormalTok{ s = }\StringTok{"Hello"}\NormalTok{;}
+\BuiltInTok{String}\NormalTok{ s2 = }\KeywordTok{new} \BuiltInTok{String}\NormalTok{(}\StringTok{"Hello"}\NormalTok{);}
+\BuiltInTok{System}\NormalTok{.}\FunctionTok{out}\NormalTok{.}\FunctionTok{println}\NormalTok{(s.}\FunctionTok{equals}\NormalTok{(s2));}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{wrappers-and-primitives}{%
+\subsection{Wrappers and Primitives}\label{wrappers-and-primitives}}
+
+Java provides ``wrapper'' classes for primitives. Primitives are things
+you're familiar with such as:
+
+\texttt{int}, \texttt{double}, \texttt{char}
+
+To conform with the ``Object Oriented Model'' these procedural
+conventions are \textbf{wrapped up} in a class representing the
+primitive type. \textbf{Provides extra functionality for primitives}, at
+the expense of very very very slight computational efficiency.
+
+\includegraphics{images/primitive-wrappers.png}
+
+Has some nice stuff, but parsing is the most used one by far:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{Integer}\NormalTok{.}\FunctionTok{parseInt}\NormalTok{(}\StringTok{"10"}\NormalTok{);}
+\BuiltInTok{Double}\NormalTok{.}\FunctionTok{parseDouble}\NormalTok{(}\StringTok{"3.141592"}\NormalTok{);}
+\BuiltInTok{Boolean}\NormalTok{.}\FunctionTok{parseDouble}\NormalTok{(}\StringTok{"TruE"}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{boxingunboxing}{%
+\subsection{Boxing/Unboxing}\label{boxingunboxing}}
+
+\hypertarget{boxing}{%
+\subsubsection{Boxing}\label{boxing}}
+
+The process of converting a primitive to its equivalent wrapper class
+
+\hypertarget{unboxing}{%
+\subsubsection{Unboxing}\label{unboxing}}
+
+The process of converting an instance of a wrapper class to its
+equivalent primitive type.
+
+Just remember that primitives types are the OG and you're effectively
+`\textbf{boxing}' it up with OOP classes.
+
+\hypertarget{formatting}{%
+\subsection{Formatting}\label{formatting}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{System}\NormalTok{.}\FunctionTok{out.format}\NormalTok{(}\StringTok{"}\SpecialCharTok{%2$d}\StringTok{ %<05d }\SpecialCharTok{%1$d}\StringTok{ }\SpecialCharTok{%3$10s}\StringTok{"}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{22}\NormalTok{, }\StringTok{"Hello"}\NormalTok{);}
+\CommentTok{/*"22 0002210 Hello"}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{images/formatting.png}
+
+\hypertarget{l03---input-and-output-io}{%
+\section{L03 - Input and Output (I/O)}\label{l03---input-and-output-io}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{command-line-arguments}{%
+\subsection{Command Line Arguments}\label{command-line-arguments}}
+
+Just like in C:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\NormalTok{(}\BuiltInTok{String}\NormalTok{[] args)}
+\end{Highlighting}
+\end{Shaded}
+
+args is a variable that stores command line arguments
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{java MyProg Hello World }\DecValTok{10}
+
+\NormalTok{This fills the args variable with three elements, }\StringTok{"Hello"}\NormalTok{, }\StringTok{"World"}\NormalTok{ and }\StringTok{"10"}
+\NormalTok{For multiword Strings, remember to use quotes}
+\NormalTok{Also note that }\StringTok{"10"}\NormalTok{ is a }\BuiltInTok{String}\NormalTok{, not an }\DataTypeTok{int}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{scanner}{%
+\subsection{Scanner}\label{scanner}}
+
+\emph{\href{https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html}{Documentation}}
+
+\texttt{Scanner} is a class that allows for powerful input parsing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{import}\ImportTok{ java.util.Scanner;}
+\BuiltInTok{Scanner}\NormalTok{ scanner = }\KeywordTok{new} \BuiltInTok{Scanner}\NormalTok{(}\BuiltInTok{System}\NormalTok{.}\FunctionTok{in}\NormalTok{);}
+\BuiltInTok{String}\NormalTok{ s = scanner.}\FunctionTok{nextLine}\NormalTok{();}
+\DataTypeTok{boolean}\NormalTok{ b = scanner.}\FunctionTok{nextBoolean}\NormalTok{();}
+\DataTypeTok{int}\NormalTok{ i = scanner.}\FunctionTok{nextInt}\NormalTok{();}
+\DataTypeTok{double}\NormalTok{ d = scanner.}\FunctionTok{nextDouble}\NormalTok{();}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{l04---arrays}{%
+\section{L04 - Arrays}\label{l04---arrays}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\emph{\href{https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html}{Documentation}}
+
+As simple as can be
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{[] ints1 = \{}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{40}\NormalTok{\};}
+\DataTypeTok{int}\NormalTok{[] ints = }\KeywordTok{new} \DataTypeTok{int}\NormalTok{[}\DecValTok{100}\NormalTok{];}
+\BuiltInTok{String}\NormalTok{[] strings = }\KeywordTok{new} \BuiltInTok{String}\NormalTok{[}\DecValTok{100}\NormalTok{];}
+
+\DataTypeTok{int}\NormalTok{ x = ints[}\DecValTok{0}\NormalTok{];}
+\DataTypeTok{int}\NormalTok{ x = ints[-}\DecValTok{1}\NormalTok{]; }\CommentTok{// Gives out of bounds error}
+
+\KeywordTok{import}\ImportTok{ java.util.Arrays;}
+
+\DataTypeTok{int}\NormalTok{[] n1 = \{}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{\};}
+\DataTypeTok{int}\NormalTok{[] n2 = \{}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{\};}
+\BuiltInTok{Arrays}\NormalTok{.}\FunctionTok{equals}\NormalTok{(n1, n2);}
+\BuiltInTok{Arrays}\NormalTok{.}\FunctionTok{sort}\NormalTok{(n1);}
+\BuiltInTok{System}\NormalTok{.}\FunctionTok{out}\NormalTok{.}\FunctionTok{println}\NormalTok{(}\BuiltInTok{Arrays}\NormalTok{.}\FunctionTok{toString}\NormalTok{(n1));}
+\end{Highlighting}
+\end{Shaded}
+
+Arrays are references! Manipulating one reference affects all references
+
+\hypertarget{l05---files}{%
+\section{L05 - Files}\label{l05---files}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{import}\ImportTok{ java.io.FileWriter;}
+\KeywordTok{import}\ImportTok{ java.io.PrintWriter;}
+\KeywordTok{import}\ImportTok{ java.io.IOException;}
+
+\KeywordTok{try}\NormalTok{ (}\BuiltInTok{PrintWriter}\NormalTok{ pw = }\KeywordTok{new} \BuiltInTok{PrintWriter}\NormalTok{(}\KeywordTok{new} \BuiltInTok{FileWriter}\NormalTok{(}\StringTok{"test.txt"}\NormalTok{))) \{}
+\NormalTok{    pw.}\FunctionTok{println}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{);}
+\NormalTok{    pw}\FunctionTok{.format}\NormalTok{(}\StringTok{"My least favourite device is }\SpecialCharTok{%s}\StringTok{ and its price is $}\SpecialCharTok{%d}\StringTok{"}\NormalTok{,}
+    \StringTok{"iPhone"}\NormalTok{, }\DecValTok{100000}\NormalTok{);}
+\NormalTok{\} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{IOException}\NormalTok{ e) \{}
+\NormalTok{    e.}\FunctionTok{printStackTrace}\NormalTok{();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Not expected to remember exact code for exam, scaffolding provided.
+
+\hypertarget{l06---methods}{%
+\section{L06 - Methods}\label{l06---methods}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{signature}{%
+\subsection{Signature}\label{signature}}
+
+\emph{The name of a method, and the number and type of its parameters}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{<privacy?> <}\DataTypeTok{static}\NormalTok{?> <}\KeywordTok{return}\NormalTok{ type> <method name>(<arguments>)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  public and static are default
+\item
+  Every method needs a return type (\texttt{int}, \texttt{double{[}{]}},
+  \texttt{void}\ldots{})
+\item
+  Methods can have zero or more arguments
+\item
+  You must include the return statement if it is not \texttt{void}
+\item
+  Must be defined in a class
+\item
+  Represents the class performing an action
+\end{itemize}
+
+\hypertarget{why-tho}{%
+\subsection{Why tho?}\label{why-tho}}
+
+\begin{itemize}
+\item
+  Prevents code \textbf{duplication}
+\item
+  Improves \textbf{readability}
+\item
+  Makes code \textbf{reusable} and \textbf{portable}
+\item
+  Easier to \textbf{debug}
+\item
+  Gives ``important code'' a useful \textbf{name}
+\end{itemize}
+
+\hypertarget{static-keyword}{%
+\subsection{\texorpdfstring{\texttt{static}
+keyword}{static keyword}}\label{static-keyword}}
+
+\begin{itemize}
+\tightlist
+\item
+  Indicates a \textbf{constant}, \textbf{variable}, or \textbf{method}
+  exists without an object.
+\item
+  In other words, you do not need to create a variable to use something
+  defined as \texttt{static}
+\end{itemize}
+
+For example, the Math library has various \textbf{static} functions,
+take this for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{double}\NormalTok{ x = }\BuiltInTok{Math}\NormalTok{.}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+We didn't declare some ``\texttt{math}'' object, we used the method
+directly without creating an instance of the class.
+
+Here is a \textbf{non-static} example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{Scanner}\NormalTok{ scanner = }\KeywordTok{new} \BuiltInTok{Scanner}\NormalTok{(}\BuiltInTok{System}\NormalTok{.}\FunctionTok{in}\NormalTok{);}
+\BuiltInTok{String}\NormalTok{ text = scanner.}\FunctionTok{nextLine}\NormalTok{();}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{scope}{%
+\subsection{Scope}\label{scope}}
+
+\begin{itemize}
+\tightlist
+\item
+  Defines when a constant, variable or method can be ``seen''
+\end{itemize}
+
+\hypertarget{mutation}{%
+\subsection{Mutation}\label{mutation}}
+
+\begin{itemize}
+\tightlist
+\item
+  Remember that objects are pointers in Java
+\item
+  When we pass objects to methods, we pass references
+\item
+  References allow us to ``mutate'' objects, despite being in a
+  different scope
+\end{itemize}
+
+\hypertarget{overloading}{%
+\subsection{Overloading}\label{overloading}}
+
+\begin{itemize}
+\tightlist
+\item
+  When methods share the same name, but differ in the number, or type of
+  arguments in the method signature
+\end{itemize}
+
+\hypertarget{base-method}{%
+\paragraph{Base Method}\label{base-method}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void} \FunctionTok{magicalComputation}\NormalTok{(}\DataTypeTok{int}\NormalTok{ n)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{overloading-1}{%
+\paragraph{Overloading}\label{overloading-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void} \FunctionTok{magicalComputation}\NormalTok{(}\DataTypeTok{double}\NormalTok{ n)}
+
+\DataTypeTok{void} \FunctionTok{magicalComputation}\NormalTok{(}\DataTypeTok{int}\NormalTok{ n1, }\DataTypeTok{int}\NormalTok{ n2)}
+
+\DataTypeTok{void} \FunctionTok{magicalComputation}\NormalTok{(}\DataTypeTok{int}\NormalTok{ n1, }\DataTypeTok{int}\NormalTok{ n2, }\DataTypeTok{int}\NormalTok{ n3)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{l07---classes-and-objects}{%
+\section{L07 - Classes and Objects}\label{l07---classes-and-objects}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\begin{itemize}
+\tightlist
+\item
+  A ``generalization'' of a real world (or ``problem world'') entity
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A physical real world thing, like a student or book
+  \item
+    A physical real world thing, like a student or book
+  \item
+    An even more abstract thing like a list or a string (data)
+  \end{itemize}
+\item
+  Represents a template for things that have common properties
+\item
+  Contains \textbf{attributes} and \textbf{methods}
+\item
+  Defines a new \textbf{data type}
+\end{itemize}
+
+\hypertarget{objects}{%
+\subsection{Objects}\label{objects}}
+
+\begin{itemize}
+\item
+  Refers to both an instance of a class and all classes in Java, because
+  all classes inherit the \emph{Object} class. Confusing? Yeah, but it's
+  pretty simple
+\item
+  \textbf{Object}: A specific, concrete example of a class
+\item
+  \textbf{Instance}: An object that exists in your code
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{<privacy> }\KeywordTok{class}\NormalTok{ <ClassName> \{}
+\NormalTok{    <variable declarations>}
+\NormalTok{    <method declarations>}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{static-vs-instance}{%
+\subsubsection{Static vs Instance}\label{static-vs-instance}}
+
+\hypertarget{static-variable}{%
+\paragraph{Static Variable}\label{static-variable}}
+
+A property or attribute that is \textbf{shared by all instances} of a
+class
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Movie \{}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{final} \DataTypeTok{int}\NormalTok{ MAX_RATING = }\DecValTok{5}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  One copy per class
+\end{itemize}
+
+\hypertarget{instance-variable}{%
+\paragraph{Instance Variable}\label{instance-variable}}
+
+A property or attribute that is unique to each instance (object) of a
+class
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ <ClassName> \{}
+    \KeywordTok{public}\NormalTok{ <type> varName = <value>;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  One copy per object
+\end{itemize}
+
+\hypertarget{static-method}{%
+\paragraph{Static Method}\label{static-method}}
+
+An action that can be performed by a class, or a message that can be
+sent to it
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Movie \{}
+    \KeywordTok{public} \DataTypeTok{static} \BuiltInTok{String} \FunctionTok{getDefaultBlurb}\NormalTok{() \{}
+        \KeywordTok{return} \StringTok{"Better than Batman vs. Superman but that's not hard."}\NormalTok{;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{instance-method}{%
+\paragraph{Instance Method}\label{instance-method}}
+
+An action that can be performed by an object, or a message that can be
+sent to it
+
+\begin{itemize}
+\tightlist
+\item
+  Defines an action that can be performed by an object, or a message
+  that can be sent to it
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Actor \{}
+    \KeywordTok{public} \BuiltInTok{String}\NormalTok{ firstName, lastName;}
+    
+    \KeywordTok{public} \BuiltInTok{String} \FunctionTok{getFullName}\NormalTok{() \{}
+        \KeywordTok{return} \BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}\StringTok{"}\SpecialCharTok{%s}\StringTok{, }\SpecialCharTok{%s}\StringTok{"}\NormalTok{, lastName, firstName);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+If a method doesn't use any instance variables, it should be static.
+
+\hypertarget{null}{%
+\subsection{Null}\label{null}}
+
+\begin{itemize}
+\item
+  The Java keyword for \textbf{``no object here''}. Null objects
+  \textbf{can't be ``accessed''} to get variables or methods, or used in
+  any way.
+\item
+  Objects are null until they are \textbf{\emph{instantiated}}.
+\item
+  To instantiate an object we do:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Actor robertDowneyJr = }\KeywordTok{new} \FunctionTok{Actor}\NormalTok{();}
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+
+\hypertarget{instantiation-and-member-access}{%
+\subsection{Instantiation and Member
+Access}\label{instantiation-and-member-access}}
+
+\begin{itemize}
+\item
+  The \texttt{new} keyword tells the JVM to allocate memory for the
+  object.
+\item
+  The \texttt{.} operator
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Actor robertDowneyJr = }\KeywordTok{new} \FunctionTok{Actor}\NormalTok{();}
+\NormalTok{robertDowneyJr.}\FunctionTok{firstName}\NormalTok{ = }\StringTok{"Robert"}\NormalTok{;}
+\NormalTok{robertDowneyJr.}\FunctionTok{lastName}\NormalTok{ = }\StringTok{"Downey"}\NormalTok{;}
+\NormalTok{robertDowneyJr.}\FunctionTok{rating}\NormalTok{ = }\DecValTok{5}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{constructors}{%
+\subsection{Constructors}\label{constructors}}
+
+Constructors are methods used to initialize objects. They have the same
+name of the class and cannot return any values. Classes can have more
+than one constructor (\textbf{overloading}).
+
+\emph{Constructor}: A method used to create and initialise an object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \FunctionTok{Actor}\NormalTok{(}\BuiltInTok{String}\NormalTok{ firstName, }\BuiltInTok{String}\NormalTok{ lastName, }\DataTypeTok{int}\NormalTok{ rating) \{}
+    \KeywordTok{this}\NormalTok{.}\FunctionTok{firstName}\NormalTok{ = firstName;}
+    \KeywordTok{this}\NormalTok{.}\FunctionTok{lastName}\NormalTok{ = lastName;}
+    \KeywordTok{this}\NormalTok{.}\FunctionTok{rating}\NormalTok{ = rating;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Note:} The \texttt{this} keyword returns the current class that
+uses it
+
+\hypertarget{standard-methods}{%
+\subsection{Standard Methods}\label{standard-methods}}
+
+The god of all classes, \textbf{Object} contains these two methods:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \BuiltInTok{String} \FunctionTok{toString}\NormalTok{() \{}
+    \KeywordTok{return}\NormalTok{ <}\BuiltInTok{String}\NormalTok{>;}
+\NormalTok{\}}
+
+\KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{equals}\NormalTok{(<type> var) \{}
+    \KeywordTok{return}\NormalTok{ <}\DataTypeTok{boolean}\NormalTok{ expression>;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+That means that all classes (which inherit the \emph{Object} class by
+default) have these methods and can \textbf{\emph{override them}} to
+change their functionality.
+
+\hypertarget{l08---privacy}{%
+\section{L08 - Privacy}\label{l08---privacy}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{mutability}{%
+\subsection{Mutability}\label{mutability}}
+
+\begin{itemize}
+\tightlist
+\item
+  An object is mutable if any of its instance variables can be changed
+  after being initialised.
+\item
+  An object is immutable if none of its instance variables can be
+  changed after being initialised.
+\end{itemize}
+
+\textbf{Information Hiding}: Using privacy to ``hide'' the details of a
+class from the outside world.
+
+\hypertarget{modifiers}{%
+\subsection{Modifiers}\label{modifiers}}
+
+\hypertarget{private}{%
+\subsubsection{Private}\label{private}}
+
+Only available to methods defined in the same class; should be applied
+to all (mutable) instance variables, and some methods.
+
+\hypertarget{protected}{%
+\subsubsection{Protected}\label{protected}}
+
+Available to all classes in the same package and also to any subclasses
+that inherit from the class.
+
+\hypertarget{public}{%
+\subsubsection{Public}\label{public}}
+
+Available at all times, everywhere.
+
+\begin{figure}
+\centering
+\includegraphics{images/privacymodifiers.png}
+\caption{1535885278018}
+\end{figure}
+
+\hypertarget{getters-and-setters}{%
+\subsection{Getters and Setters}\label{getters-and-setters}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public}\NormalTok{ <type> get<VarName>() \{}
+    \KeywordTok{return}\NormalTok{ var;}
+\NormalTok{\}}
+
+\KeywordTok{public} \DataTypeTok{void}\NormalTok{ set<VarName>(<type> var) \{}
+    \KeywordTok{this}\NormalTok{.}\FunctionTok{var}\NormalTok{ = var;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{A class is immutable if all of its attributes are private, and
+it contains no setters.}
+
+\hypertarget{privacy-leaks}{%
+\subsection{Privacy Leaks}\label{privacy-leaks}}
+
+\begin{itemize}
+\tightlist
+\item
+  When a reference to a private instance variable is made available to
+  an external object, and unintended/unknown changes can be made.
+\end{itemize}
+
+\hypertarget{immutability-1}{%
+\subsection{Immutability}\label{immutability-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  A class is immutable if all of its attributes are private, it contains
+  no setters, and only returns copies of its (mutable) instance
+  variables.
+\end{itemize}
+
+\hypertarget{l09---inheritance}{%
+\section{L09 - Inheritance}\label{l09---inheritance}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{quick-reference}{%
+\subsection{Quick Reference}\label{quick-reference}}
+
+\begin{itemize}
+\tightlist
+\item
+  Inheritance defines an ``\textbf{Is A}'' relationship
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Rook is a piece
+  \item
+    Dog is an animal
+  \item
+    Husky is a Dog
+  \end{itemize}
+\item
+  Only use inheritance when this relationship makes sense
+\end{itemize}
+
+\hypertarget{definition}{%
+\subsection{Definition}\label{definition}}
+
+A form of abstraction that permits ``generalisation'' of similar
+attributes/methods of classes; analogous to passing genetics on to your
+children.
+
+\hypertarget{superclasses}{%
+\subsection{Superclasses}\label{superclasses}}
+
+The ``parent'' or ``base'' class in the inheritance relationship;
+provides general information to its ``child'' classes.
+
+\hypertarget{subclass}{%
+\subsection{Subclass}\label{subclass}}
+
+The ``child'' or ``derived'' class in the inheritance relationship;
+inherits common attributes and methods from the ``parent'' class.
+
+\hypertarget{gist}{%
+\subsection{Gist}\label{gist}}
+
+\textbf{Ultimately allows code to be re-used}. Subclasses should be
+``more specific'' versions of a superclass
+
+\hypertarget{example-chess}{%
+\subsection{Example: Chess}\label{example-chess}}
+
+This is \textbf{bad}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Board \{}
+    \KeywordTok{private}\NormalTok{ Pawn[] pawns;}
+    \KeywordTok{private}\NormalTok{ Rook[] rooks;}
+\NormalTok{    ...}
+    \KeywordTok{private}\NormalTok{ ???[][] board;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Instead, we create superclass called \textbf{\emph{Piece}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Piece \{}
+    \KeywordTok{public} \DataTypeTok{int}\NormalTok{ row;}
+    \KeywordTok{public} \DataTypeTok{int}\NormalTok{ col;}
+    \KeywordTok{public} \FunctionTok{Piece}\NormalTok{(}\DataTypeTok{int}\NormalTok{ row, }\DataTypeTok{int}\NormalTok{ col) \{}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{row}\NormalTok{ = row;}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{col}\NormalTok{ = col;}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{isValidMove}\NormalTok{(}\DataTypeTok{int}\NormalTok{ toRow, }\DataTypeTok{int}\NormalTok{ toCol) \{}
+        \KeywordTok{return} \KeywordTok{true}\NormalTok{; }\CommentTok{// Dummy method, the piece type isn't known}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Each piece then can \textbf{\emph{inherit}} this superclass, for example
+a chess piece known as the \textbf{Rook} can move in straight lines.
+This can be implemented by \textbf{\emph{overriding}} the its parent
+\texttt{isValidMove} method:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Rook }\KeywordTok{extends}\NormalTok{ Piece \{}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{isValidMove}\NormalTok{(}\DataTypeTok{int}\NormalTok{ toRow, }\DataTypeTok{int}\NormalTok{ toCol) \{}
+        \KeywordTok{return}\NormalTok{ (}\KeywordTok{this}\NormalTok{.}\FunctionTok{row}\NormalTok{ == toRow) || (}\KeywordTok{this}\NormalTok{.}\FunctionTok{col}\NormalTok{ == toCol);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{super-keyword}{%
+\subsection{Super Keyword}\label{super-keyword}}
+
+The \texttt{super} keyword invokes the constructor of the parent class.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Rook }\KeywordTok{extends}\NormalTok{ Piece \{}
+    \KeywordTok{public} \FunctionTok{Rook}\NormalTok{(}\DataTypeTok{int}\NormalTok{ row, }\DataTypeTok{int}\NormalTok{ col) \{}
+        \KeywordTok{super}\NormalTok{(row, col);}
+\NormalTok{        <block of code to execute>}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{super} can also be used to reference an object's parent class;
+just like the \texttt{this} keyword.
+
+\hypertarget{shadowing}{%
+\subsection{Shadowing}\label{shadowing}}
+
+When two or more variables are declared with the same name in
+overlapping scopes; for example, in both a subclass and superclass.
+
+\textbf{Don't do this}
+
+\hypertarget{overloading-2}{%
+\subsection{Overloading}\label{overloading-2}}
+
+Declaring multiple methods with the same name, but differing method
+signatures. Superclass methods can be overloaded in subclasses.
+
+\hypertarget{overriding}{%
+\subsection{Overriding}\label{overriding}}
+
+Declaring a method that exists in a superclass again in a subclass, with
+the same signature. Methods can only be overridden by subclasses.
+
+\hypertarget{why}{%
+\subsubsection{Why?}\label{why}}
+
+\begin{itemize}
+\tightlist
+\item
+  Subclasses can extend functionality from a parent
+\item
+  Subclasses can override/change functionality from a parent
+\end{itemize}
+
+Back to the chess example, we can use \textbf{overriding} to make a
+better implementation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Piece \{}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{isValidMove}\NormalTok{(}\DataTypeTok{int}\NormalTok{ row, }\DataTypeTok{int}\NormalTok{ col) \{}
+        \KeywordTok{return}\NormalTok{ row >= }\DecValTok{0}\NormalTok{ && row < BOARD_SIZE &&}
+\NormalTok{        col >= }\DecValTok{0}\NormalTok{ && col < BOARD_SIZE;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Rook }\KeywordTok{extends}\NormalTok{ Piece \{}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{isValidMove}\NormalTok{(}\DataTypeTok{int}\NormalTok{ row, }\DataTypeTok{int}\NormalTok{ col) \{}
+        \KeywordTok{return} \KeywordTok{super}\NormalTok{.}\FunctionTok{isValidMove}\NormalTok{(row, col) && ((}\KeywordTok{this}\NormalTok{.}\FunctionTok{row}\NormalTok{ == row) || (}\KeywordTok{this}\NormalTok{.}\FunctionTok{col}\NormalTok{ == col));}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+If you don't want methods to be overridden use the \texttt{final}
+variable
+
+\hypertarget{l10---polymorphism-and-abstract-classes}{%
+\section{L10 - Polymorphism and Abstract
+Classes}\label{l10---polymorphism-and-abstract-classes}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{the-four-principles-of-object-oriented-programming}{%
+\subsection{The Four Principles of Object Oriented
+Programming}\label{the-four-principles-of-object-oriented-programming}}
+
+Just as a review, let's look at the four major concepts behind OOP.
+
+\hypertarget{encapsulation}{%
+\subsubsection{Encapsulation}\label{encapsulation}}
+
+Encapsulation is the hiding of data implementations by restricting
+access to accessors and mutators (getters and setters). In addition to
+security benefits, encapsulation helps us to maintain clean and scalable
+code.
+
+\hypertarget{data-abstraction}{%
+\subsubsection{Data Abstraction}\label{data-abstraction}}
+
+Abstraction is the concept of breaking down a large system into smaller
+components. By defining smaller components we can focus on the
+development onto perfecting smaller parts with specific boundaries.
+Building a system from bottom up.
+
+\hypertarget{polymorphism}{%
+\subsubsection{Polymorphism}\label{polymorphism}}
+
+The ability to represent an object in many forms. This is represented by
+the basic principles of overriding and overloading.
+
+\hypertarget{inheritance}{%
+\subsubsection{Inheritance}\label{inheritance}}
+
+Specifies a ``is a'' relationship between two objects. If an object B
+inherits from object A, all public and protected attributes and methods
+are automatically copied to object B without having to specify their
+implementations again.
+
+\hypertarget{the-object-class}{%
+\subsection{The Object Class}\label{the-object-class}}
+
+All classic inherit the object class. Two useful methods are exposed by
+the \texttt{Object} class:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{toString}
+\item
+  \texttt{equals}
+\end{itemize}
+
+That's great. We can override them to give them meaning.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\NormalTok{(}\BuiltInTok{String}\NormalTok{[] args) \{}
+    \BuiltInTok{Robot}\NormalTok{ robot = }\KeywordTok{new} \BuiltInTok{Robot}\NormalTok{();}
+    \BuiltInTok{System}\NormalTok{.}\FunctionTok{out}\NormalTok{.}\FunctionTok{println}\NormalTok{(robot);}
+\NormalTok{\}}
+\KeywordTok{public} \BuiltInTok{String} \FunctionTok{toString}\NormalTok{() \{}
+    \KeywordTok{return} \BuiltInTok{String}\FunctionTok{.format}\NormalTok{(}\StringTok{"Robot located at \{}\SpecialCharTok{%f}\StringTok{, }\SpecialCharTok{%f}\StringTok{, }\SpecialCharTok{%f}\StringTok{\}"}\NormalTok{,}
+    \KeywordTok{this}\NormalTok{.}\FunctionTok{x}\NormalTok{, }\KeywordTok{this}\NormalTok{.}\FunctionTok{y}\NormalTok{, }\KeywordTok{this}\NormalTok{.}\FunctionTok{z}\NormalTok{);}
+\NormalTok{\}}
+\KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{equals}\NormalTok{(}\BuiltInTok{Object}\NormalTok{ other) \{}
+    \CommentTok{// check if references are the same}
+    \KeywordTok{if}\NormalTok{ (}\KeywordTok{this}\NormalTok{ == other)}
+        \KeywordTok{return} \KeywordTok{true}\NormalTok{;}
+    \CommentTok{// check if the object exists}
+    \KeywordTok{if}\NormalTok{ (other == }\KeywordTok{null}\NormalTok{)}
+        \KeywordTok{return} \KeywordTok{false}\NormalTok{;}
+    \CommentTok{// type check before casting}
+    \KeywordTok{if}\NormalTok{ (}\KeywordTok{this}\NormalTok{.}\FunctionTok{getClass}\NormalTok{() != other.}\FunctionTok{getClass}\NormalTok{())}
+        \KeywordTok{return} \KeywordTok{false}\NormalTok{;}
+    \BuiltInTok{Robot}\NormalTok{ robot = (}\BuiltInTok{Robot}\NormalTok{) other;}
+    \CommentTok{// field comparison}
+    \KeywordTok{return} \BuiltInTok{Math}\NormalTok{.}\FunctionTok{abs}\NormalTok{(}\KeywordTok{this}\NormalTok{.}\FunctionTok{x}\NormalTok{ - robot.}\FunctionTok{x}\NormalTok{) < EPS && ...;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{"Robot\ located\ at\ \{0,\ 0,\ 0\}"}
+
+\hypertarget{instanceof-keyword}{%
+\subsection{\texorpdfstring{\texttt{instanceof}
+Keyword}{instanceof Keyword}}\label{instanceof-keyword}}
+
+\begin{itemize}
+\tightlist
+\item
+  Results in true if an object A is an instance of the same class as
+  object B, or a class that inherits from B.
+\end{itemize}
+
+\hypertarget{upcasting}{%
+\subsection{Upcasting}\label{upcasting}}
+
+When an object of a child class is assigned to a variable of an ancestor
+class.
+
+\texttt{Robot\ robot\ =\ new\ AerialRobot();}
+
+\hypertarget{downcasting}{%
+\subsection{Downcasting}\label{downcasting}}
+
+When an object of an ancestor class is assigned to a variable of a child
+class. Only makes sense if the underlying object is actually of that
+class. Why?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{Robot}\NormalTok{ robot = }\KeywordTok{new} \FunctionTok{WingedRobot}\NormalTok{();}
+\NormalTok{WingedRobot plane = (WingedRobot) robot;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{polymorphism-1}{%
+\subsection{Polymorphism}\label{polymorphism-1}}
+
+The ability to use objects or methods in many different ways; roughly
+means ``multiple forms''.
+
+\includegraphics{images/polymorphism.png}
+
+\hypertarget{abstract-methods}{%
+\subsection{Abstract Methods}\label{abstract-methods}}
+
+Some classes aren't meant to be instantiated because they aren't well
+defined. We use \textbf{abstract} classes to deal with this.
+
+\hypertarget{definition-1}{%
+\subsubsection{Definition}\label{definition-1}}
+
+The \texttt{abstract} keyword defines a method that is common to all
+subclasses, but has no implementation. Each subclass then provides it's
+own implementation through overriding.
+
+\hypertarget{abstract-classes}{%
+\subsection{Abstract Classes}\label{abstract-classes}}
+
+Defines a class that is incomplete. Classes with abstract methods must
+be abstract, but abstract classes can have no abstract methods. Cannot
+be instantiated.
+
+\hypertarget{concrete-classes}{%
+\subsection{Concrete Classes}\label{concrete-classes}}
+
+\begin{itemize}
+\tightlist
+\item
+  Classes that are well defined
+\end{itemize}
+
+\hypertarget{l11---interfaces}{%
+\section{L11 - Interfaces}\label{l11---interfaces}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+Interfaces are \textbf{abstract classes} by default. They cannot contain
+instance \textbf{\emph{variables}}. They can contain only
+\textbf{constants} and \textbf{abstract methods}. The abstract methods
+\textbf{do not contain implementations}.
+
+In an interface:
+
+\begin{itemize}
+\tightlist
+\item
+  All \textbf{methods} are implied to be \textbf{abstract}
+\item
+  All \textbf{attributes} are implied to be \textbf{static}
+  \textbf{final}
+\item
+  All \textbf{methods} and \textbf{attributes} are implied to be
+  \textbf{public}
+\end{itemize}
+
+\begin{quote}
+Implementing an interface allows a class to become more formal about the
+behaviour it promises to provide. Interfaces \textbf{form a contract
+between the class and the outside world}, and this contract is
+\textbf{enforced at build time by the compiler}. If your class claims to
+implement an interface, \textbf{all methods defined by that interface
+must appear in its source code} before the class will successfully
+compile.
+\end{quote}
+
+\href{https://docs.oracle.com/javase/tutorial/java/concepts/interface.html}{Credit}
+
+\hypertarget{how-to-use-interfaces}{%
+\subsection{How to Use Interfaces}\label{how-to-use-interfaces}}
+
+\texttt{interface} and \texttt{implements}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class} \BuiltInTok{Image} \KeywordTok{implements} \BuiltInTok{Printable}\NormalTok{ \{}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{print}\NormalTok{() \{}
+\NormalTok{    <block of code to execute>}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{default-methods}{%
+\subsection{Default Methods}\label{default-methods}}
+
+Classes can be ``\textbf{forced}'' to have an \textbf{implementation} of
+a method, that can be overridden.
+
+\hypertarget{extending-interfaces}{%
+\subsection{Extending Interfaces}\label{extending-interfaces}}
+
+Interfaces can extend other classes, even interfaces - to specify
+additional behaviour!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{interface}\NormalTok{ Digitisable }\KeywordTok{extends} \BuiltInTok{Printable}\NormalTok{ \{}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{digitise}\NormalTok{();}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{a-common-use---sorting---comparablet}{%
+\subsection{\texorpdfstring{A Common Use - Sorting -
+\texttt{Comparable\textless{}T\textgreater{}}}{A Common Use - Sorting - Comparable\textless{}T\textgreater{}}}\label{a-common-use---sorting---comparablet}}
+
+A class that that implements
+\texttt{Comparable\textless{}ClassName\textgreater{}} can allow system
+libraries such as \texttt{Array.Sort} to sort data how you specify,
+regardless of the class.
+
+In specific, the class must implement:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{int} \FunctionTok{compareTo}\NormalTok{(<ClassName> object)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{l12---unified-modelling-language-uml}{%
+\section{L12 - Unified Modelling Language
+(UML)}\label{l12---unified-modelling-language-uml}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{what-is-it}{%
+\subsection{What is it?}\label{what-is-it}}
+
+\textbf{Unified Modelling Language} (UML) is a graphical modelling
+language that can be used to represent artefacts of object oriented
+analysis, design and implementation.
+
+\hypertarget{class-representation}{%
+\subsection{Class Representation}\label{class-representation}}
+
+\begin{figure}
+\centering
+\includegraphics{images/uml1.png}
+\caption{UML Class Representation}
+\end{figure}
+
+\hypertarget{class-attributes}{%
+\subsubsection{Class Attributes}\label{class-attributes}}
+
+Components of an attribute:
+
+\begin{itemize}
+\tightlist
+\item
+  Name (e.g.~xPos)
+\item
+  Data Type (e.g. : \textbf{int})
+\item
+  Initial Value (e.g. = 0)
+\item
+  Privacy (e.g. \textbf{+})
+\item
+  Multiplicity
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{images/uml2.png}
+\caption{UML Attribute Representation}
+\end{figure}
+
+\hypertarget{class-methods}{%
+\subsubsection{Class Methods}\label{class-methods}}
+
+\begin{figure}
+\centering
+\includegraphics{images/uml3.png}
+\caption{UML Methods}
+\end{figure}
+
+\hypertarget{class-relationships}{%
+\subsection{Class Relationships}\label{class-relationships}}
+
+Classes may relate to other classes through different types of
+relationships.
+
+\begin{itemize}
+\tightlist
+\item
+  Association
+\item
+  Generalization (Inheritance)
+\item
+  Realization (Interfaces)
+\item
+  Dependency
+\end{itemize}
+
+\hypertarget{association}{%
+\subsubsection{Association}\label{association}}
+
+Represents a \textbf{has a} (containment) relationship between objects.
+
+When classes are contained by another, we always use an
+\textbf{association}
+
+\begin{figure}
+\centering
+\includegraphics{images/uml4.png}
+\caption{UML Associations}
+\end{figure}
+
+A link indicating \textbf{one class contains an attribute that is itself
+a class}. Does not mean one class ``uses'' another (in a method, or
+otherwise).
+
+\hypertarget{multiplicity}{%
+\subsubsection{Multiplicity}\label{multiplicity}}
+
+Multiplicity on an association specifies the \textbf{number of links}
+that can exist between \textbf{instances (objects)} of the associated
+classes.
+
+\hypertarget{example}{%
+\subsubsection{Example}\label{example}}
+
+Let's create an example for the following scenario:
+
+\begin{itemize}
+\tightlist
+\item
+  A \texttt{Student} can take up to five Courses
+\item
+  A \texttt{Student} has to be enrolled in at least one Course
+\item
+  A \texttt{Course} can contain up to 400 Students
+\item
+  A \texttt{Course} should have at least 10 Students
+\end{itemize}
+
+Create a UML representation for the following scenario:
+
+\begin{figure}
+\centering
+\includegraphics{images/uml5.png}
+\caption{UML Example}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  Self association example:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Each Student also has a student representative they can contact, who
+    is also a student
+  \item
+    \includegraphics{images/uml6.png}
+  \end{itemize}
+\item
+  Different form of association, where one class ``has'' another class,
+  but both exist independently
+\end{itemize}
+
+\hypertarget{aggregation}{%
+\subsubsection{Aggregation}\label{aggregation}}
+
+\begin{itemize}
+\tightlist
+\item
+  Different form of association, where one class ``has'' another class,
+  but both exist independently
+\item
+  If a \texttt{GameObject} is destroyed, the Position object dies;
+  dependence
+\item
+  \includegraphics{images/uml7.png}
+\item
+  If the \texttt{Pond} object is destroyed, the \texttt{Duck} lives on;
+  independence
+\item
+  This makes sense, a \texttt{Duck} can find another \texttt{Pond}!
+\end{itemize}
+
+\hypertarget{composition}{%
+\subsubsection{Composition}\label{composition}}
+
+\begin{itemize}
+\tightlist
+\item
+  One class cannot exist without the other; in other words, existing on
+  its own doesn't make sense
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{images/uml8.png}
+\caption{UML Example}
+\end{figure}
+
+\begin{itemize}
+\item
+  A \textbf{Department} is \textbf{entirely} \textbf{dependent} on a
+  \textbf{University} to exist
+\item
+  If the \textbf{University} disappears, it makes no sense for a
+  \textbf{Department} to exist
+\item
+  But a \textbf{Professor} is \textbf{just a person}; they can
+  \textbf{find another} \textbf{University}!
+\end{itemize}
+
+\hypertarget{generalization---inheritance}{%
+\subsection{Generalization -
+Inheritance}\label{generalization---inheritance}}
+
+\begin{figure}
+\centering
+\includegraphics{images/uml9.png}
+\caption{UML Example}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Italicised methods or classes} are \textbf{abstract}.
+\end{itemize}
+
+\hypertarget{l13---generics}{%
+\section{L13 - Generics}\label{l13---generics}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+\begin{itemize}
+\tightlist
+\item
+  Allows class, interface or method definitions to include
+  \textbf{parameter types}
+\item
+  Enables generic logic to be written that applies to any class type
+\item
+  Allows you to reuse code
+\end{itemize}
+
+\hypertarget{the-comparable-interface}{%
+\subsection{The Comparable Interface}\label{the-comparable-interface}}
+
+We have already seen the Comparable interface:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{interface} \BuiltInTok{Comparable}\NormalTok{<T> \{}
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{compareTo}\NormalTok{(T other);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{what-does-t-mean}{%
+\subsection{What does T mean?}\label{what-does-t-mean}}
+
+\begin{itemize}
+\item
+  T is a \textbf{\emph{type parameter}}
+\item
+  The value of T is literally a type (class/interface); Integer, String,
+  Robot, Book, Driveable
+\item
+  When T is given a value (type), every instance of the placeholder
+  variable is replaced
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class} \BuiltInTok{Robot} \KeywordTok{implements} \BuiltInTok{Comparable}\NormalTok{<}\BuiltInTok{Robot}\NormalTok{> \{...\}}
+\KeywordTok{public} \KeywordTok{class} \BuiltInTok{Book} \KeywordTok{implements} \BuiltInTok{Comparable}\NormalTok{<}\BuiltInTok{Book}\NormalTok{> \{...\}}
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Dog }\KeywordTok{implements} \BuiltInTok{Comparable}\NormalTok{<Dog> \{...\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{arraylist}{%
+\subsection{ArrayList}\label{arraylist}}
+
+\begin{itemize}
+\tightlist
+\item
+  There are limitations to an array
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Finite size
+  \item
+    Resizing is manual
+  \item
+    Requires effort to add/remove elements
+  \end{itemize}
+\item
+  An alternative:\texttt{ArrayList}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{ArrayList}\NormalTok{<}\BuiltInTok{Type}\NormalTok{> circles = }\KeywordTok{new} \BuiltInTok{ArrayList}\NormalTok{<}\BuiltInTok{Type}\NormalTok{>();    }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{advantages}{%
+\paragraph{Advantages}\label{advantages}}
+
+\begin{itemize}
+\tightlist
+\item
+  Can be iterated like arrays (foreach)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{for}\NormalTok{ (}\BuiltInTok{Type}\NormalTok{ t : myArrayList)\{}
+\NormalTok{    ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Automatically handles resizing
+\item
+  Can insert, remove, and modify elements at any index
+\item
+  Inherently able to \texttt{toString()}
+\item
+  \textbf{Can't be indexed({[} {]})}
+\end{itemize}
+
+\hypertarget{disadvantages}{%
+\paragraph{Disadvantages}\label{disadvantages}}
+
+\begin{itemize}
+\tightlist
+\item
+  Grows automatically, but \textbf{does not} shrink automatically - can
+  use more memory than required.
+\item
+  \texttt{trimToSize()} method must be invoked to release the excess
+  memory
+\item
+  Cannot store primitive data types (int, float, etc.).
+\item
+  But you can used boxed types (Integer, Float)
+\end{itemize}
+
+\hypertarget{using-the-arraylist-class}{%
+\subsection{Using the ArrayList Class}\label{using-the-arraylist-class}}
+
+Elements of an ArrayList can be easily sorted if the stored element
+class implements the \texttt{Comparable} interface!
+
+\hypertarget{l14---exceptions}{%
+\section{L14 - Exceptions}\label{l14---exceptions}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{types-of-errors}{%
+\subsection{Types of Errors}\label{types-of-errors}}
+
+\begin{itemize}
+\item
+  \textbf{\emph{Syntax:}} where what you write isn't legal code;
+  identified by the editor/compiler\emph{.}
+\item
+  \textbf{\emph{Semantic:}} runs to completion, but results in incorrect
+  output/operation; identified through software testing (coming soon).
+\item
+  \textbf{\emph{Runtime:}} An error that causes your program to end
+  prematurely (crash and burn); identified through execution.
+\end{itemize}
+
+\hypertarget{runtime-errors}{%
+\subsection{Runtime Errors}\label{runtime-errors}}
+
+Consider this snippet:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{double} \FunctionTok{divide}\NormalTok{(}\DataTypeTok{double}\NormalTok{ a, }\DataTypeTok{double}\NormalTok{ b) \{}
+    \KeywordTok{return}\NormalTok{ a/b;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+What happens if b == 0?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{Exception}\NormalTok{ in thread }\StringTok{"main"}\NormalTok{ java.}\FunctionTok{lang}\NormalTok{.}\FunctionTok{ArithmeticException}\NormalTok{: / by zero}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{best-solution}{%
+\subsubsection{Best Solution}\label{best-solution}}
+
+There are many ways to handle errors like this, the best way is arguably
+\textbf{\emph{catching}} exceptions.
+
+Use exceptions to catch error states, then recover from them, or
+gracefully end the program.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{double} \FunctionTok{divide}\NormalTok{(}\DataTypeTok{double}\NormalTok{ a, }\DataTypeTok{double}\NormalTok{ b) \{}
+    \KeywordTok{try}\NormalTok{ \{}
+        \KeywordTok{return}\NormalTok{ a/b;}
+\NormalTok{    \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{ArithmeticException}\NormalTok{ e) \{}
+        \BuiltInTok{System}\NormalTok{.}\FunctionTok{out}\NormalTok{.}\FunctionTok{println}\NormalTok{(}\StringTok{"Shields failing, abandon ship."}\NormalTok{);}
+        \BuiltInTok{System}\NormalTok{.}\FunctionTok{exit}\NormalTok{(}\DecValTok{0}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exceptions}{%
+\subsection{Exceptions}\label{exceptions}}
+
+The English syntaxial meaning: An error state created by a runtime error
+in your code; an exception.
+
+The Java meaning: An object created by Java to represent the error that
+was encountered.
+
+\textbf{Exception Handling}: Code that actively protects your program in
+the case of exceptions.
+
+\hypertarget{exception-handling}{%
+\subsubsection{Exception Handling}\label{exception-handling}}
+
+General:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{void} \FunctionTok{method}\NormalTok{(...) \{}
+    \KeywordTok{try}\NormalTok{ \{}
+\NormalTok{        <block of code to execute, which may cause an exception>}
+\NormalTok{    \} }\KeywordTok{catch}\NormalTok{ (<ExceptionClass> varName) \{}
+\NormalTok{        <block of code to execute to recover from exception, or end the program>}
+\NormalTok{    \} }\KeywordTok{finally}\NormalTok{ \{}
+\NormalTok{        <block of code that executes whether an exception happened or not>}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{generating-exceptions}{%
+\subsubsection{Generating Exceptions}\label{generating-exceptions}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{double} \FunctionTok{divide}\NormalTok{(}\DataTypeTok{double}\NormalTok{ a, }\DataTypeTok{double}\NormalTok{ b) }\KeywordTok{throws} \BuiltInTok{ArithmeticException}\NormalTok{ \{}
+    \KeywordTok{if}\NormalTok{ (b == }\DecValTok{0}\NormalTok{) \{}
+        \KeywordTok{throw} \KeywordTok{new} \BuiltInTok{ArithmeticException}\NormalTok{();}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{ a/b;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{defining-exceptions}{%
+\subsubsection{Defining Exceptions}\label{defining-exceptions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Exceptions are classes!
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All exceptions inherit from an Exception class
+  \item
+    We can define our own exceptions!
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ JokeIsBadException }\KeywordTok{extends} \BuiltInTok{Exception}\NormalTok{ \{}
+    \KeywordTok{public} \FunctionTok{JokeIsBadException}\NormalTok{(}\BuiltInTok{String}\NormalTok{ message) \{}
+        \KeywordTok{super}\NormalTok{(message);}
+\NormalTok{    \}}
+    \KeywordTok{public} \FunctionTok{JokeIsBadException}\NormalTok{() \{}
+        \KeywordTok{super}\NormalTok{(}\StringTok{"Your joke was bad, Google has failed you."}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{chaining-exceptions}{%
+\subsubsection{Chaining Exceptions}\label{chaining-exceptions}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \DataTypeTok{double} \FunctionTok{averageDifference}\NormalTok{(}\DataTypeTok{int}\NormalTok{ a[], }\DataTypeTok{int}\NormalTok{ b[]) \{}
+    \KeywordTok{try}\NormalTok{ \{}
+        \DataTypeTok{int}\NormalTok{ sumDifference = }\DecValTok{0}\NormalTok{;}
+        \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i < a.}\FunctionTok{length}\NormalTok{; i++) \{}
+\NormalTok{            sumDifference += a[i] - b[i];}
+\NormalTok{        \}}
+        \KeywordTok{return} \FloatTok{1.0}\NormalTok{ * sumDifference/a.}\FunctionTok{length}\NormalTok{;}
+\NormalTok{    \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{ArithmeticException}\NormalTok{ e) \{}
+\NormalTok{        ...}
+\NormalTok{    \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{ArrayIndexOutOfBoundsException}\NormalTok{ e) \{}
+\NormalTok{        ...}
+\NormalTok{    \} }\KeywordTok{catch}\NormalTok{ (}\BuiltInTok{Exception}\NormalTok{ e) \{}
+\NormalTok{        ...}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{types-of-exceptions}{%
+\subsubsection{Types of Exceptions}\label{types-of-exceptions}}
+
+\begin{itemize}
+\tightlist
+\item
+  Unchecked
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Can be safely ignored by the programmer; most (inbuilt) Java
+    exceptions are unchecked, because you aren't forced to protect
+    against them.
+  \end{itemize}
+\item
+  Checked
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Must be handled by the programmer explicitly by the in some way; the
+    compiler gives an error if a checked is ignored.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{l17---software-testing-and-design}{%
+\section{L17 - Software Testing and
+Design}\label{l17---software-testing-and-design}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\emph{A lot of the notes for this lecture are supplemented by
+information from
+\href{softwaretestingfundamentals.com/unit-testing/}{this source}}
+
+\hypertarget{unit-testing}{%
+\subsection{Unit Testing}\label{unit-testing}}
+
+\textbf{\emph{Unit Testing}} is a level of software testing where
+individual units/ components of a software are tested.
+
+In object-oriented programming, the smallest unit is a method, which may
+belong to a base/ super class, abstract class or derived/ child class.
+
+\hypertarget{why-unit-testing}{%
+\subsubsection{Why unit testing?}\label{why-unit-testing}}
+
+\begin{itemize}
+\tightlist
+\item
+  Unit testing increases confidence in changing/ maintaining code. If
+  good unit tests are written and if they are run every time any code is
+  changed, we will be able to promptly catch any defects introduced due
+  to the change. Also, if codes are already made less interdependent to
+  make unit testing possible, the unintended impact of changes to any
+  code is less.
+\item
+  Codes are more reusable. In order to make unit testing possible, codes
+  need to be modular. This means that codes are easier to reuse.
+\item
+  \emph{many more reasons\ldots{} see article liked above}
+\end{itemize}
+
+\hypertarget{l18l19---design-patterns}{%
+\section{L18/L19 - Design Patterns}\label{l18l19---design-patterns}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+A Software Design Pattern is a description of a solution to a recurring
+problem in software design. The recurring nature of the problems makes
+the solution useful to software developers.
+
+\hypertarget{analysing-and-publishing-a-pattern}{%
+\subsection{Analysing and Publishing a
+Pattern}\label{analysing-and-publishing-a-pattern}}
+
+\textbf{Intent}: The goal of the pattern, why it exists
+
+\textbf{Motivation}: A scenario that highlights a need for the pattern
+
+\textbf{Applicability}: General situations where you can use the pattern
+
+\textbf{Structure}: Graphical representations of the pattern, likely a
+UML class diagram
+
+\textbf{Participants}: List of classes/objects and their roles in the
+pattern
+
+\textbf{Collaboration}: How the objects in the pattern interact
+
+\textbf{Consequences}: A description of the results, side effects, and
+tradeoffs when using the pattern
+
+\textbf{Implementation}: Example of ``solving a problem'' with the
+pattern
+
+\textbf{Known Uses}: Specific, real-world examples of using the pattern
+
+\hypertarget{common-design-patterns}{%
+\subsection{Common Design Patterns}\label{common-design-patterns}}
+
+\hypertarget{singleton-pattern}{%
+\paragraph{Singleton Pattern}\label{singleton-pattern}}
+
+Ensure that a class has only one instance and provide a global point of
+access to it.
+
+\begin{figure}
+\centering
+\includegraphics{images/singleton.png}
+\caption{UML Representation for a Singleton}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ Singleton \{}
+    \KeywordTok{private} \DataTypeTok{static}\NormalTok{ Singleton _instance = }\KeywordTok{null}\NormalTok{;}
+    \KeywordTok{private} \FunctionTok{Singleton}\NormalTok{() \{}
+        \CommentTok{//fill in the blank}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{static}\NormalTok{ Singleton }\FunctionTok{getInstance}\NormalTok{() \{}
+        \KeywordTok{if}\NormalTok{ ( _instance == }\KeywordTok{null}\NormalTok{ )}
+\NormalTok{            _instance = }\KeywordTok{new} \FunctionTok{Singleton}\NormalTok{();}
+            \KeywordTok{return}\NormalTok{ _instance;}
+\NormalTok{        \}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{otherOperations}\NormalTok{() \{ \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{collaboration}{%
+\paragraph{Collaboration}\label{collaboration}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ TestSingleton \{}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{method1}\NormalTok{()\{}
+\NormalTok{        X = Singleton.}\FunctionTok{getInstance}\NormalTok{();}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{method2}\NormalTok{()\{}
+\NormalTok{        Y = Singleton.}\FunctionTok{getInstance}\NormalTok{();}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{singleton-pattern-analysis}{%
+\paragraph{Singleton Pattern
+Analysis}\label{singleton-pattern-analysis}}
+
+\textbf{Intent}: Ensure that a class has only one instance and provide a
+global point of access to it.
+
+\textbf{Motivation}: There are cases where only one instance of a class
+must be enforced with easy access to the object
+
+\textbf{Applicability}: Use when a single instance of a class is
+required.
+
+\textbf{Structure}: See previous notes
+
+\textbf{Participants}: Singleton class
+
+\textbf{Collaboration}: See previous notes
+
+\textbf{Consequences}: Use it with caution because inappropriate use
+could result in a bad design.
+
+\textbf{Implementation}: See previous notes
+
+\textbf{Known Uses}: e.g. \texttt{CacheManager} class,
+\texttt{PrinterSpooler} class.
+
+\hypertarget{template-method}{%
+\subsubsection{Template Method}\label{template-method}}
+
+\hypertarget{motivation}{%
+\paragraph{Motivation}\label{motivation}}
+
+Take for example, a class that implements bubble sort:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ BubbleSorter \{}
+    
+    \DataTypeTok{static} \DataTypeTok{int}\NormalTok{ operations = }\DecValTok{0}\NormalTok{;}
+    
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{int} \FunctionTok{sort}\NormalTok{(}\DataTypeTok{int}\NormalTok{[] array)\{}
+\NormalTok{        operations = }\DecValTok{0}\NormalTok{;}
+        \KeywordTok{if}\NormalTok{ (array.}\FunctionTok{length}\NormalTok{ <= }\DecValTok{1}\NormalTok{)}
+            \KeywordTok{return}\NormalTok{ operations;}
+        \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = array.}\FunctionTok{length}\NormalTok{ - }\DecValTok{2}\NormalTok{; i >=}\DecValTok{0}\NormalTok{; i --)\{}
+            \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ j = }\DecValTok{0}\NormalTok{; j <= i; j++)\{}
+                \FunctionTok{compareAndSwap}\NormalTok{(array, j);}
+\NormalTok{            \}}
+\NormalTok{        \}}
+        \KeywordTok{return}\NormalTok{ operations;}
+\NormalTok{    \}}
+    
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{compareAndSwap}\NormalTok{(}\DataTypeTok{int}\NormalTok{[] array, }\DataTypeTok{int}\NormalTok{ index)\{}
+        \KeywordTok{if}\NormalTok{ (array[index] > array[index+}\DecValTok{1}\NormalTok{])}
+            \FunctionTok{swap}\NormalTok{(array,index);}
+\NormalTok{        operations++;}
+\NormalTok{    \}}
+    
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{swap}\NormalTok{(}\DataTypeTok{int}\NormalTok{[] array, }\DataTypeTok{int}\NormalTok{ index)\{}
+        \DataTypeTok{int}\NormalTok{ temp = array[index];}
+\NormalTok{        array[index] = array[index+}\DecValTok{1}\NormalTok{];}
+\NormalTok{        array[index+}\DecValTok{1}\NormalTok{] = temp;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This can be further abstracted, to allow bubble sorting with different
+implementations of \texttt{swap} and \texttt{outOfOrder}
+
+\begin{figure}
+\centering
+\includegraphics{images/templatebubble.png}
+\caption{UML Representation of the Template Method Pattern}
+\end{figure}
+
+Here is the template for the abstract bubble sorting class:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{abstract} \KeywordTok{class}\NormalTok{ AbstractBubbleSorter \{}
+    \KeywordTok{private} \DataTypeTok{static} \DataTypeTok{int}\NormalTok{ operations = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{protected} \DataTypeTok{int}\NormalTok{ length = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{protected} \DataTypeTok{int} \FunctionTok{doSort}\NormalTok{()\{}
+\NormalTok{        operations = }\DecValTok{0}\NormalTok{;}
+        \KeywordTok{if}\NormalTok{ (length <= }\DecValTok{1}\NormalTok{)}
+            \KeywordTok{return}\NormalTok{ operations;}
+        \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = length - }\DecValTok{2}\NormalTok{; i >=}\DecValTok{0}\NormalTok{; i--)\{}
+            \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ j = }\DecValTok{0}\NormalTok{; j <= i; j++)\{}
+                \KeywordTok{if}\NormalTok{ (}\FunctionTok{outOfOrder}\NormalTok{(j))}
+                    \FunctionTok{swap}\NormalTok{(j);}
+\NormalTok{                operations++;}
+\NormalTok{            \}}
+\NormalTok{        \}}
+        \KeywordTok{return}\NormalTok{ operations;}
+\NormalTok{    \}}
+    \KeywordTok{protected} \KeywordTok{abstract} \DataTypeTok{void} \FunctionTok{swap}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index);}
+    \KeywordTok{protected} \KeywordTok{abstract} \DataTypeTok{boolean} \FunctionTok{outOfOrder}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Here is how the \texttt{IntBubbleSorter} would work:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ IntBubbleSorter }\KeywordTok{extends}\NormalTok{ AbstractBubbleSorter \{}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{[] array = }\KeywordTok{null}\NormalTok{;}
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{sort}\NormalTok{(}\DataTypeTok{int}\NormalTok{[] a)\{}
+\NormalTok{        array = a;}
+\NormalTok{        length = array.}\FunctionTok{length}\NormalTok{;}
+        \KeywordTok{return} \FunctionTok{doSort}\NormalTok{();}
+\NormalTok{    \}}
+    \AttributeTok{@Override}
+    \KeywordTok{protected} \DataTypeTok{boolean} \FunctionTok{outOfOrder}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index) \{}
+        \KeywordTok{return}\NormalTok{ (array[index] > array[index+}\DecValTok{1}\NormalTok{]);}
+\NormalTok{    \}}
+    \AttributeTok{@Override}
+    \KeywordTok{protected} \DataTypeTok{void} \FunctionTok{swap}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index) \{}
+        \DataTypeTok{int}\NormalTok{ temp = array[index];}
+\NormalTok{        array[index] = array[index+}\DecValTok{1}\NormalTok{];}
+\NormalTok{        array[index+}\DecValTok{1}\NormalTok{] = temp;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Template method generic UML structure:
+
+\begin{figure}
+\centering
+\includegraphics{images/templateuml.png}
+\caption{UML Design for the Template Method}
+\end{figure}
+
+\hypertarget{template-pattern-analysis}{%
+\paragraph{Template Pattern Analysis}\label{template-pattern-analysis}}
+
+\textbf{Intent}: Define a family of algorithms, encapsulate each one,
+and make them interchangeable.
+
+\textbf{Motivation}: Build generic components that are easy to extend
+and reuse.
+
+\textbf{Applicability}: Allows the implementation of invariant parts of
+an algorithm once and leave it to the subclass to implement the behavior
+that can vary.
+
+\textbf{Structure}: See previous notes.
+
+\textbf{Participants}: See previous notes.
+
+\textbf{Collaboration}: See previous notes.
+
+\textbf{Consequences}: All algorithms must use the same interface
+
+\textbf{Implementation}: See previous notes.
+
+\textbf{Known Uses}: See previous notes.
+
+\hypertarget{template-pattern-conclusion}{%
+\paragraph{Template Pattern
+Conclusion}\label{template-pattern-conclusion}}
+
+The template method is an example of using inheritance as a mechanism
+for re-use. We see in the template method:
+
+\begin{itemize}
+\tightlist
+\item
+  Generic algorithm is placed in the base class
+\item
+  Specific implementation is deferred to the sub class
+\end{itemize}
+
+The design tradeoff of using inheritance is the strong dependency to the
+base class. Although the methods \texttt{outOfOrder} and \texttt{swap}
+are generic methods they cannot be re-used because they inherit the
+\texttt{AbstractBubbleSorter} class.
+
+The Strategy pattern in an alternative.
+
+\hypertarget{strategy-pattern}{%
+\subsubsection{Strategy Pattern}\label{strategy-pattern}}
+
+Take for example, the bubble sorting situation described previously:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ BubbleSorterS \{}
+    \DataTypeTok{static} \DataTypeTok{int}\NormalTok{ operations = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{ length = }\DecValTok{0}\NormalTok{;}
+    \KeywordTok{private}\NormalTok{ SortHandle itsSortHandle = }\KeywordTok{null}\NormalTok{;}
+    \KeywordTok{public} \FunctionTok{BubbleSorterS}\NormalTok{(SortHandle handle)\{}
+\NormalTok{        itsSortHandle = handle;}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{sort}\NormalTok{(}\BuiltInTok{Object}\NormalTok{ array)\{}
+\NormalTok{        itsSortHandle.}\FunctionTok{setArray}\NormalTok{(array);}
+\NormalTok{        length = itsSortHandle.}\FunctionTok{length}\NormalTok{();}
+\NormalTok{        operations = }\DecValTok{0}\NormalTok{;}
+        \KeywordTok{if}\NormalTok{ (length <= }\DecValTok{1}\NormalTok{)}
+            \KeywordTok{return}\NormalTok{ operations;}
+        \KeywordTok{for}\NormalTok{(}\DataTypeTok{int}\NormalTok{ nextToLast = length - }\DecValTok{2}\NormalTok{; nextToLast >=}\DecValTok{0}\NormalTok{;nextToLast--)\{}
+            \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ index=}\DecValTok{0}\NormalTok{; index <= nextToLast; index++)\{}
+                \KeywordTok{if}\NormalTok{ (itsSortHandle.}\FunctionTok{outOfOrder}\NormalTok{(index))}
+\NormalTok{                    itsSortHandle.}\FunctionTok{swap}\NormalTok{(index);}
+\NormalTok{                operations++;}
+\NormalTok{            \}}
+\NormalTok{        \}}
+        \KeywordTok{return}\NormalTok{ operations;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+We can see the addition of the \texttt{SortHandle} class, here is its
+implementation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{interface}\NormalTok{ SortHandle \{}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{swap}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index);}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{outOfOrder}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index);}
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{length}\NormalTok{();}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{setArray}\NormalTok{(}\BuiltInTok{Object}\NormalTok{ array);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{images/strategyuml.png}
+\caption{Strategy UML Pattern}
+\end{figure}
+
+Here is an implementation of an \texttt{IntSortHandle}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ IntSortHandle }\KeywordTok{implements}\NormalTok{ SortHandle \{}
+    \KeywordTok{private} \DataTypeTok{int}\NormalTok{[] array = }\KeywordTok{null}\NormalTok{;}
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{length}\NormalTok{() \{}
+        \KeywordTok{return}\NormalTok{ array.}\FunctionTok{length}\NormalTok{;}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{outOfOrder}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index) \{}
+        \KeywordTok{return}\NormalTok{ (array[index] > array[index+}\DecValTok{1}\NormalTok{]);}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{setArray}\NormalTok{(}\BuiltInTok{Object}\NormalTok{ array) \{}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{array}\NormalTok{ = (}\DataTypeTok{int}\NormalTok{ [])array;}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{swap}\NormalTok{(}\DataTypeTok{int}\NormalTok{ index) \{}
+        \DataTypeTok{int}\NormalTok{ temp = array[index];}
+\NormalTok{        array[index] = array[index + }\DecValTok{1}\NormalTok{];}
+\NormalTok{        array[index + }\DecValTok{1}\NormalTok{] = temp;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{factory-method-pattern-1}{%
+\subsubsection{Factory Method Pattern}\label{factory-method-pattern-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Creating objects in the class that requires (uses) the objects is
+  inflexible
+
+  \begin{itemize}
+  \tightlist
+  \item
+    It commits the class to a particular object
+  \item
+    Makes it impossible to change the instantiation without having to
+    change the class
+  \end{itemize}
+\item
+  Factory Method pattern solves this problem by:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Defining a separate operation for creating an object
+  \item
+    Creating an object by calling a factory method
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{keywords}{%
+\paragraph{Keywords}\label{keywords}}
+
+A few keywords to remember this pattern:
+
+\textbf{\emph{Factory:}} A general technique for manufacturing
+(creating) objects.
+
+\textbf{\emph{Product:}} An abstract class that generalises the objects
+being created/produced by the factory.
+
+\textbf{\emph{Creator:}} An abstract class that generalises the objects
+that will consume/produce products; generally have some operation
+(e.g.~the constructor) that will invoke the factory method.
+
+\hypertarget{factory-method-uml-template}{%
+\paragraph{Factory Method UML
+Template}\label{factory-method-uml-template}}
+
+\begin{figure}
+\centering
+\includegraphics{images/factoryuml.png}
+\caption{Factory Method UML}
+\end{figure}
+
+\hypertarget{why-the-factory-pattern}{%
+\paragraph{Why the Factory Pattern?}\label{why-the-factory-pattern}}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Delegates} object creation (and the decision process) to
+  subclasses
+\item
+  \emph{Abstracts} object creation by using a factory (object
+  production) method
+\item
+  \emph{Encapsulates} objects by allowing subclasses to determine what
+  they need
+\end{itemize}
+
+\hypertarget{implementation-example-uml-and-java}{%
+\paragraph{Implementation Example (UML and
+Java)}\label{implementation-example-uml-and-java}}
+
+\begin{figure}
+\centering
+\includegraphics{images/gamefactoryuml.png}
+\caption{UML Implementation}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{abstract} \KeywordTok{class}\NormalTok{ Game \{}
+    \KeywordTok{private} \DataTypeTok{final} \BuiltInTok{List}\NormalTok{<Player> players = }\KeywordTok{new} \BuiltInTok{ArrayList}\NormalTok{<>();}
+    \KeywordTok{public} \FunctionTok{Game}\NormalTok{(}\DataTypeTok{int}\NormalTok{ nPlayers) \{}
+        \KeywordTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i < nPlayers; i++) \{}
+\NormalTok{            players.}\FunctionTok{add}\NormalTok{(}\FunctionTok{createPlayer}\NormalTok{());}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    \KeywordTok{public} \KeywordTok{abstract}\NormalTok{ Player }\FunctionTok{createPlayer}\NormalTok{();}
+\NormalTok{\}}
+
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ RPGGame }\KeywordTok{extends}\NormalTok{ Game \{}
+    \AttributeTok{@Override}
+    \KeywordTok{public}\NormalTok{ Player }\FunctionTok{createPlayer}\NormalTok{() \{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{RPGPlayer}\NormalTok{();}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ ShooterGame }\KeywordTok{extends}\NormalTok{ Game \{}
+    \AttributeTok{@Override}
+    \KeywordTok{public}\NormalTok{ Player }\FunctionTok{createPlayer}\NormalTok{() \{}
+        \KeywordTok{return} \KeywordTok{new} \FunctionTok{ShooterPlayer}\NormalTok{();}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{factory-pattern-analysis}{%
+\paragraph{Factory Pattern Analysis}\label{factory-pattern-analysis}}
+
+\textbf{Intent}: To generalise object creation
+
+\textbf{Motivation}: Loading player objects when a game loads
+
+\textbf{Applicability}: When sister classes depend on (and create)
+similar objects
+
+\textbf{Structure}: See previous notes.
+
+\textbf{Participants}: See previous notes.
+
+\textbf{Collaboration}: Concrete creator objects invoke the factory
+method in order to produce their desired product
+
+\textbf{Consequences}: Object creation in the superclass is now
+decoupled from the specific object required
+
+\textbf{Implementation}: See previous notes.
+
+\textbf{Known Uses}: See previous notes.
+
+\hypertarget{observer-pattern}{%
+\subsubsection{Observer Pattern}\label{observer-pattern}}
+
+Observers depend on the state of one object. Instead of making the
+observer dependent upon the object, we can use a publish-subscribe style
+communication pattern.
+
+\textbf{\emph{Subject:}} An ``important'' object, whose state (or change
+in state) determines the actions of other classes.
+
+\textbf{\emph{Observer:}} An object that monitors the subject in order
+to respond to its state, and any changes made to it.
+
+\begin{figure}
+\centering
+\includegraphics{images/observeruml.png}
+\caption{Observer UML Template}
+\end{figure}
+
+\hypertarget{l20---advanced-java-and-oop-concepts}{%
+\section{L20 - Advanced Java and OOP
+Concepts}\label{l20---advanced-java-and-oop-concepts}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{enums-enumerated-types}{%
+\subsection{Enums (enumerated types)}\label{enums-enumerated-types}}
+
+\hypertarget{definition-2}{%
+\subsubsection{Definition}\label{definition-2}}
+
+\textbf{\emph{enum:}} A class that consists of a finite list of
+constants.
+
+\hypertarget{usage}{%
+\subsubsection{Usage}\label{usage}}
+
+Used any time we need to represent a fixed set of values
+
+Must list all values
+
+Otherwise, like any other class; can have methods and attributes!
+
+An example: \textbf{\emph{days of the week}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{enum}\NormalTok{ Days \{}
+\NormalTok{    MONDAY,}
+\NormalTok{    TUESDAY,}
+\NormalTok{    WEDNESDAY,}
+\NormalTok{    THURSDAY,}
+\NormalTok{    FRIDAY,}
+\NormalTok{    SATURDAY,}
+\NormalTok{    SUNDAY}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{accessing}{%
+\subsubsection{Accessing}\label{accessing}}
+
+The values of an enum are accessed statically, because they are
+constants.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Day someDay = Days.}\FunctionTok{MONDAY}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tying-other-information}{%
+\subsubsection{Tying other Information}\label{tying-other-information}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{enum}\NormalTok{ Suit \{}
+    \FunctionTok{SPADES}\NormalTok{(Colour.}\FunctionTok{BLACK}\NormalTok{),}
+    \FunctionTok{CLUBS}\NormalTok{(Colour.}\FunctionTok{BLACK}\NormalTok{),}
+    \FunctionTok{DIAMONDS}\NormalTok{(Colour.}\FunctionTok{RED}\NormalTok{),}
+    \FunctionTok{HEARTS}\NormalTok{(Colour.}\FunctionTok{RED}\NormalTok{);}
+    \KeywordTok{private}\NormalTok{ Colour colour;}
+    \KeywordTok{private} \FunctionTok{Suit}\NormalTok{(Colour colour) \{}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{colour}\NormalTok{ = colour;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Where\texttt{Colour} is likely an enum or a class with the
+appropriate constant values}
+
+\hypertarget{variadic-parameters}{%
+\subsection{Variadic Parameters}\label{variadic-parameters}}
+
+Some methods can take an unknown number of parameters. An example of
+this is the \texttt{Arrays.asList} method, that can take an arbitrary
+number of integer parameters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{List}\NormalTok{<}\BuiltInTok{Integer}\NormalTok{> list = }\BuiltInTok{Arrays}\NormalTok{.}\FunctionTok{asList}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\BuiltInTok{List}\NormalTok{<}\BuiltInTok{Integer}\NormalTok{> list = }\BuiltInTok{Arrays}\NormalTok{.}\FunctionTok{asList}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{18}\NormalTok{);}
+\BuiltInTok{List}\NormalTok{<}\BuiltInTok{Integer}\NormalTok{> list = }\BuiltInTok{Arrays}\NormalTok{.}\FunctionTok{asList}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{33}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+These parameters aren't overloads, they're defined in one method as a
+variadic parameter. An implementation example is as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \BuiltInTok{String} \FunctionTok{concatenate}\NormalTok{(}\BuiltInTok{String}\KeywordTok{... }\NormalTok{strings) \{}
+    \BuiltInTok{String}\NormalTok{ string = }\StringTok{""}\NormalTok{;}
+    \KeywordTok{for}\NormalTok{ (}\BuiltInTok{String}\NormalTok{ s : strings) \{}
+\NormalTok{        string += s;}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{ string;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+As you can see, \texttt{strings} can be used like an array.
+
+\hypertarget{functional-interfaces}{%
+\subsection{Functional Interfaces}\label{functional-interfaces}}
+
+An interface that contains only a single abstract method; also called a
+Single Abstract Method interface. I have no clue why it has such a fancy
+and separate definition even though it's just an interface. You can even
+tag it!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\AttributeTok{@FunctionalInterface}
+\KeywordTok{public} \KeywordTok{interface}\NormalTok{ Attackable \{}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{attack}\NormalTok{();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+There is a very popular type of functional interface, the Predicate
+functional interface.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{interface} \BuiltInTok{Predicate}\NormalTok{<T>}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The predicate `functional' interface takes one input argument and
+  outputs \texttt{true} or \texttt{false}
+\item
+  It executes a method \texttt{boolean\ test(T\ t)} on a single object
+\item
+  The \texttt{Predicate} interface can be combined with predicates using
+  methods that represent logic operators \texttt{and} \texttt{or}
+  \texttt{negate}.
+\end{itemize}
+
+There is also another functional interface in the Java language called
+the \texttt{UnaryOperator} functional interface.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{public} \KeywordTok{interface}\NormalTok{ UnaryOperator<T>}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Represents a unary (single argument) function that accepts one
+  argument, and returns an object of the same type.
+\item
+  Executes the \texttt{T\ apply(T\ t)} method on a single object
+\end{itemize}
+
+We've seen two functional interfaces: \texttt{Predicate} and
+\texttt{UnaryOperator}.
+
+\hypertarget{lambda-expressions}{%
+\subsection{Lambda Expressions}\label{lambda-expressions}}
+
+A technique that treats code as that can be used as an ``object''; for
+example, allows to instantiate an interface without implementing it.
+
+This is commonly used to represent predicates, like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{Predicate}\NormalTok{<}\BuiltInTok{Integer}\NormalTok{> p = i -> i > }\DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+The integer object \texttt{i} is created on the fly and the predicate's
+\texttt{test} function will return true if
+\texttt{i\ \textgreater{}\ 0}.
+
+\hypertarget{method-reference}{%
+\subsection{Method Reference}\label{method-reference}}
+
+Can be stored like lambda expressions. They are simply used to quickly
+refer to methods within functions, like so:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{names.}\FunctionTok{replaceAll}\NormalTok{(}\BuiltInTok{String}\NormalTok{::toUpperCase);}
+\end{Highlighting}
+\end{Shaded}
+
+That snippet will go through the list of names, and apply the
+\texttt{toUpperCase} function on each \texttt{String} element, replacing
+the entry with its upper case counterpart as it traverses the array.
+
+\hypertarget{streams}{%
+\subsection{Streams}\label{streams}}
+
+Streams allow you to apply multiple functions to the same data.
+
+\hypertarget{definition-3}{%
+\subsubsection{Definition}\label{definition-3}}
+
+A series of elements given in \emph{sequence}, that are
+\emph{automatically} put through a \emph{pipeline} of operations.
+
+\hypertarget{example-1}{%
+\subsubsection{Example}\label{example-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list = list.}\FunctionTok{stream}\NormalTok{()}
+\NormalTok{           .}\FunctionTok{filter}\NormalTok{(s -> s.}\FunctionTok{length}\NormalTok{() > }\DecValTok{5}\NormalTok{)}
+\NormalTok{           .}\FunctionTok{filter}\NormalTok{(s -> s.}\FunctionTok{startsWith}\NormalTok{(}\StringTok{"C"}\NormalTok{))}
+\NormalTok{           .}\FunctionTok{map}\NormalTok{(}\BuiltInTok{String}\NormalTok{::toUpperCase)}
+\NormalTok{           .}\FunctionTok{collect}\NormalTok{(Collectors.}\FunctionTok{toList}\NormalTok{());}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{operations-1}{%
+\subsubsection{Operations}\label{operations-1}}
+
+\textbf{map} (convert input to output) \textbf{filter} (select elements
+with a condition) \textbf{limit} (perform a maximum number of
+iterations) \textbf{collect} (gather all elements and output in a list,
+array, String\ldots{}) \textbf{reduce} (aggregate a stream into a single
+value)
+
+\hypertarget{you-will-not-be-expected-to-write-code-on-anything-from-these-notes-on-this-lecture.}{%
+\subsection{You will not be expected to write code on anything from
+these notes on this
+lecture.}\label{you-will-not-be-expected-to-write-code-on-anything-from-these-notes-on-this-lecture.}}
+
+But you might still need to interpret code ;-)
+
+\hypertarget{l21---games}{%
+\section{L21 - Games}\label{l21---games}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{sequential-programming}{%
+\subsection{Sequential Programming}\label{sequential-programming}}
+
+A program that is run (more or less) top to bottom, starting at the
+beginning of the main method, and concluding at its end.
+
+\begin{itemize}
+\tightlist
+\item
+  Useful for ``static'' programs
+\item
+  Constant, unchangeable logic
+\item
+  Execution is the same (or very similar) each time
+\end{itemize}
+
+\hypertarget{event-driven-programming}{%
+\subsection{Event Driven Programming}\label{event-driven-programming}}
+
+Using events and call-backs to control the of a program's execution.
+
+\hypertarget{state}{%
+\paragraph{State}\label{state}}
+
+The properties that define an object or device; for example, whether it
+is ``active''.
+
+\hypertarget{event}{%
+\paragraph{Event}\label{event}}
+
+Created when the state of an object/device/etc. is altered.
+
+\hypertarget{call-back}{%
+\paragraph{Call-back}\label{call-back}}
+
+A method triggered by an event.
+
+\hypertarget{examples-of-event-driven-systems}{%
+\subsubsection{Examples of event-driven
+systems}\label{examples-of-event-driven-systems}}
+
+\hypertarget{asynchronous-programming}{%
+\subsection{Asynchronous Programming}\label{asynchronous-programming}}
+
+We introduce the concept of an interrupt.
+
+\hypertarget{interrupts}{%
+\paragraph{Interrupts}\label{interrupts}}
+
+A signal generated by hardware or software indicating an event that
+needs immediate CPU attention.
+
+\hypertarget{interrupt-service-routine}{%
+\paragraph{Interrupt Service Routine}\label{interrupt-service-routine}}
+
+Event-handling code to respond to interrupt signals.
+
+\hypertarget{entity-component-approach}{%
+\subsection{Entity Component Approach}\label{entity-component-approach}}
+
+Instead of hard coding traits to a character in a game, we can use an
+entity-component approach:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{Entity}\NormalTok{ monster = }\KeywordTok{new} \BuiltInTok{Entity}\NormalTok{();}
+\NormalTok{monster.}\FunctionTok{addComponent}\NormalTok{(}\KeywordTok{new} \BuiltInTok{Position}\NormalTok{());}
+\NormalTok{monster.}\FunctionTok{addComponent}\NormalTok{(}\KeywordTok{new} \BuiltInTok{Image}\NormalTok{());}
+\NormalTok{monster.}\FunctionTok{addComponent}\NormalTok{(}\KeywordTok{new} \FunctionTok{Aggressor}\NormalTok{());}
+\end{Highlighting}
+\end{Shaded}
+
+Where these classes inherit from
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{abstract} \KeywordTok{class} \BuiltInTok{Component}\NormalTok{ \{}
+    \KeywordTok{private} \DataTypeTok{boolean}\NormalTok{ enabled = }\KeywordTok{true}\NormalTok{;}
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{getEnabled}\NormalTok{() \{}
+        \KeywordTok{return}\NormalTok{ enabled;}
+\NormalTok{    \}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{setEnabled}\NormalTok{(}\DataTypeTok{boolean}\NormalTok{ enabled) \{}
+        \KeywordTok{this}\NormalTok{.}\FunctionTok{enabled}\NormalTok{ = enabled;}
+\NormalTok{    \}}
+    \CommentTok{// by default, do nothing}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{update}\NormalTok{() \{ \}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{render}\NormalTok{() \{ \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This is used in Unity too.
+
+\hypertarget{exam-tips}{%
+\section{Exam Tips}\label{exam-tips}}
+
+\protect\hyperlink{table-of-contents}{← Return to Index}
+
+\hypertarget{week-1}{%
+\subsection{Week 1}\label{week-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Variables, data types, branching, iteration
+\item
+  Strings and \texttt{String} manipulation/formatting
+\item
+  Wrapper classes and methods (almost certainly won't appear in this
+  2018 Sem 2 exam)
+\end{itemize}
+
+\hypertarget{week-2}{%
+\subsection{Week 2}\label{week-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Input and output; you will \textbf{not} be asked to use
+  \texttt{Scanner} or manipulate files in this 2018 Sem 2exam.
+\item
+  Arrays; creating, modifying, accessing and iterating
+  (\textbf{\emph{from cohort MST performance - needs improvement}})
+\end{itemize}
+
+\hypertarget{week-3}{%
+\subsection{Week 3}\label{week-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Again, \textbf{no file manipulation}
+\item
+  Methods and method overloading (first layer of abstraction)
+\item
+  Writing helper methods in the exam is likely to increase your marks
+\end{itemize}
+
+\hypertarget{week-4}{%
+\subsection{Week 4}\label{week-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  Classes; what they represent, getters, setters, constructors, the
+  \texttt{this} keyword
+\item
+  Privacy concerns, how encapsulation works, why? \textbf{At least one
+  question in the exam that asks about privacy}
+\end{itemize}
+
+\hypertarget{week-5}{%
+\subsection{Week 5}\label{week-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Inheritance; why, what relationship does it represent?
+\item
+  Overriding and \texttt{super}; why?
+\item
+  Polymorphism; four different types of polymorphism.
+\item
+  Abstract classes; what do they represent?
+\end{itemize}
+
+\hypertarget{week-6}{%
+\subsection{Week 6}\label{week-6}}
+
+\begin{itemize}
+\item
+  Interfaces; what do they represent? When do we use them?
+  \textbf{Differentiate between abstract and interface}
+\item
+  \textbf{Will be asked to implement the Comparable interface}
+\item
+  UML; \textbf{know all the links} - association, inheritance,
+  interfaces, multiplicity, privacy
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Don't need to know about aggregation and composition}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{week-7}{%
+\subsection{Week 7}\label{week-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  Generic classes; why do we use them? What do they provide?
+\item
+  Generics in Java (Collections, Map)
+\item
+  \textbf{There will be a question on writing generics.}
+\end{itemize}
+
+\hypertarget{week-9}{%
+\subsection{Week 9}\label{week-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Will need to be able to create an exception}
+\item
+  Four principles of Object Oriented Design
+\item
+  Cohesion and Coupling
+\item
+  Should be able to discuss unit testing, not expected to write tests.
+\end{itemize}
+
+\hypertarget{week-10}{%
+\subsection{Week 10}\label{week-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  Describe the purposes and uses of design patterns as a general tool
+\item
+  Describe the different design patterns we introduced, including
+  relevant UML and description of key components
+\end{itemize}
+
+\hypertarget{week-11}{%
+\subsection{Week 11}\label{week-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Sequential vs Async programming
+\item
+  Event-driven programming
+\item
+  Basic game design (entity-component scheme)
+\item
+  Enums, \textbf{one will be given to us and ask us to use the enum in
+  the exam}
+\end{itemize}
+
+\hypertarget{exam-structure}{%
+\subsection{Exam Structure}\label{exam-structure}}
+
+\hypertarget{question-1-24-marks}{%
+\subsubsection{Question 1 (24 Marks)}\label{question-1-24-marks}}
+
+\begin{itemize}
+\tightlist
+\item
+  6 questions, 4 marks each
+\item
+  You must describe or explain a concept or term, for example, the
+  difference between abstract and concrete classes.
+\end{itemize}
+
+\hypertarget{question-2-30-marks}{%
+\subsubsection{Question 2 (30 Marks)}\label{question-2-30-marks}}
+
+\begin{itemize}
+\item
+  Two questions, 24 marks and 6 marks
+\item
+  Given a description of a design, implement it in UML, \textbf{no Java}
+\item
+  Given the design, give us two ways to test and validate it
+\end{itemize}
+
+\hypertarget{question-3-22-marks}{%
+\subsubsection{Question 3 (22 marks)}\label{question-3-22-marks}}
+
+\begin{itemize}
+\tightlist
+\item
+  2 questions, 7 and 15 marks
+\item
+  You will build a small two class system
+\item
+  Stepping through using sub-questions
+\item
+  Constructors, getters and setters, comparators.
+\end{itemize}
+
+\hypertarget{question-4-24-marks}{%
+\subsubsection{Question 4 (24 marks)}\label{question-4-24-marks}}
+
+\begin{itemize}
+\tightlist
+\item
+  Write Java, implement the algorithm provided.
+\item
+  A lot of moving parts, note exceptions, edge cases
+\end{itemize}
+
+\hypertarget{question-5-20-marks}{%
+\subsubsection{Question 5 (20 marks)}\label{question-5-20-marks}}
+
+\begin{itemize}
+\tightlist
+\item
+  3 questions, 5, 4, and 11 marks.
+\item
+  Hard to \textbf{comprehend}
+\item
+  Easy to \textbf{answer}
+\item
+  You must know how to use \textbf{generics!}
+\item
+  It will take time to decode, so read it carefully.
+\item
+  This question separates H1's from the rest.
+\item
+  You will be provided with documentation
+\end{itemize}
+
+\end{document}
